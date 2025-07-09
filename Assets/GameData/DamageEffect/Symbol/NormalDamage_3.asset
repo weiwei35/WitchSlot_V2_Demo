@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618e91087467f774cb411435ef5a9627, type: 3}
+  m_Name: NormalDamage_3
+  m_EditorClassIdentifier: 
+  value: 3
+  targetType: 1
+  effectPrefab: {fileID: 2194967827451950338, guid: 6e954688821358a42bc06d195df8a3de, type: 3}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618e91087467f774cb411435ef5a9627, type: 3}
+  m_Name: SkillDamage_8
+  m_EditorClassIdentifier: 
+  value: 8
+  targetType: 1
+  effectPrefab: {fileID: 8149607132230675656, guid: 5b5e1340d98f5454cac3a77cded23392, type: 3}

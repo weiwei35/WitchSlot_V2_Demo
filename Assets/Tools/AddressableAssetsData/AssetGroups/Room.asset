@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Room
+  m_EditorClassIdentifier: 
+  m_GroupName: Room
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 7c2030fca541dd043ab1bcd9f58d7e31
+  m_SerializeEntries:
+  - m_GUID: 533aad2a74cced541a60bf34e82cc282
+    m_Address: Room1 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9cfb62a2928313a4bb4ae7e399cbfc8e
+    m_Address: Room1 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a6e0edbb7801c24a9933f8b4fa7a9f1
+    m_Address: Room1 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 01fcc4c84a8fd8047821318455f1d509
+    m_Address: Room1 4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16d7f4d4c524dca428437f6ea7c6c0fc
+    m_Address: Room1 5
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dc936aec8e14634a9b00ff4261b2784
+    m_Address: Room2 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02d1c9153ece869408a6f375368b583e
+    m_Address: Room2 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 091a90fd859e02040b5f89f8dea0589f
+    m_Address: Room3 1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a8199e254cdf8f4e805ca59ec4d2ba9
+    m_Address: Room3 2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e349e4955bbe17d499d666d8531fd4e0
+    m_Address: Room3 3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 42a33bb8bfe118c489f5b4c98cab4125
+    m_Address: Room2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf415affed94cbc44b401fbd78510d77
+    m_Address: Room1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0825f629bdc587e40998b5b71f70a020
+    m_Address: Room3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - RoomData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 30081ddc9e661924994bce7c3a3c4f97, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 96f1f218b7a50a34e99bed9a2d87173a, type: 2}
+    - {fileID: 11400000, guid: 2ec893ec81a805644a3a0de8fc00aacf, type: 2}

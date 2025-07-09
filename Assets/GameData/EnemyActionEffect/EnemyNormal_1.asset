@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e40ffd6f6f15241afa6408f562bf9c, type: 3}
+  m_Name: EnemyNormal_1
+  m_EditorClassIdentifier: 
+  value: 1
+  targetType: 1
+  effectPrefab: {fileID: 8149607132230675656, guid: 5b5e1340d98f5454cac3a77cded23392, type: 3}
+  EnemyAttackFail: {fileID: 11400000, guid: 53a789fad737c9a48b1446c02a141947, type: 2}
+  EnemyAttackSuccess: {fileID: 11400000, guid: d62bc689d55ac694c93c53bf25448a61, type: 2}

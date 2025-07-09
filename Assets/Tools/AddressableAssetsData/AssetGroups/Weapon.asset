@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Weapon
+  m_EditorClassIdentifier: 
+  m_GroupName: Weapon
+  m_Data:
+    m_SerializedData: []
+  m_GUID: f8891075770cbc649b6af99c893d7d4b
+  m_SerializeEntries:
+  - m_GUID: 55e679b5987a5d441ab514a74f1beed5
+    m_Address: "\u5251"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c78bb6aaf60cb764c86b45ced90af702
+    m_Address: "\u5E3D\u5B50"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c879194cc0411c4fb2571bf57c2cdcc
+    m_Address: "\u9524\u5934"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67fad738e77706b4196178ba84d25958
+    m_Address: "\u6212\u6307"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c27af1c864c823b4ca1f2a26040adf9c
+    m_Address: "\u6597\u7BF7"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 30081ddc9e661924994bce7c3a3c4f97, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 77117173242085a4dbb45e12bb67c713, type: 2}
+    - {fileID: 11400000, guid: cfd45184fea2dbc48ac075d95e00ed48, type: 2}

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Booster
+  m_EditorClassIdentifier: 
+  m_GroupName: Booster
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 2225776c7643c864bb4bf5b5ebc6355d
+  m_SerializeEntries:
+  - m_GUID: b6639e5309fd0bf47be1f2213ea2f87e
+    m_Address: Booster1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b857ee6bcd99ad419c39e8b47253332
+    m_Address: Booster2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bce1cfc5b7c0704f921ff499c3e2de1
+    m_Address: Booster3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 30081ddc9e661924994bce7c3a3c4f97, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bb8d04959b999bb40941fba8abd33305, type: 2}
+    - {fileID: 11400000, guid: df192b134c69bbc4598700381cccd6d8, type: 2}

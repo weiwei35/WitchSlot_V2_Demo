@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - SetPos
+  - CenterPos
+  - PositionS
+  - EnemyGroup
+  - SymbolDeck
+  - MapArea
+  - Next
+  - MapWall
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - MapWall
+  - Enemy
+  - MapArea
+  - GuideUI
+  - Player
+  - Tips
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 2168988325
+    locked: 0
+  - name: Middle
+    uniqueID: 947354773
+    locked: 0
+  - name: Front
+    uniqueID: 4116549689
+    locked: 0
+  - name: UI
+    uniqueID: 3347381815
+    locked: 0
