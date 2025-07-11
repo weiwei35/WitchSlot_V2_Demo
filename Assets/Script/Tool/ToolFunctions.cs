@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -147,4 +148,42 @@ public class ToolFunctions : MonoBehaviour
 		}
 		return gridPos;
 	}
+
+	/// <summary>
+	/// 动态设置敌人的生命值
+	/// </summary>
+	/// <param name="enemy"></param>
+	public static void SetEnemyHP(EnemyCommon enemy)
+	{
+		string assetPath = "Assets/GameData/EnemyHP/";
+		var enemyHP = ScriptableObject.CreateInstance<IntVariable>();
+		int enemyHPCount = (int)enemy.enemyHP;
+		enemyHP.maxValue = enemyHPCount;
+		enemyHP.currentValue = enemyHPCount;
+		enemy.hp = enemyHP;
+		//保存怪物生命值文件
+		if (!Directory.Exists(assetPath))
+			Directory.CreateDirectory(assetPath);
+		string fullPath = assetPath + "/" +enemy.GetInstanceID()+ "Data.asset";
+		UnityEditor.AssetDatabase.DeleteAsset(fullPath);
+		UnityEditor.AssetDatabase.CreateAsset(enemyHP, fullPath);
+		UnityEditor.AssetDatabase.Refresh();
+	}
+
+#if UNITY_EDITOR
+	private void OnApplicationQuit()
+	{
+		string assetPath = "Assets/GameData/EnemyHP/";
+		string[] guids = UnityEditor.AssetDatabase.FindAssets("t:ScriptableObject", new[] { assetPath });
+    
+		foreach (string guid in guids) {
+			string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+			UnityEditor.AssetDatabase.DeleteAsset(path);
+		}
+    
+		UnityEditor.AssetDatabase.Refresh();
+	}
+#endif
+
+
 }

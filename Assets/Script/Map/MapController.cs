@@ -33,21 +33,8 @@ public class MapController : MonoBehaviour
 				{
 					var enemyObj = Instantiate(enemy.enemy, enemyGroup.transform);
 					enemyObj.transform.position = pos[index].transform.position;
-					var enemyHP = ScriptableObject.CreateInstance<IntVariable>();
-					int enemyHPCount = (int)enemy.enemtHP;
-					enemyHP.maxValue = enemyHPCount;
-					enemyHP.currentValue = enemyHPCount;
-					enemyHP.ValueChangedEvent = enemyHPEvent;
-					enemyObj.hp = enemyHP;
+					ToolFunctions.SetEnemyHP(enemyObj);
 					enemyGroup.enemies.Add(enemyObj);
-					
-					//保存怪物生命值文件
-					if (!Directory.Exists(assetPath))
-						Directory.CreateDirectory(assetPath);
-					string fullPath = assetPath + "/" +index+ "Data.asset";
-					UnityEditor.AssetDatabase.DeleteAsset(fullPath);
-					UnityEditor.AssetDatabase.CreateAsset(enemyHP, fullPath);
-					UnityEditor.AssetDatabase.Refresh();
 					index++;
 				}
 			}

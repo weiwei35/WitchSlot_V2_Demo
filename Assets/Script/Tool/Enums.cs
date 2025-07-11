@@ -17,6 +17,7 @@ public enum EffectTargetType
     Self,
     One,
     All,
+    Some,
     Random
 }
 

@@ -16,12 +16,12 @@ MonoBehaviour:
   symbolType: 1
   randomCount: 2
   roomLevel: 0
-  roomIcon: {fileID: 834472140, guid: 64d2069a216d710459bab9ca6a05ecbc, type: 3}
+  roomIcon: {fileID: -1494330971, guid: c3491972daebaa743af40d7b79514640, type: 3}
   roomPrefab: {fileID: 615948406828026912, guid: e4a668ad34e631d4494e6c9cde489ccf, type: 3}
   enemies:
-  - enemy: {fileID: 5999084616863843626, guid: 8b061cfe96501dd49a945ef4eee4174c, type: 3}
-    enemtHP: 5
-  - enemy: {fileID: 5999084616863843626, guid: 8b061cfe96501dd49a945ef4eee4174c, type: 3}
-    enemtHP: 10
-  - enemy: {fileID: 5999084616863843626, guid: 8b061cfe96501dd49a945ef4eee4174c, type: 3}
-    enemtHP: 15
+  - enemy: {fileID: 2176481501543216889, guid: e7863d5f1818fed4e9898f44fcc76f4d, type: 3}
+    enemyHP: 0
+  - enemy: {fileID: 2570555099535315924, guid: e9c25bc2e8fab834e90f2726cb88da44, type: 3}
+    enemyHP: 0
+  - enemy: {fileID: 2570555099535315924, guid: e9c25bc2e8fab834e90f2726cb88da44, type: 3}
+    enemyHP: 0

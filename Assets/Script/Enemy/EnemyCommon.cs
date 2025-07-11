@@ -16,10 +16,14 @@ public class EnemyCommon : CharacterBase
     [Tooltip("怪物属性")] 
     public string enemyName;
     public Sprite enemyIcon;
+    public float enemyHP;
+    public int moveStep;
+    public EnemyAttackSO attackData;
     [HideInInspector]
     public FightWeight fightweight;
     public float attack;
     public List<EnemySkillSO> skill;
+    public bool isStandEnemy = false;
 	
     [Tooltip("怪物展示")] 
     public TMP_Text hpText;
@@ -36,7 +40,7 @@ public class EnemyCommon : CharacterBase
         fightweight = GetComponent<FightWeight>();
     }
 
-    void EnemyDie()
+    public virtual void EnemyDie()
     {
         transform.parent.GetComponent<EnemyGroup>().EnemyDie(this);
         EnemyDieEvent.RaiseEvent(this,this);
@@ -55,10 +59,11 @@ public class EnemyCommon : CharacterBase
         hpObj.transform.localScale = scale;
     }
 
-    public void JoinFight()
+    public virtual List<Vector3> SetSpcialPos()
     {
-        inFight = true;
-        EnemyGroup group = GameObject.FindGameObjectWithTag("EnemyGroup").GetComponent<EnemyGroup>();
-        group.enemiesInFight.Add(this);
+        EnemyMove enemyMove = GetComponent<EnemyMove>();
+        enemyMove.FindPath();
+        if(enemyMove.movePath.Count<=0) return new List<Vector3>{transform.position};
+        return new List<Vector3>{enemyMove.movePath[1] };
     }
 }

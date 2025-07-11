@@ -87,7 +87,7 @@ public class PlayerMove_new : MonoBehaviour
 			Vector3 nextMove = moveQueue.Dequeue();
 			StartCoroutine(MoveToGrid(nextMove));
 		}
-		if (canMove && moveStep>0 && !isMoving)
+		if (canMove && (moveStep > 0||!inRound) && !isMoving)
 		{
 			// 键盘输入检测
 			if (Input.GetKey(KeyCode.A))
@@ -149,8 +149,7 @@ public class PlayerMove_new : MonoBehaviour
 		SnapToGridCenter();
         
 		isMoving = false;
-		CheckEnemyAround();
-		PlayerMoveEvent.RaiseEvent(null, this);
+		// CheckEnemyAround();
 	}
     
 	// 获取当前位置所属网格的中心
@@ -172,6 +171,7 @@ public class PlayerMove_new : MonoBehaviour
 	{
 		Vector3 gridCenter = GetCurrentGridCenter();
 		rb.MovePosition(gridCenter);
+		PlayerMoveEvent.RaiseEvent(null, this);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -200,51 +200,51 @@ public class PlayerMove_new : MonoBehaviour
 		Camera.main.DOShakePosition(duration, strength);
 	}
 
-	[Header("检测设置")]
-	[SerializeField] private float detectionRadius = 5f; // 检测半径
-	[SerializeField] private LayerMask enemyLayer;      // 敌人层级
-	public void CheckEnemyAround()
-	{
-		// 使用OverlapSphere高效检测圆形区域内的敌人
-		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(
-			transform.position, 
-			detectionRadius, 
-			enemyLayer.value);
-        
-		// 处理检测结果
-		bool enemyAround = false;
-		if (hitColliders.Length > 0)
-		{
-			foreach (var col in hitColliders)
-			{
-				// 避免检测到自身
-				if (col.gameObject != this.gameObject)
-				{
-					// 计算实际距离
-					float distance = Vector3.Distance(transform.position, col.transform.position);
-
-					if (distance <= detectionRadius)
-					{
-						enemyAround = true;
-						// Debug.Log($"发现敌人: {col.name} | 距离: {distance:F2}米");
-
-						EnemyCommon enemyTarget = col.GetComponent<EnemyCommon>();
-						if (enemyTarget != null && !enemyTarget.inFight)
-						{
-							enemyTarget.JoinFight();
-						}
-					}
-				}
-			}
-		}
-
-		if (enemyAround && !inRound)
-		{
-			//进战
-			FightController.instance.StartFight();
-		}else if (enemyAround && inRound)
-		{
-			FightController.instance.AddFight();
-		}
-	}
+	// [Header("检测设置")]
+	// [SerializeField] private float detectionRadius = 5f; // 检测半径
+	// [SerializeField] private LayerMask enemyLayer;      // 敌人层级
+	// public void CheckEnemyAround()
+	// {
+	// 	// 使用OverlapSphere高效检测圆形区域内的敌人
+	// 	Collider2D[] hitColliders = Physics2D.OverlapCircleAll(
+	// 		transform.position, 
+	// 		detectionRadius, 
+	// 		enemyLayer.value);
+ //        
+	// 	// 处理检测结果
+	// 	bool enemyAround = false;
+	// 	if (hitColliders.Length > 0)
+	// 	{
+	// 		foreach (var col in hitColliders)
+	// 		{
+	// 			// 避免检测到自身
+	// 			if (col.gameObject != this.gameObject)
+	// 			{
+	// 				// 计算实际距离
+	// 				float distance = Vector3.Distance(transform.position, col.transform.position);
+	//
+	// 				if (distance <= detectionRadius)
+	// 				{
+	// 					enemyAround = true;
+	// 					// Debug.Log($"发现敌人: {col.name} | 距离: {distance:F2}米");
+	//
+	// 					EnemyCommon enemyTarget = col.GetComponent<EnemyCommon>();
+	// 					if (enemyTarget != null && !enemyTarget.inFight)
+	// 					{
+	// 						enemyTarget.JoinFight();
+	// 					}
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	//
+	// 	if (enemyAround && !inRound)
+	// 	{
+	// 		//进战
+	// 		FightController.instance.StartFight();
+	// 	}else if (enemyAround && inRound)
+	// 	{
+	// 		FightController.instance.AddFight();
+	// 	}
+	// }
 }

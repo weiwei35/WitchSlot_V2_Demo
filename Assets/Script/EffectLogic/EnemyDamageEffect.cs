@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Damage", menuName = "EnemyEffects/Damage")]
@@ -19,6 +20,7 @@ public class EnemyDamageEffect : Effect
 
     public ObjectEventSO EnemyAttackFail;
     public ObjectEventSO EnemyAttackSuccess;
+    
     public override void ApplyEffect(CharacterBase from, CharacterBase to, Vector3 position)
     {
         if (targetType == EffectTargetType.One)

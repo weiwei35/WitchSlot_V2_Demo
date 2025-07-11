@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Var/Int")]
@@ -6,7 +7,7 @@ public class IntVariable : ScriptableObject
 	public int maxValue;
 	public int currentValue;
 
-	public IntEventSO ValueChangedEvent;
+	[CanBeNull]public IntEventSO ValueChangedEvent;
 
 	public void SetValue(int value)
 	{

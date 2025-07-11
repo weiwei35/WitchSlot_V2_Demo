@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Room1
   m_EditorClassIdentifier: 
   roomType: 0
-  symbolType: 1
+  symbolType: 3
   randomCount: 15
   roomLevel: 0
-  roomIcon: {fileID: -1625538367, guid: 64d2069a216d710459bab9ca6a05ecbc, type: 3}
+  roomIcon: {fileID: 1341546987, guid: acc76e85d792ade439e66b031e0b643f, type: 3}
   roomPrefab: {fileID: 615948406828026912, guid: e4a668ad34e631d4494e6c9cde489ccf, type: 3}
   enemies:
-  - enemy: {fileID: 5999084616863843626, guid: 8b061cfe96501dd49a945ef4eee4174c, type: 3}
-    enemtHP: 5
-  - enemy: {fileID: 5999084616863843626, guid: 8b061cfe96501dd49a945ef4eee4174c, type: 3}
-    enemtHP: 5
+  - enemy: {fileID: -1554202839589951566, guid: 12b69cd558879314494236afdfd3167e, type: 3}
+    enemyHP: 0

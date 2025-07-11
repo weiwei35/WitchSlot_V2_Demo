@@ -41,27 +41,27 @@ public class EnemyList : MonoBehaviour
 	IEnumerator SetEnemyListOneByOne()
 	{
 		EnemyGroup enemyGroup = GameObject.FindGameObjectWithTag("EnemyGroup").GetComponent<EnemyGroup>();
-		foreach (var enemy in enemyGroup.enemiesInFight)
+		foreach (var enemy in enemyGroup.enemiesInFight.ToList())
 		{
-			yield return new WaitForSeconds(0.2f);
 			var enemyItem = Instantiate(enemyObj, enemyListParent.transform);
 			enemyItem.InitEnemy(enemy);
 			enemyList.Add(enemyItem);
 			enemy.newAdd = false;
+			yield return new WaitForSeconds(0.2f);
 		}
 	}
 	IEnumerator SetEnemyListOne()
 	{
 		EnemyGroup enemyGroup = GameObject.FindGameObjectWithTag("EnemyGroup").GetComponent<EnemyGroup>();
-		foreach (var enemy in enemyGroup.enemiesInFight)
+		foreach (var enemy in enemyGroup.enemiesInFight.ToList())
 		{
 			if (enemy.newAdd)
 			{
-				yield return new WaitForSeconds(0.2f);
                 var enemyItem = Instantiate(enemyObj, enemyListParent.transform);
                 enemyItem.InitEnemy(enemy);
                 enemyList.Add(enemyItem);
                 enemy.newAdd = false;
+				yield return new WaitForSeconds(0.2f);
 			}
 		}
 	}

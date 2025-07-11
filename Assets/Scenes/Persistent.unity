@@ -7444,6 +7444,7 @@ GameObject:
   - component: {fileID: 1488514144}
   - component: {fileID: 1488514146}
   - component: {fileID: 1488514147}
+  - component: {fileID: 1488514148}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -7508,6 +7509,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsAll: []
+--- !u!114 &1488514148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488514143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646103a5830391d4485ccb5a2c7935cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1491565649
 GameObject:
   m_ObjectHideFlags: 0
@@ -9983,6 +9996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37026fbfdd7fc5f40818238abffa78b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inFight: 0
   PickRoomPanel: {fileID: 1414625442}
   ShowNextEvent: {fileID: 11400000, guid: f7c28e063a6053d459d6775d44a56ae7, type: 2}
   fightIconGroup: {fileID: 178771999}
@@ -10375,7 +10389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 1216
+    m_Bits: 192
 --- !u!4 &2082060189
 Transform:
   m_ObjectHideFlags: 0

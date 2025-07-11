@@ -20,5 +20,5 @@ public class RoomDataSO : ScriptableObject
 public struct EnemyData
 {
     public EnemyCommon enemy;
-    public float enemtHP;
+    public float enemyHP;
 }

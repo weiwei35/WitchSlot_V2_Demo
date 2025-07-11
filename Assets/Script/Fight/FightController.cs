@@ -12,6 +12,7 @@ public class FightController : MonoBehaviour
 {
 	//单例
 	public static FightController instance;
+	public bool inFight;
 	private void Awake()
 	{
 		if(instance == null){
@@ -42,6 +43,7 @@ public class FightController : MonoBehaviour
 	public ObjectEventSO ShowNextEvent;
 	private void EndFight()
 	{
+		inFight = false;
 		//加载下层楼梯
 		if(enemyGroup.enemies.Count == 0)
 			ShowNextEvent.RaiseEvent(null,this);
@@ -50,6 +52,7 @@ public class FightController : MonoBehaviour
 	//开始战斗--只加入范围内的怪
 	public void StartFight()
 	{
+		inFight = true;
 		FightCount();
 		SetFightIcon();
 		SetTarget();

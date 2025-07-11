@@ -43,8 +43,10 @@ public class EnemyGroup : MonoBehaviour
 
 	public void EnemyDie(EnemyCommon enemy)
 	{
-		FightController.instance.ReCountFightWeight(enemy.fightweight.fightIndex);
-		enemiesInFight.Remove(enemy);
+		if(enemy.fightweight.fightIndex>0)
+			FightController.instance.ReCountFightWeight(enemy.fightweight.fightIndex);
+		if(enemiesInFight.Contains(enemy))
+			enemiesInFight.Remove(enemy);
 		enemies.Remove(enemy);
 		LogController.instance.logDelegate?.Invoke("击杀怪物："+enemy.name);
 		if (enemiesInFight.Count == 0)

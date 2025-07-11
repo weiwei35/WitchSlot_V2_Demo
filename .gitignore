@@ -41097,3 +41097,6 @@ Library/StateCache/SceneView/ff/ffeb083e20f65baac34c1c280c269fed.json
 Library/Style.catalog
 Library/UIElements/EditorWindows/UnityEditor.InspectorWindow.pref
 Library/UIElements/EditorWindows/UnityEditor.Tilemaps.GridPaintPaletteWindow.pref
+/Logs
+*.log
+*.log

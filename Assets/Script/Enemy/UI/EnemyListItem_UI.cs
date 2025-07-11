@@ -32,7 +32,7 @@ public class EnemyListItem_UI : MonoBehaviour,IPointerEnterHandler,IPointerExitH
 		enemyIcon.sprite = enemy.enemyIcon;
 		enemyName.text = enemy.enemyName;
 		enemyHP = enemy.hp;
-		enemyDesc.text = "行动力：" + enemy.GetComponent<EnemyController>().stepStatic+"\n"+"攻击力："+enemy.attack;
+		enemyDesc.text = "行动力：" + enemy.moveStep+"\n"+"攻击力："+enemy.attack;
 	}
 
 	private void Update()
