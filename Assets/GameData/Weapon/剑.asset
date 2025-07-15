@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: "\u5251"
   itemDesc: "\u8EAB\u524D3\u4E2A\u5355\u4F4D"
   itemIcon: {fileID: -450707370, guid: 88da975d78a918c4aa0a8dfa627a55dc, type: 3}
+  coldTime: 2
   type: 1
   hurtArea:
   - {x: 1, y: 0}

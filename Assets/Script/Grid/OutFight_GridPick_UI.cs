@@ -68,23 +68,6 @@ public class OutFight_GridPick_UI : MonoBehaviour
 		submitButton.gameObject.SetActive(true);
 		// submitButton.onClick.AddListener(SubmitGrid);
 	}
-
-	public void SubmitGrid()
-	{
-		// 执行中心化转换
-		List<Vector2Int> gridPoints = new List<Vector2Int>();
-		foreach (Transform grid in gridObjectParent.transform)
-		{
-			if (grid.GetComponent<OutFight_GridObj_UI>().selected)
-			{
-				gridPoints.Add(grid.GetComponent<OutFight_GridObj_UI>().gridPos);
-			}
-		}
-		var result = PointSetCenterizer.RecenterPointSet(gridPoints);
-		playerFaceGridPos = result.RecenteredPoints[0];
-		gridUI.InitGrid(result.RecenteredPoints);
-		SetGridArea.RaiseEvent(result.RecenteredPoints,this);
-	}
 	public void RemoveGrid(OutFight_GridObj_UI gridObj)
 	{
 		gridObjects.Remove(gridObj);

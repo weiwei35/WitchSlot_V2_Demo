@@ -428,7 +428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 145, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &27474765
@@ -2154,7 +2154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 280.01, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &269380190
@@ -3223,11 +3223,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1488514146}
+  bagController: {fileID: 1707532461}
   weaponGrid_top: {fileID: 269380190}
   weaponGrid_weapon: {fileID: 183591300}
   weaponGrid_wear: {fileID: 1613782696}
   weaponGrid_jewelry: {fileID: 602478439}
   weaponItem: {fileID: 1534120770821196027, guid: 9cd2d7e5425d69240b5f098abb1d0065, type: 3}
+  weaponList: []
+  ChangeGridHurtArea: {fileID: 11400000, guid: 3c230dd5cff799a41857967398776622, type: 2}
 --- !u!114 &409756238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4301,7 +4304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 140.005, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &787827193
@@ -4967,8 +4970,12 @@ GameObject:
   - component: {fileID: 875872031}
   - component: {fileID: 875872033}
   - component: {fileID: 875872036}
-  - component: {fileID: 875872035}
   - component: {fileID: 875872034}
+  - component: {fileID: 875872037}
+  - component: {fileID: 875872040}
+  - component: {fileID: 875872039}
+  - component: {fileID: 875872038}
+  - component: {fileID: 875872041}
   m_Layer: 5
   m_Name: GridPanel
   m_TagString: Untagged
@@ -5023,6 +5030,8 @@ MonoBehaviour:
   gridObj: {fileID: 8831809555002036987, guid: 5eee557a186507741b5af4e719017137, type: 3}
   symbol: {fileID: 3748537761772299290, guid: 566b5ed33eb6c334092fea41cfa8e5b1, type: 3}
   playerSprite: {fileID: 21300000, guid: a5ea037a7fe9529488ad77212d74859e, type: 3}
+  selectColor: {r: 0.82352936, g: 1, b: 0.7882353, a: 1}
+  defaultColor: {r: 1, g: 1, b: 0.7882353, a: 1}
 --- !u!114 &875872034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5039,46 +5048,6 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 875872033}
-        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
-        m_MethodName: SetGridSymbol
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &875872035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875872028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55ca6add754178c409f429566b0e9cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: c20175febf2e7104083170780fa17639, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 875872033}
-        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
-        m_MethodName: RefreshGridArea
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 875872033}
         m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
         m_MethodName: SetGridSymbol
@@ -5119,6 +5088,146 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &875872037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875872028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 21747a367472b654cb6faa59939c69cc, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 875872033}
+        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
+        m_MethodName: InitGrid
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &875872038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875872028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 58c39a94c3134a74b8f11865eb8aceed, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 875872033}
+        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
+        m_MethodName: ResetWeaponHurtArea
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &875872039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875872028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: c93407556c3354845880bb13b62cb533, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 875872033}
+        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
+        m_MethodName: ShowWeaponHurtArea
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &875872040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875872028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 3c230dd5cff799a41857967398776622, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 875872033}
+        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
+        m_MethodName: InitGrid
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &875872041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875872028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 3c3f689b714b6274d85e244be23f29eb, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 875872033}
+        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
+        m_MethodName: RotateGrid
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &879645485
 GameObject:
   m_ObjectHideFlags: 0
@@ -5129,6 +5238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 879645487}
   - component: {fileID: 879645486}
+  - component: {fileID: 879645488}
   m_Layer: 0
   m_Name: SymbolDeck
   m_TagString: SymbolDeck
@@ -5165,6 +5275,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &879645488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879645485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 879645486}
+        m_TargetAssemblyTypeName: SymbolDeck, Assembly-CSharp
+        m_MethodName: ResetDesk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &883378994
 GameObject:
   m_ObjectHideFlags: 0
@@ -5364,9 +5502,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 140}
   m_SizeDelta: {x: 600, y: 400}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1004547864
 GameObject:
   m_ObjectHideFlags: 0
@@ -8496,7 +8634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 160, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1631128556
@@ -8683,6 +8821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1707532459}
   - component: {fileID: 1707532460}
+  - component: {fileID: 1707532461}
   m_Layer: 5
   m_Name: BagPanel
   m_TagString: Untagged
@@ -8718,6 +8857,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707532458}
   m_CullTransparentMesh: 1
+--- !u!114 &1707532461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707532458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cfadf07ee08284cbeb7e79a677cbdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponGroup: {fileID: 409756237}
+  weaponItem: {fileID: 3308619749236727296, guid: 9b40f59521270a848a60cf7f5978a1e8, type: 3}
+  weaponGrids:
+  - {fileID: 1009497336}
+  - {fileID: 724393954}
+  weaponInBag: []
 --- !u!1 &1708292677
 GameObject:
   m_ObjectHideFlags: 0
@@ -8754,7 +8911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708292679
@@ -8833,7 +8990,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 435, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708482441
@@ -9279,9 +9436,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1850093140}
-  - component: {fileID: 1850093141}
-  - component: {fileID: 1850093142}
   - component: {fileID: 1850093144}
+  - component: {fileID: 1850093146}
+  - component: {fileID: 1850093145}
   m_Layer: 5
   m_Name: GridPick
   m_TagString: Untagged
@@ -9296,7 +9453,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850093139}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9308,39 +9465,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1850093141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850093139}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11695a73a9557664cbc8a6a5151b1bbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridObjects: []
-  gridObjectPrefab: {fileID: 8541187676849553045, guid: 68a8744fcb2bd044bbb2ef5b6e749969, type: 3}
-  gridObjectParent: {fileID: 1850093139}
-  gridUI: {fileID: 875872033}
-  gridCount: 5
-  gridCountText: {fileID: 0}
-  submitButton: {fileID: 76985793}
-  SetGridArea: {fileID: 11400000, guid: 21747a367472b654cb6faa59939c69cc, type: 2}
-  playerFace: {fileID: 402756383}
---- !u!114 &1850093142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850093139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a692a240202d4345923b49a0594aedf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1850093144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9356,10 +9480,68 @@ MonoBehaviour:
   weaponManager: {fileID: 1488514146}
   gridObjects: []
   gridObjectPrefab: {fileID: 8541187676849553045, guid: 68a8744fcb2bd044bbb2ef5b6e749969, type: 3}
+  selectColor: {r: 0.8235294, g: 1, b: 0.7882353, a: 1}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
   weaponItem: {fileID: 1534120770821196027, guid: 9cd2d7e5425d69240b5f098abb1d0065, type: 3}
   weaponParent: {fileID: 259097936}
   gridUI: {fileID: 875872033}
   SetGridHurtArea: {fileID: 11400000, guid: 21747a367472b654cb6faa59939c69cc, type: 2}
+--- !u!114 &1850093145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850093139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 58c39a94c3134a74b8f11865eb8aceed, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1850093144}
+        m_TargetAssemblyTypeName: SetGridArea, Assembly-CSharp
+        m_MethodName: ResetWeaponHurtArea
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1850093146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850093139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: c93407556c3354845880bb13b62cb533, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1850093144}
+        m_TargetAssemblyTypeName: SetGridArea, Assembly-CSharp
+        m_MethodName: ShowWeaponHurtArea
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1850686273
 GameObject:
   m_ObjectHideFlags: 0
@@ -9999,10 +10181,6 @@ MonoBehaviour:
   inFight: 0
   PickRoomPanel: {fileID: 1414625442}
   ShowNextEvent: {fileID: 11400000, guid: f7c28e063a6053d459d6775d44a56ae7, type: 2}
-  fightIconGroup: {fileID: 178771999}
-  fightIcon: {fileID: 7132002786477138656, guid: eea03cccf57388a4b9070e1a43edd193, type: 3}
-  fightIndexCurrent: 0
-  objectsToSort: []
 --- !u!114 &2012441525
 MonoBehaviour:
   m_ObjectHideFlags: 0

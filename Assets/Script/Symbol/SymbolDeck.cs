@@ -23,11 +23,11 @@ public class SymbolDeck : MonoBehaviour
 
 	private void Start()
 	{
-		FightController.instance.startRound += InitializeDeck;
-		FightController.instance.endStep += ResetDesk;
+		FightController.instance.setRoom += InitializeDeck;
+		// FightController.instance.endStep += ResetDesk;
 	}
 
-	private void ResetDesk()
+	public void ResetDesk()
 	{
 		symbolListCurrent.Clear();
 	}
@@ -50,21 +50,25 @@ public class SymbolDeck : MonoBehaviour
 	private void SetSymbolList(int amount)
 	{
 		// amount = (int)MathF.Min(amount, symbolToAdd.Count);
+		// for (int i = 0; i < amount; i++)
+		// {
+		// 	if (symbolToAdd.Count == 0)
+		// 	{
+		// 		//抽牌堆空了，弃牌堆拿回
+		// 		foreach (var symbol in symbolUsed.ToList())
+		// 		{
+		// 			symbolToAdd.Add(symbol);
+		// 			symbolUsed.Remove(symbol);
+		// 		}
+		//
+		// 		ShuffleSymbolList();
+		// 	}
+		// 	symbolListCurrent.Add(symbolToAdd[0]);
+		// 	symbolToAdd.RemoveAt(0);
+		// }
 		for (int i = 0; i < amount; i++)
 		{
-			if (symbolToAdd.Count == 0)
-			{
-				//抽牌堆空了，弃牌堆拿回
-				foreach (var symbol in symbolUsed.ToList())
-				{
-					symbolToAdd.Add(symbol);
-					symbolUsed.Remove(symbol);
-				}
-
-				ShuffleSymbolList();
-			}
-			symbolListCurrent.Add(symbolToAdd[0]);
-			symbolToAdd.RemoveAt(0);
+			symbolListCurrent.Add(symbolToAdd[Random.Range(0, symbolToAdd.Count)]);
 		}
 	}
 
@@ -76,11 +80,9 @@ public class SymbolDeck : MonoBehaviour
 
 	public void DiscardSymbol(Object symbol)
 	{
-		var symbolSo = symbol as SymbolSO;
-		symbolUsed.Add(symbolSo);
-		symbolListCurrent.Remove(symbolSo);
-		
-		// symbolManager.DiscardSymbol(symbolSo);
+		// var symbolSo = symbol as SymbolSO;
+		// symbolUsed.Add(symbolSo);
+		// symbolListCurrent.Remove(symbolSo);
 	}
 
 	private void ShuffleSymbolList()

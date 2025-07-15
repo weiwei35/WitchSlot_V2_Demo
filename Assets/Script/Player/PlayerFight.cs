@@ -32,7 +32,7 @@ public class PlayerFight : MonoBehaviour
 			if (Input.GetKey(KeyCode.Space))
 			{
 				canSkip = false;
-				FightController.instance.NextStep();
+				// FightController.instance.NextStep();
 			}
 		}
 		if (canAttack)
@@ -62,9 +62,9 @@ public class PlayerFight : MonoBehaviour
 	//进战
 	public void StartFight()
 	{
-		canAttack = true;
-		canSkip = false;
-		CallSymbols();
+		// canAttack = true;
+		// canSkip = false;
+		// CallSymbols();
 	}
 
 	private void StopFight()

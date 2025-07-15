@@ -25,21 +25,34 @@ public class EnemyCommon_Slime : EnemyCommon
 		Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		if (player != null)
 		{
-			Vector3 pos = (player.transform.position - transform.position)/GetComponent<EnemyMove>().gridSize;
+			Vector3 pos = (player.transform.position - transform.position)/gridSize;
 			foreach (var point in areaPoints)
 			{
 				if (Vector3.Distance(pos, point) < 0.1f)
 				{
 					List<Vector3> hurtPos = new List<Vector3>();
 					hurtPos.Add(player.transform.position);
-					hurtPos.Add(player.transform.position+new Vector3(-1,0)*GetComponent<EnemyMove>().gridSize);
-					hurtPos.Add(player.transform.position+new Vector3(1,0)*GetComponent<EnemyMove>().gridSize);
+					hurtPos.Add(player.transform.position+new Vector3(-1,0)*gridSize);
+					hurtPos.Add(player.transform.position+new Vector3(1,0)*gridSize);
 					return hurtPos;
 				}
 			}
 		}
 
 		return new List<Vector3>{transform.position };
+	}
+
+	public override bool ReadyToAttack(Player targetPlayer)
+	{
+		Vector3 pos = (targetPlayer.transform.position - transform.position)/gridSize;
+		foreach (var point in areaPoints)
+		{
+			if (Vector3.Distance(pos, point) < 0.1f)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public EnemyCommon callEnemy;

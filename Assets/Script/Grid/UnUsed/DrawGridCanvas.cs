@@ -95,20 +95,6 @@ public class DrawGridCanvas : MonoBehaviour
 	private int centerBlockIndex = -1;
 	public GridView_UI gridUI;
 
-	public void SetGridGroup()
-	{
-		GetGridPos();
-		CalculateCoordinateSystem();
-		List<Vector2Int> gridPosFinal = new List<Vector2Int>();
-		foreach (var grid in finalCoordinates)
-		{
-			gridPosFinal.Add(grid.Value);
-		}
-		gridUI.InitGrid(gridPosFinal);
-		// LogResults();
-		SetGridArea.RaiseEvent(gridPosFinal,this);
-	}
-
 	public void GetGridPos()
 	{
 		gridPos.Clear();

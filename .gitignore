@@ -41100,3 +41100,5 @@ Library/UIElements/EditorWindows/UnityEditor.Tilemaps.GridPaintPaletteWindow.pre
 /Logs
 *.log
 *.log
+/Logs
+*.log

@@ -166,9 +166,12 @@ GameObject:
   - component: {fileID: 510471401}
   - component: {fileID: 510471404}
   - component: {fileID: 510471405}
-  - component: {fileID: 510471407}
-  - component: {fileID: 510471406}
   - component: {fileID: 510471408}
+  - component: {fileID: 510471411}
+  - component: {fileID: 510471406}
+  - component: {fileID: 510471407}
+  - component: {fileID: 510471409}
+  - component: {fileID: 510471410}
   m_Layer: 0
   m_Name: GridController
   m_TagString: Untagged
@@ -227,13 +230,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultGrid: []
-  changedGrid: []
   player: {fileID: 968575025}
   EndStepEvent: {fileID: 11400000, guid: 7edc741226f683c4db0553091a0713a2, type: 2}
   RotateGridEvent: {fileID: 11400000, guid: c20175febf2e7104083170780fa17639, type: 2}
   SetRandomSymbolEvent: {fileID: 11400000, guid: 98737bf1e96a3524b849aa7c6d9b9cf8, type: 2}
   enemyGroup: {fileID: 1426623086}
   AddSkillPointEvent: {fileID: 11400000, guid: 62922f224b2868641b62411ebf5f0708, type: 2}
+  RotateGridUIEvent: {fileID: 11400000, guid: 3c3f689b714b6274d85e244be23f29eb, type: 2}
 --- !u!114 &510471405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +339,102 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GridController, Assembly-CSharp
         m_MethodName: SetDefaultGrid
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &510471409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510471400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 07cbfefc8178a98469a0eb40a0df3b1a, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 510471404}
+        m_TargetAssemblyTypeName: GridController, Assembly-CSharp
+        m_MethodName: SetSymbolInGrid
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &510471410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510471400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: c8abcd74f9ce03f46b185cd9d25526b3, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 510471404}
+        m_TargetAssemblyTypeName: GridController, Assembly-CSharp
+        m_MethodName: ClearGridByPos
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &510471411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510471400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 3c230dd5cff799a41857967398776622, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 510471404}
+        m_TargetAssemblyTypeName: GridController, Assembly-CSharp
+        m_MethodName: SetDefaultGrid
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 510471404}
+        m_TargetAssemblyTypeName: GridController, Assembly-CSharp
+        m_MethodName: ClearGrids
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

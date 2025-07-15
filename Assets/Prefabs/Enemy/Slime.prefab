@@ -713,11 +713,13 @@ MonoBehaviour:
   attack: 2
   skill: []
   isStandEnemy: 0
+  stopDistance: 0
   hpText: {fileID: 4512853941669192665}
   hpObj: {fileID: 2061558092356784749}
   EnemyDieEvent: {fileID: 11400000, guid: 802b1ca5473098c4f95620e862c8e314, type: 2}
   inFight: 0
   newAdd: 1
+  gridSize: 0.8
   callEnemy: {fileID: 2570555099535315924, guid: e9c25bc2e8fab834e90f2726cb88da44, type: 3}
 --- !u!114 &3684380651322744344
 MonoBehaviour:
@@ -794,6 +796,18 @@ MonoBehaviour:
       - m_Target: {fileID: 3101247363741587189}
         m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
         m_MethodName: RefreshMoveStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3101247363741587189}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: MoveFollowPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

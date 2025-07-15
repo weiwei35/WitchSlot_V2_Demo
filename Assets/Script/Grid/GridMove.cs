@@ -6,6 +6,8 @@ using CodeMonkey.Utils;
 
 public class GridMove : MonoBehaviour
 {
+	public static int rotateDirection = 0;
+	
 	private bool isEndSet = true;
 	bool canMove = false;
 
@@ -51,15 +53,19 @@ public class GridMove : MonoBehaviour
 		{
 			case Direction.Up:
 				gridController.RotateGrid(270);
+				rotateDirection = 270;
 				break;
 			case Direction.Down:
 				gridController.RotateGrid(90);
+				rotateDirection = 90;
 				break;
 			case Direction.Left:
 				gridController.RotateGrid(180);
+				rotateDirection = 180;
 				break;
 			case Direction.Right:
 				gridController.RotateGrid(0);
+				rotateDirection = 0;
 				break;
 		}
 	}

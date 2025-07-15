@@ -3,7 +3,13 @@ guid: c05d9e0b920742a4f850aad1b27df30f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - weapon: {instanceID: 0}
+  - icon: {instanceID: 0}
+  - ShowTipsEvent: {fileID: 11400000, guid: 8c0200b355e0d9f4fbf0239a3e146f4d, type: 2}
+  - HideTipsEvent: {fileID: 11400000, guid: 84aeb8d3196674a4faf40281793a7f28, type: 2}
+  - ShowHurtAreaEvent: {fileID: 11400000, guid: c93407556c3354845880bb13b62cb533, type: 2}
+  - HideHurtAreaEvent: {fileID: 11400000, guid: 58c39a94c3134a74b8f11865eb8aceed, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

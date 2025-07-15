@@ -21,6 +21,7 @@ public class SetGridArea : MonoBehaviour
 	private List<Vector2Int> gridPos;
 	public void SetGridObj()
 	{
+		gridObjects.Clear();
 		gridPos = new List<Vector2Int>();
 		List<WeaponSO> currentWeapons = RandomWeapon(weaponManager.weaponDataList, 2);
 		gridPos = ToolFunctions.SetGrid(currentWeapons);
@@ -32,6 +33,30 @@ public class SetGridArea : MonoBehaviour
 			grid.transform.localPosition = new Vector3(pos.x,pos.y,0)*120;
 			grid.gridPos = pos;
 			gridObjects.Add(grid);
+		}
+	}
+	public Color selectColor;
+	public Color defaultColor;
+	public void ShowWeaponHurtArea(object o)
+	{
+		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
+		foreach (var pos in gridPos)
+		{
+			foreach (var grid in gridObjects)
+			{
+				if (grid.gridPos == pos)
+				{
+					grid.gameObject.GetComponent<Image>().color = selectColor;
+				}
+			}
+		}
+	}
+
+	public void ResetWeaponHurtArea()
+	{
+		foreach (var grid in gridObjects)
+		{
+			grid.gameObject.GetComponent<Image>().color = defaultColor;
 		}
 	}
 

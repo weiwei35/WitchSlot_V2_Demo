@@ -21,7 +21,5 @@ MonoBehaviour:
   enemies:
   - enemy: {fileID: 2176481501543216889, guid: e7863d5f1818fed4e9898f44fcc76f4d, type: 3}
     enemyHP: 0
-  - enemy: {fileID: 2570555099535315924, guid: e9c25bc2e8fab834e90f2726cb88da44, type: 3}
-    enemyHP: 0
-  - enemy: {fileID: 2570555099535315924, guid: e9c25bc2e8fab834e90f2726cb88da44, type: 3}
+  - enemy: {fileID: 2176481501543216889, guid: e7863d5f1818fed4e9898f44fcc76f4d, type: 3}
     enemyHP: 0

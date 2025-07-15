@@ -24,6 +24,7 @@ public class EnemyCommon : CharacterBase
     public float attack;
     public List<EnemySkillSO> skill;
     public bool isStandEnemy = false;
+    public float stopDistance;
 	
     [Tooltip("怪物展示")] 
     public TMP_Text hpText;
@@ -65,5 +66,19 @@ public class EnemyCommon : CharacterBase
         enemyMove.FindPath();
         if(enemyMove.movePath.Count<=0) return new List<Vector3>{transform.position};
         return new List<Vector3>{enemyMove.movePath[1] };
+    }
+    [HideInInspector]
+    public float gridSize = 0.8f;
+    public virtual bool ReadyToAttack(Player targetPlayer)
+    {
+        Vector2 playerPos = targetPlayer.transform.position;
+        Vector2 dir = playerPos - (Vector2)transform.position;
+        float halfSize = stopDistance * gridSize + (gridSize * 0.5f);
+        // 正确的矩形边界检测
+        if (Mathf.Abs(dir.x) <= halfSize && Mathf.Abs(dir.y) <= halfSize)
+        {
+            return true; // 找到一个玩家后立即返回
+        }
+        return false;
     }
 }

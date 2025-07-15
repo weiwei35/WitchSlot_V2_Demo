@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 1254182763884655722}
   - component: {fileID: 5121468847057056690}
   - component: {fileID: 1534120770821196027}
+  - component: {fileID: 7913454513548595839}
+  - component: {fileID: 3695102812560485618}
+  - component: {fileID: -5242927767095325506}
   m_Layer: 5
   m_Name: weapon
   m_TagString: Untagged
@@ -92,3 +95,77 @@ MonoBehaviour:
   icon: {fileID: 5121468847057056690}
   ShowTipsEvent: {fileID: 11400000, guid: 8c0200b355e0d9f4fbf0239a3e146f4d, type: 2}
   HideTipsEvent: {fileID: 11400000, guid: 84aeb8d3196674a4faf40281793a7f28, type: 2}
+  ShowHurtAreaEvent: {fileID: 11400000, guid: c93407556c3354845880bb13b62cb533, type: 2}
+  HideHurtAreaEvent: {fileID: 11400000, guid: 58c39a94c3134a74b8f11865eb8aceed, type: 2}
+--- !u!114 &7913454513548595839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155350047255467821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1740f904a55f83b498689a0f754a291f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridMoveEvent: {fileID: 11400000, guid: e1ae86163583c5f4e8928f1d0feba571, type: 2}
+  GridCallEvent: {fileID: 11400000, guid: 9a948056d564488419b6bf21e92b4379, type: 2}
+  WeaponCallSymbol: {fileID: 11400000, guid: 07cbfefc8178a98469a0eb40a0df3b1a, type: 2}
+  WeaponRefreshSymbol: {fileID: 11400000, guid: c8abcd74f9ce03f46b185cd9d25526b3, type: 2}
+--- !u!114 &3695102812560485618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155350047255467821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7913454513548595839}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: PlayerWalk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-5242927767095325506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155350047255467821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 3c230dd5cff799a41857967398776622, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7913454513548595839}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: ResetWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

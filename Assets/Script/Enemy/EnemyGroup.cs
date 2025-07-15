@@ -38,13 +38,13 @@ public class EnemyGroup : MonoBehaviour
 	IEnumerator NextEnemy()
 	{
 		yield return new WaitForSeconds(0.5f);
-		FightController.instance.NextStep();
+		// FightController.instance.NextStep();
 	}
 
 	public void EnemyDie(EnemyCommon enemy)
 	{
-		if(enemy.fightweight.fightIndex>0)
-			FightController.instance.ReCountFightWeight(enemy.fightweight.fightIndex);
+		// if(enemy.fightweight.fightIndex>0)
+			// FightController.instance.ReCountFightWeight(enemy.fightweight.fightIndex);
 		if(enemiesInFight.Contains(enemy))
 			enemiesInFight.Remove(enemy);
 		enemies.Remove(enemy);

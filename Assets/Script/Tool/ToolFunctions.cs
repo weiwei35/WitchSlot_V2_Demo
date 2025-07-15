@@ -100,7 +100,24 @@ public class ToolFunctions : MonoBehaviour
 			-originalPoint.x
 		);
 	}
-	
+	/// <summary>
+	/// 计算终点与起点之间的角度差
+	/// </summary>
+	/// <param name="startAngle"></param>
+	/// <param name="endAngle"></param>
+	/// <returns></returns>
+	public static int CalculateClockwiseRotation(int startAngle, int endAngle)
+	{
+		// 将角度转换为0-3的索引（0°=0, 90°=1, 180°=2, 270°=3）
+		int startIndex = (startAngle % 360) / 90;
+		int endIndex = (endAngle % 360) / 90;
+    
+		// 计算顺时针方向步数差
+		int steps = (endIndex - startIndex + 4) % 4;
+    
+		return steps * 90; // 转换为角度
+	}
+
 	/// <summary>
 	/// 获取tilemap区域
 	/// </summary>

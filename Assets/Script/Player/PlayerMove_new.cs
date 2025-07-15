@@ -149,7 +149,7 @@ public class PlayerMove_new : MonoBehaviour
 		SnapToGridCenter();
         
 		isMoving = false;
-		// CheckEnemyAround();
+		// if(!isStay) PlayerMoveEvent.RaiseEvent(null, this);
 	}
     
 	// 获取当前位置所属网格的中心
@@ -173,7 +173,6 @@ public class PlayerMove_new : MonoBehaviour
 		rb.MovePosition(gridCenter);
 		PlayerMoveEvent.RaiseEvent(null, this);
 	}
-
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		// 只在移动时检测碰撞

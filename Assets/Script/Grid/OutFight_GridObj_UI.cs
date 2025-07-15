@@ -14,35 +14,4 @@ public class OutFight_GridObj_UI : MonoBehaviour
 	private OutFight_GridPick_UI gridPick;
 	
 	public bool selected = false;
-
-	private void Start()
-	{
-		gridPick = GetComponentInParent<OutFight_GridPick_UI>();
-		// GetComponent<Button>().onClick.AddListener(() =>
-		// {
-		// 	selected = !selected;
-		// 	if(selected)
-		// 	{
-		// 		gridPick.gridObjects.Add(this);
-		// 		gridPick.gridCount--;
-		// 		gridPick.SetGridCanPick();
-		// 	}
-		// 	else
-		// 	{
-		// 		gridPick.gridCount++;
-		// 		gridPick.RemoveGrid(this);
-		// 	}
-		// });
-	}
-	private void Update()
-	{
-		if (selected)
-		{
-			GetComponent<Image>().color = Color.green;
-		}
-		else
-		{
-			GetComponent<Image>().color = Color.white;
-		}
-	}
 }

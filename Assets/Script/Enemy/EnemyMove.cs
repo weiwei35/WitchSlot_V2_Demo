@@ -18,17 +18,19 @@ public class EnemyMove : MonoBehaviour
 	public int stopDistance;
 	public float gridSize = 0.8f;
 	
-	protected GameObject targetPlayer;
+	protected Player targetPlayer;
 
 	public bool canMove = false;
 
 	private Rigidbody2D rb;
 	private Vector3 lastValidPosition;
+	EnemyCommon enemyCommon;
 	private void Start()
 	{
+		enemyCommon = GetComponent<EnemyCommon>();
 		rb = GetComponent<Rigidbody2D>();
 		lastValidPosition = transform.position;
-		targetPlayer = GameObject.FindGameObjectWithTag("Player");
+		targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		canMove = false;
 	}
 
@@ -36,21 +38,8 @@ public class EnemyMove : MonoBehaviour
 	{
 		if (targetPlayer != null)
 		{
-			canMove = !ReadyToAttack();
+			canMove = !enemyCommon.ReadyToAttack(targetPlayer);
 		}
-	}
-
-	public virtual bool ReadyToAttack()
-	{
-		Vector2 playerPos = targetPlayer.transform.position;
-		Vector2 dir = playerPos - (Vector2)transform.position;
-		float halfSize = stopDistance * gridSize + (gridSize * 0.5f);
-		// 正确的矩形边界检测
-		if (Mathf.Abs(dir.x) <= halfSize && Mathf.Abs(dir.y) <= halfSize)
-		{
-			return true; // 找到一个玩家后立即返回
-		}
-		return false;
 	}
 	
 	public List<Vector3> movePath = new List<Vector3>();

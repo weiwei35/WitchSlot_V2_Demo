@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 6787804057818152560}
   - component: {fileID: 4898005369759509697}
   - component: {fileID: 3101247363741587189}
-  - component: {fileID: 5999084616863843626}
+  - component: {fileID: -4937544323386978179}
   - component: {fileID: 3684380651322744344}
   - component: {fileID: -8259541345048482364}
   - component: {fileID: -4304776375292456362}
@@ -689,7 +689,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
---- !u!114 &5999084616863843626
+--- !u!114 &-4937544323386978179
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5419653748720566275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cd989143bc9822468ca2abb155ad1a0, type: 3}
+  m_Script: {fileID: 11500000, guid: dec5cb5406c853b4992dbf974cee8ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: {fileID: 0}
@@ -709,15 +709,17 @@ MonoBehaviour:
   enemyHP: 3
   moveStep: 4
   attackData: {fileID: 11400000, guid: 6698490292907254d9ea57b705d32ff7, type: 2}
-  fightweight: {fileID: 6787804057818152560}
+  fightweight: {fileID: 0}
   attack: 1
   skill: []
   isStandEnemy: 0
+  stopDistance: 0
   hpText: {fileID: 4512853941669192665}
   hpObj: {fileID: 2061558092356784749}
   EnemyDieEvent: {fileID: 11400000, guid: 802b1ca5473098c4f95620e862c8e314, type: 2}
   inFight: 0
   newAdd: 1
+  gridSize: 0.8
 --- !u!114 &3684380651322744344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,6 +807,18 @@ MonoBehaviour:
       - m_Target: {fileID: 3101247363741587189}
         m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
         m_MethodName: CheckPlayerAround
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3101247363741587189}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: MoveFollowPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

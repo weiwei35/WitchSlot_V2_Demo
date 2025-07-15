@@ -28,13 +28,12 @@ public class GridView_Map : MonoBehaviour
 	bool isShowHurt = false;
 	public void SetGrid(Dictionary<Vector2Int, SymbolSO> symbolDic)
 	{
-		gridObjs.Clear();
 		isShowHurt = false;
-		foreach (Transform grid in gridParent.transform)
+		foreach (var grid in gridObjs.ToList())
 		{
 			Destroy(grid.gameObject);
 		}
-		var pos = Vector3.zero;
+		gridObjs.Clear();
 		foreach (var grid in symbolDic)
 		{
 			var gridPos = new Vector3(grid.Key.x, grid.Key.y)*gridSize/*- new Vector3(gridController.playerPos.x, gridController.playerPos.y)+player.transform.position*/;
@@ -50,21 +49,31 @@ public class GridView_Map : MonoBehaviour
 
 	public void ShowGrid()
 	{
-		if (gridObjs != null)
-			foreach (var grid in gridObjs)
-			{
-				grid.GetComponent<SpriteRenderer>().material.color = gridColor;
-				grid.gameObject.SetActive(true);
-				if(!isShowHurt) SetHurt();
-			}
+		foreach (var grid in gridObjs)
+		{
+			grid.GetComponent<SpriteRenderer>().material.color = gridColor;
+			grid.gameObject.SetActive(true);
+		}
+		SetHurt();
+	}
+
+	public void ClearGrid()
+	{
+		foreach (var grid in gridObjs)
+		{
+			Destroy(grid.gameObject);
+		}
+		gridObjs.Clear();
+		SetHurt();
 	}
 	public GameObject hurtObj;
 	public GameObject symbolObj;
-	
-	Dictionary<Vector2,GameObject> hurtObjDict = new Dictionary<Vector2,GameObject>();
+	public Dictionary<Vector2,GameObject> hurtObjDict = new Dictionary<Vector2,GameObject>();
 	private List<GameObject> symbolList = new List<GameObject>();
 	public void SetHurt()
 	{
+		hurtObjDict.Clear();
+		symbolList.Clear();
 		foreach (var grid in gridObjs)
 		{
 			if (grid.transform.childCount>0)
@@ -75,8 +84,6 @@ public class GridView_Map : MonoBehaviour
 				}
 			}
 		}
-		hurtObjDict.Clear();
-		symbolList.Clear();
 		foreach (var grid in gridObjs)
 		{
 			Vector3 gridPos = new Vector3(grid.gridPos.x, grid.gridPos.y);

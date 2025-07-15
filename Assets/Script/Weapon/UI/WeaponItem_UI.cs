@@ -17,20 +17,25 @@ public class WeaponItem_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	public TipsEventSO ShowTipsEvent;
 	public TipsEventSO HideTipsEvent;
 
+	public ObjectEventSO ShowHurtAreaEvent;
+	public ObjectEventSO HideHurtAreaEvent;
+
 	public void Init()
 	{
 		icon.sprite = weapon.itemIcon;
 	}
 
-	public void OnPointerEnter(PointerEventData eventData)
+	public virtual void OnPointerEnter(PointerEventData eventData)
 	{
 		//显示tips
 		ShowTipsEvent.RaiseEventWithGameObject(weapon,gameObject,this);
+		ShowHurtAreaEvent.RaiseEvent(weapon.hurtArea,this);
 	}
 
-	public void OnPointerExit(PointerEventData eventData)
+	public virtual void OnPointerExit(PointerEventData eventData)
 	{
 		//隐藏tips
 		HideTipsEvent.RaiseEventWithGameObject(weapon,gameObject,this);
+		HideHurtAreaEvent.RaiseEvent(weapon.hurtArea,this);
 	}
 }

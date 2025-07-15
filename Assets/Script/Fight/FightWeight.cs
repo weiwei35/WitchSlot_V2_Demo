@@ -20,16 +20,16 @@ public class FightWeight : MonoBehaviour
 	//当前回合攻击方法
 	public void myTurn()
 	{
-		if (playerFight != null)
-		{
-			StartStepEvent_Player.RaiseEvent(null,this);
-			// FightController.instance.playerMove?.Invoke();
-			// playerFight.PlayerMove();
-		}
-
-		if (enemyController != null)
-		{
-			enemyController.StartFight();
-		}
+		// if (playerFight != null)
+		// {
+		// 	StartStepEvent_Player.RaiseEvent(null,this);
+		// 	// FightController.instance.playerMove?.Invoke();
+		// 	// playerFight.PlayerMove();
+		// }
+		//
+		// if (enemyController != null)
+		// {
+		// 	enemyController.StartFight();
+		// }
 	}
 }

@@ -6,13 +6,13 @@ using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Object = UnityEngine.Object;
 //using NaughtyAttributes;
 using Random = UnityEngine.Random;
 
 public class GridController : MonoBehaviour
 {
     public List<Vector2Int> defaultGrid = new List<Vector2Int>();//默认攻击范围
-    public List<Vector2Int> changedGrid = new List<Vector2Int>();//变换攻击范围
     
     // public GridView_UI gridView_UI;
     private GridView_Map gridView_Map;
@@ -33,30 +33,16 @@ public class GridController : MonoBehaviour
         gridView_Map = GetComponent<GridView_Map>();
         gridMove = GetComponent<GridMove>();
         
-        FightController.instance.endStep += ClearGrid;
-        FightController.instance.endRound += ClearGrid;
         symbolDeck = GameObject.FindWithTag("SymbolDeck").GetComponent<SymbolDeck>();
     }
 
     public void SetDefaultGrid(object obj)
     {
         defaultGrid.Clear();
-        changedGrid.Clear();
         List<Vector2Int> grid = (List<Vector2Int>)obj;
         foreach (var pos in grid)
         {
             defaultGrid.Add(pos);
-            changedGrid.Add(pos);
-        }
-    }
-
-    public void SetChangedGrid(object obj)
-    {
-        changedGrid.Clear();
-        List<Vector2Int> grid = (List<Vector2Int>)obj;
-        foreach (var pos in grid)
-        {
-            changedGrid.Add(pos);
         }
     }
     
@@ -136,46 +122,49 @@ public class GridController : MonoBehaviour
         AddSkillPointEvent.RaiseEvent(point,this);
         // Debug.Log(pointGridPos.Count);
     }
-    public void ClearGrid()
+    public void ClearGridByPos(object o)
     {
-        attacked = false;
-        // gridView_UI.ClearGrid();
-        EndStepEvent.RaiseEvent(null,this);
+        List<Vector2Int> posList = (List<Vector2Int>)o;
+        foreach (var symbol in symbolDic.ToList())
+        {
+            if(posList.Contains(symbol.Key))
+            {
+                symbolDic.Remove(symbol.Key);
+            }
+        }
+        foreach (var grid in gridView_Map.gridObjs.ToList())
+        {
+            Vector2Int pos = new Vector2Int((int)grid.gridPos.x, (int)grid.gridPos.y); 
+            if (posList.Contains(pos))
+            {
+                gridView_Map.gridObjs.Remove(grid);
+                Destroy(grid.gameObject);
+            }
+        }
+    }
+
+    //每次攻击区域变换时先清空之前的攻击区域
+    public void ClearGrids()
+    {
+        angleBefore = 0;
+        gridView_Map.ClearGrid();
         symbolDic.Clear();
-        foreach (var grid in gridView_Map.gridObjs)
-        {
-            Destroy(grid.gameObject);
-        }
-        gridView_Map.gridObjs.Clear();
-        gridView_Map.SetHurt();
-        gridMove.savedDirection = Direction.Right;
-        SetChangedGrid(defaultGrid);
     }
-
-    Dictionary<Vector2Int, SymbolSO> oldSymbolDic = new Dictionary<Vector2Int,SymbolSO>();
-
-    public void SaveGridRotate()
-    {
-        oldSymbolDic.Clear();
-        foreach (var value in symbolDic)
-        {
-            oldSymbolDic.Add(value.Key,value.Value);
-        }
-    }
+    //旋转符文
+    private int angleBefore = 0;
+    public ObjectEventSO RotateGridUIEvent;
     public void RotateGrid(int angle)
     {
-        Dictionary<Vector2Int, SymbolSO> newSymbolDic = new Dictionary<Vector2Int,SymbolSO>();
-        List<Vector2Int> newPos = new List<Vector2Int>();
-        foreach (var grid in oldSymbolDic)
+        int angleDiff = ToolFunctions.CalculateClockwiseRotation(angleBefore,angle);
+        angleBefore = angle;
+        Dictionary<Vector2Int,SymbolSO> newSymbolDic = new Dictionary<Vector2Int,SymbolSO>();
+        foreach (var symbol in symbolDic)
         {
-            Vector2Int pos = ToolFunctions.RotateGridInt(grid.Key,angle);
-            newPos.Add(pos);
-            newSymbolDic.Add(pos, grid.Value);
+            Vector2Int pos = ToolFunctions.RotateGridInt(symbol.Key,angleDiff);
+            newSymbolDic.Add(pos, symbol.Value);
         }
-        symbolDic.Clear();
         symbolDic = newSymbolDic;
-        SetChangedGrid(newPos);
-        // gridView_UI.SetGridSymbol(symbolDic);
+        RotateGridUIEvent.RaiseEvent(angleDiff,this);
         switch (angle)
         {
             case 0:
@@ -191,12 +180,9 @@ public class GridController : MonoBehaviour
                 playerFaceGridPosCurrent = new Vector2Int(0, 1);
                 break;
         }
-        RotateGridEvent.RaiseEvent(symbolDic,this);
-
         gridView_Map.SetGrid(symbolDic);
         gridView_Map.ShowGrid();
     }
-    
     //随机符文
     private List<SymbolSO> symbolListCurrent = new List<SymbolSO>();
     private List<float> symbolRandomRank = new List<float>();
@@ -226,32 +212,53 @@ public class GridController : MonoBehaviour
             symbolListCurrent,
             symbolRandomRank,
             (int)MathF.Min(count, symbolListCurrent.Count));
-        List<Vector2Int> points = new List<Vector2Int>();
-        foreach (var grid in changedGrid)
-        {
-            // if(grid != playerPos)
-                points.Add(grid);
-        }
-        SetSymbolPos(points, resultSymbols);
+        SetSymbolPos(defaultGrid, resultSymbols);
         // gridView_UI.SetGridSymbol(symbolDic);
+        SetRandomSymbolEvent.RaiseEvent(symbolDic,this);
+    }
+    public void SetSymbolInGrid(object grid)
+    {
+        List<Vector2Int> gridPos = (List<Vector2Int>)grid;
+        var symbolList = symbolDeck.GetSymbolList(gridPos.Count);
+        symbolListCurrent.Clear();
+        symbolRandomRank.Clear();
+        foreach (var symbol in symbolList)
+        {
+            symbolListCurrent.Add(symbol);
+            symbolRandomRank.Add(symbol.randomRank);
+        }
+        SetRandomSymbolInGrid(gridPos);
+    }
+    private void SetRandomSymbolInGrid(List<Vector2Int> gridPos)
+    {
+        resultSymbols.Clear();
+        resultSymbols = WeightedRandomWithoutRepeats<SymbolSO>(
+            symbolListCurrent,
+            symbolRandomRank,
+            (int)MathF.Min(gridPos.Count, symbolListCurrent.Count));
+        SetSymbolPos(gridPos, resultSymbols);
         SetRandomSymbolEvent.RaiseEvent(symbolDic,this);
     }
     //随机位置
     private void SetSymbolPos(List<Vector2Int> points,List<SymbolSO> symbols)
     {
-        symbolDic.Clear();
         List<Vector2Int> newPoints = points.ToList();
         foreach (var symbol in symbols)
         {
             int index = Random.Range(0, newPoints.Count);
-            symbolDic.Add(newPoints[index], symbol);
+            if (symbolDic.ContainsKey(newPoints[index]))
+            {
+                symbolDic[newPoints[index]] = symbol;
+            }
+            else
+            {
+                symbolDic.Add(newPoints[index], symbol);
+            }
             newPoints.RemoveAt(index);
         }
 
         gridView_Map.SetGrid(symbolDic);
         gridView_Map.ShowGrid();
-        SaveGridRotate();
-        // gridView_Map.SetHurt(symbolDic);
     }
     /// <summary>
     /// 优化的权重随机不重复选择算法（适合游戏抽卡、战利品掉落等场景）

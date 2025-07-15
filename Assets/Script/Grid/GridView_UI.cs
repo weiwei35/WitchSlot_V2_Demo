@@ -21,14 +21,24 @@ public class GridView_UI : MonoBehaviour
 	
 	GridPosition gridPlayer;
 	public Sprite playerSprite;
-	public void InitGrid(List<Vector2Int> gridPos)
+	
+	List<GridPosition> gridList = new List<GridPosition>();
+	public void InitGrid(object o)
 	{
+		gridList.Clear();
+		foreach (Transform grid in gridGroup.transform)
+		{
+			Destroy(grid.gameObject);
+		}
+		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
 		float minY = float.MaxValue;
 		foreach (var pos in gridPos)
 		{
 			var grid = Instantiate(gridObj, gridGroup.transform);
 			grid.gridPosition = new Vector2Int((int)pos.x, (int)pos.y);
 			grid.transform.localPosition = new Vector3(pos.x,pos.y)*100;
+			
+			gridList.Add(grid);
 		}
 		gridPlayer = Instantiate(gridObj, gridGroup.transform);
 		gridPlayer.gridPosition = new Vector2Int(0,0);
@@ -43,7 +53,7 @@ public class GridView_UI : MonoBehaviour
 		{
 			foreach (Transform grid in gridGroup.transform)
 			{
-				grid.transform.localPosition -= new Vector3(0, minY-100, 0);
+				// grid.transform.localPosition -= new Vector3(0, minY-100, 0);
 			}
 		}
 	}
@@ -62,16 +72,16 @@ public class GridView_UI : MonoBehaviour
 			}
 		}
 	}
-	//格子区域更新（旋转时）
-	public void RefreshGridArea(Dictionary<Vector2Int,SymbolSO> symbolDic)
+
+	//将格子槽位的坐标属性旋转，位置上不用旋转
+	public void RotateGrid(object o)
 	{
-		ClearGridObj();
-		List<Vector2Int> gridPos = new List<Vector2Int>();
-		foreach (var grid in symbolDic)
+		int angle = (int)o;
+		foreach (Transform grid in gridGroup.transform)
 		{
-			gridPos.Add(grid.Key);
+			GridPosition gridPosition = grid.GetComponent<GridPosition>();
+			gridPosition.gridPosition = ToolFunctions.RotateGridInt(gridPosition.gridPosition,angle);
 		}
-		InitGrid(gridPos);
 	}
 	//清除符文
 	public void ClearGrid()
@@ -82,11 +92,28 @@ public class GridView_UI : MonoBehaviour
 		}
 	}
 
-	public void ClearGridObj()
+	public Color selectColor;
+	public Color defaultColor;
+	public void ShowWeaponHurtArea(object o)
 	{
-		foreach (Transform grid in gridGroup.transform)
+		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
+		foreach (var pos in gridPos)
 		{
-			Destroy(grid.gameObject);
+			foreach (var grid in gridList)
+			{
+				if (grid.gridPosition == pos)
+				{
+					grid.GetComponent<Image>().color = selectColor;
+				}
+			}
+		}
+	}
+
+	public void ResetWeaponHurtArea()
+	{
+		foreach (var grid in gridList)
+		{
+			grid.GetComponent<Image>().color = defaultColor;
 		}
 	}
 }
