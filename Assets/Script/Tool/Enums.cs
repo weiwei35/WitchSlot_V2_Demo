@@ -21,6 +21,12 @@ public enum EffectTargetType
     Random
 }
 
+public enum EffectType
+{
+    伤害,
+    护甲,
+    治愈
+}
 public enum RandomType
 {
     Normal,

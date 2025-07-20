@@ -7,4 +7,5 @@ public class WeaponSO : ItemInfoDataSO
     public int coldTime;
     public WeaponType type;
     public List<Vector2Int> hurtArea;
+    public SymbolSO symbol;
 }

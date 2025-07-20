@@ -21,38 +21,24 @@ public class EnemyGroup : MonoBehaviour
 
 	private void Start()
 	{
-		FightController.instance.startRound += StartRound;
-	}
-
-	private void StartRound()
-	{
 		enemyAllDie = false;
 	}
 
-	public void NextEnemyMove()
-	{
-		if (enemyAllDie) return;
-		StartCoroutine(NextEnemy());
-	}
-
-	IEnumerator NextEnemy()
-	{
-		yield return new WaitForSeconds(0.5f);
-		// FightController.instance.NextStep();
-	}
-
+	public ObjectEventSO EndRoomEvent;
 	public void EnemyDie(EnemyCommon enemy)
 	{
-		// if(enemy.fightweight.fightIndex>0)
-			// FightController.instance.ReCountFightWeight(enemy.fightweight.fightIndex);
 		if(enemiesInFight.Contains(enemy))
 			enemiesInFight.Remove(enemy);
 		enemies.Remove(enemy);
-		LogController.instance.logDelegate?.Invoke("击杀怪物："+enemy.name);
-		if (enemiesInFight.Count == 0)
+		// LogController.instance.logDelegate?.Invoke("击杀怪物："+enemy.name);
+		if (enemies.Count == 0)
 		{
 			enemyAllDie = true;
-			FightController.instance.endRound?.Invoke();
+		}
+
+		if (enemyAllDie)
+		{
+			EndRoomEvent.RaiseEvent(null,this);
 		}
 	}
 }

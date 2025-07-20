@@ -18,6 +18,7 @@ public class CharacterBase : MonoBehaviour
 	private void Start()
 	{
 		CurrentHp = hp.maxValue;
+		ResetDefense();
 	}
 
 	public void TakeDamage(int damage)
@@ -48,9 +49,14 @@ public class CharacterBase : MonoBehaviour
 		var amount = defense.currentValue + value;
 		defense.SetValue(amount);
 	}
-
 	public void ResetDefense()
 	{
-		defense.SetValue(0);
+		if (defense != null) defense.SetValue(0);
+	}
+
+	public void UpdateHp(int value)
+	{
+		if(CurrentHp+value>=hp.maxValue) CurrentHp = hp.maxValue;
+		else CurrentHp += value;
 	}
 }

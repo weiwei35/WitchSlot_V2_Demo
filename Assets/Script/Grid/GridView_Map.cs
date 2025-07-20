@@ -16,6 +16,8 @@ public class GridView_Map : MonoBehaviour
 {
 	public GridController gridController;
 	
+	bool canAttack = false;
+	
 	[Header("攻击范围")]
 	public Color gridColor;
 	public Color gridColorRed;
@@ -28,7 +30,6 @@ public class GridView_Map : MonoBehaviour
 	bool isShowHurt = false;
 	public void SetGrid(Dictionary<Vector2Int, SymbolSO> symbolDic)
 	{
-		isShowHurt = false;
 		foreach (var grid in gridObjs.ToList())
 		{
 			Destroy(grid.gameObject);
@@ -45,6 +46,7 @@ public class GridView_Map : MonoBehaviour
 			gridObjs.Add(obj);
 		}
 		gridParent.transform.localPosition = new Vector3(-GridController.playerFaceGridPosCurrent.x, -GridController.playerFaceGridPosCurrent.y)*gridSize;
+		canAttack = true;
 	}
 
 	public void ShowGrid()
@@ -65,6 +67,9 @@ public class GridView_Map : MonoBehaviour
 		}
 		gridObjs.Clear();
 		SetHurt();
+		isHideSymbol = true;
+		isShowHurt = false;
+		canAttack = false;
 	}
 	public GameObject hurtObj;
 	public GameObject symbolObj;
@@ -90,57 +95,67 @@ public class GridView_Map : MonoBehaviour
 			var symbol = Instantiate(symbolObj, grid.transform);
 			symbol.GetComponent<SpriteRenderer>().sprite = grid.symbol.symbolIcon;
 			symbolList.Add(symbol);
-			if (grid.symbol.symbolAttacks.Count > 0)
+			if (hurtObjDict.ContainsKey(gridPos))
 			{
-				//多个攻击格子
-				foreach (var gridChild in grid.symbol.symbolAttacks)
-				{
-					Vector3 position = gridPos + gridChild.position;
-					if (hurtObjDict.ContainsKey(position))
-					{
-						float t = Convert.ToInt32(hurtObjDict[position].GetComponent<TMP_Text>().text);
-						t += gridChild.attack;
-						hurtObjDict[position].GetComponent<TMP_Text>().text = t.ToString();
-					}
-					else
-					{
-						var gridObjChild = Instantiate(hurtObj, grid.transform);
-						gridObjChild.transform.localPosition = gridChild.position;
-                        gridObjChild.GetComponent<TMP_Text>().text = gridChild.attack.ToString();
-                        hurtObjDict.Add(position, gridObjChild);
-					}
-				}
+				float t = Convert.ToInt32(hurtObjDict[gridPos].GetComponent<TMP_Text>().text);
+				t += grid.symbol.symbolAttack;
+				hurtObjDict[gridPos].GetComponent<TMP_Text>().text = t.ToString();
 			}
 			else
 			{
-				if (hurtObjDict.ContainsKey(gridPos))
-				{
-					float t = Convert.ToInt32(hurtObjDict[gridPos].GetComponent<TMP_Text>().text);
-					t += grid.symbol.symbolAttack;
-					hurtObjDict[gridPos].GetComponent<TMP_Text>().text = t.ToString();
-				}
-				else
-				{
-					var gridObj = Instantiate(hurtObj, grid.transform);
-					gridObj.transform.localPosition = Vector3.zero;
-                    gridObj.GetComponent<TMP_Text>().text = grid.symbol.symbolAttack.ToString();
-                    hurtObjDict.Add(gridPos, gridObj);
-				}
+				var gridObj = Instantiate(hurtObj, grid.transform);
+				gridObj.transform.localPosition = Vector3.zero;
+                gridObj.GetComponent<TMP_Text>().text = grid.symbol.symbolAttack.ToString();
+                hurtObjDict.Add(gridPos, gridObj);
 			}
 		}
-		isShowHurt = true;
-		// HideSymbol();
+
+		if (!endAttack)
+		{
+			if(!isShowHurt)
+            	HideSymbol();
+            else
+            	ShowSymbol();
+		}
 	}
 
-	bool isHideSymbol = false;
+	bool isHideSymbol = true;
+	bool endAttack = false;
+
+	public void SetEndAttack()
+	{
+		endAttack = true;
+		isShowHurt = false;
+		StartCoroutine(SetAttack());
+	}
+	IEnumerator SetAttack()
+	{
+		yield return new WaitForSeconds(0.5f);
+		endAttack = false;
+	}
 	private void Update()
 	{
-		if (isShowHurt)
+		if(!canAttack) return;
+		if (!isShowHurt)
 		{
 			if (Input.GetKeyDown(KeyCode.Q))
 			{
-				if(!isHideSymbol) HideSymbol();
-				else ShowSymbol();
+				if(isHideSymbol)
+				{
+					ShowSymbol();
+					isShowHurt = true;
+				}
+			}
+		}
+		else
+		{
+			if (Input.GetKeyDown(KeyCode.Q))
+			{
+				if(!isHideSymbol)
+				{
+					HideSymbol();
+					isShowHurt = false;
+				}
 			}
 		}
 	}
@@ -152,12 +167,20 @@ public class GridView_Map : MonoBehaviour
 		{
 			symbol.SetActive(false);
 		}
+
+		foreach (var hurt in hurtObjDict)
+		{
+			hurt.Value.SetActive(false);
+		}
 		foreach (var grid in gridObjs)
 		{
 			grid.GetComponent<SpriteRenderer>().enabled = false;
 		}
+		SymbolCanNotAttackEvent.RaiseEvent(null,this);
 	}
 
+	public ObjectEventSO SymbolCanAttackEvent;
+	public ObjectEventSO SymbolCanNotAttackEvent;
 	void ShowSymbol()
 	{
 		isHideSymbol = false;
@@ -165,9 +188,14 @@ public class GridView_Map : MonoBehaviour
 		{
 			symbol.SetActive(true);
 		}
+		foreach (var hurt in hurtObjDict)
+		{
+			hurt.Value.SetActive(true);
+		}
 		foreach (var grid in gridObjs)
 		{
 			grid.GetComponent<SpriteRenderer>().enabled = true;
 		}
+		SymbolCanAttackEvent.RaiseEvent(null,this);
 	}
 }

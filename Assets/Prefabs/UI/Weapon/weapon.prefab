@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7913454513548595839}
   - component: {fileID: 3695102812560485618}
   - component: {fileID: -5242927767095325506}
+  - component: {fileID: -937914938109522462}
   m_Layer: 5
   m_Name: weapon
   m_TagString: Untagged
@@ -111,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GridMoveEvent: {fileID: 11400000, guid: e1ae86163583c5f4e8928f1d0feba571, type: 2}
   GridCallEvent: {fileID: 11400000, guid: 9a948056d564488419b6bf21e92b4379, type: 2}
-  WeaponCallSymbol: {fileID: 11400000, guid: 07cbfefc8178a98469a0eb40a0df3b1a, type: 2}
+  WeaponCallSymbol: {fileID: 11400000, guid: 91f64f7bcd3abc541b48831dce728548, type: 2}
   WeaponRefreshSymbol: {fileID: 11400000, guid: c8abcd74f9ce03f46b185cd9d25526b3, type: 2}
 --- !u!114 &3695102812560485618
 MonoBehaviour:
@@ -160,6 +161,34 @@ MonoBehaviour:
       - m_Target: {fileID: 7913454513548595839}
         m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
         m_MethodName: ResetWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-937914938109522462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155350047255467821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 5317959d8978cba488456e2f732b5165, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7913454513548595839}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: EndSymbolAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

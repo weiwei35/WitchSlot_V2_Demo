@@ -74,9 +74,11 @@ public class GridView_UI : MonoBehaviour
 	}
 
 	//将格子槽位的坐标属性旋转，位置上不用旋转
+	private int angleSave = 0;
 	public void RotateGrid(object o)
 	{
 		int angle = (int)o;
+		angleSave = angle;
 		foreach (Transform grid in gridGroup.transform)
 		{
 			GridPosition gridPosition = grid.GetComponent<GridPosition>();
@@ -88,7 +90,13 @@ public class GridView_UI : MonoBehaviour
 	{
 		foreach (Transform grid in gridGroup.transform)
 		{
-			if(grid.childCount>0) Destroy(grid.GetChild(0).gameObject);
+			if(grid.childCount>0)
+			{
+				foreach (Transform gridChild in grid.transform)
+				{
+					Destroy(gridChild.gameObject);
+				}
+			}
 		}
 	}
 
@@ -97,16 +105,38 @@ public class GridView_UI : MonoBehaviour
 	public void ShowWeaponHurtArea(object o)
 	{
 		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
-		foreach (var pos in gridPos)
+		List<Vector2Int> gridPosRotate = new List<Vector2Int>();
+		if (angleSave != 0)
 		{
-			foreach (var grid in gridList)
+			foreach (var pos in gridPos)
 			{
-				if (grid.gridPosition == pos)
+				gridPosRotate.Add(ToolFunctions.RotateGridInt(pos, angleSave));
+			}
+			foreach (var pos in gridPosRotate)
+			{
+				foreach (var grid in gridList)
 				{
-					grid.GetComponent<Image>().color = selectColor;
+					if (grid.gridPosition == pos)
+					{
+						grid.GetComponent<Image>().color = selectColor;
+					}
 				}
 			}
 		}
+		else
+		{
+			foreach (var pos in gridPos)
+            {
+            	foreach (var grid in gridList)
+            	{
+            		if (grid.gridPosition == pos)
+            		{
+            			grid.GetComponent<Image>().color = selectColor;
+            		}
+            	}
+            }
+		}
+		
 	}
 
 	public void ResetWeaponHurtArea()
@@ -114,6 +144,15 @@ public class GridView_UI : MonoBehaviour
 		foreach (var grid in gridList)
 		{
 			grid.GetComponent<Image>().color = defaultColor;
+		}
+	}
+
+	public void ResetGridPosition()
+	{
+		foreach (Transform grid in gridGroup.transform)
+		{
+			GridPosition gridPosition = grid.GetComponent<GridPosition>();
+			gridPosition.gridPosition = ToolFunctions.RotateGridCounterClockwise(gridPosition.gridPosition,GridMove.rotateDirection);
 		}
 	}
 }

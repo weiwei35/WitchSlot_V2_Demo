@@ -19,6 +19,7 @@ public class SetGridArea : MonoBehaviour
 	public List<OutFight_GridObj_UI> gridObjects;
 	public OutFight_GridObj_UI gridObjectPrefab;
 	private List<Vector2Int> gridPos;
+
 	public void SetGridObj()
 	{
 		gridObjects.Clear();

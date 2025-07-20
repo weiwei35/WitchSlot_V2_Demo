@@ -85,6 +85,39 @@ public class ToolFunctions : MonoBehaviour
 				return new Vector2Int(originalPoint.x, originalPoint.y);
 		}
 	}
+	/// <summary>
+	/// 绕原点(0,0)逆时针旋转angle度
+	/// </summary>
+	/// <param name="originalPoint">原始坐标</param>
+	/// <param name="angle">旋转角度（90°倍数）</param>
+	/// <returns>旋转后的新坐标</returns>
+	public static Vector2Int RotateGridCounterClockwise(Vector2Int originalPoint, int angle)
+	{
+		// 将角度归一化到0-360度范围
+		angle = ((angle % 360) + 360) % 360;
+    
+		// 确保角度是90的倍数
+		int normalizedAngle = (angle / 90) % 4 * 90;
+    
+		switch (normalizedAngle)
+		{
+			// 90度逆时针旋转：(x, y) → (-y, x)
+			case 90:
+				return new Vector2Int(-originalPoint.y, originalPoint.x);
+        
+			// 180度逆时针旋转：(x, y) → (-x, -y)
+			case 180:
+				return new Vector2Int(-originalPoint.x, -originalPoint.y);
+        
+			// 270度逆时针旋转：(x, y) → (y, -x)
+			case 270:
+				return new Vector2Int(originalPoint.y, -originalPoint.x);
+        
+			// 0/360度：保持原位置
+			default:
+				return new Vector2Int(originalPoint.x, originalPoint.y);
+		}
+	}
 
     
 	/// <summary>

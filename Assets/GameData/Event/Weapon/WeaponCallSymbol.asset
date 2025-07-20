@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0de91f42672289a4a9140d6e6d83b35c, type: 3}
+  m_Script: {fileID: 11500000, guid: cd3f269b0ebf40b4ba417454153f7e4a, type: 3}
   m_Name: WeaponCallSymbol
   m_EditorClassIdentifier: 
   desc: "\u88C5\u5907\u53EC\u5524\u7B26\u6587"

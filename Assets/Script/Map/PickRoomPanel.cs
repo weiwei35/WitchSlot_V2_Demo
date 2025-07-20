@@ -33,7 +33,7 @@ public class PickRoomPanel : MonoBehaviour
 	public RoomPickUI roomPrefab;
 	public GameObject roomContainer;
 	private List<RoomPickUI> rooms = new List<RoomPickUI>();
-	private void SetRoom()
+	public void SetRoom()
 	{
 		roomLevel++;
 		foreach (var room in rooms)
@@ -46,6 +46,12 @@ public class PickRoomPanel : MonoBehaviour
 		currentIndex = 0;
 		pickedRoom = rooms[currentIndex];
 		pickedRoom.SetSelect();
+		StartCoroutine(CanPickRoomDelay());
+	}
+
+	IEnumerator CanPickRoomDelay()
+	{
+		yield return new WaitForSeconds(0.5f);
 		canPickRoom = true;
 	}
 

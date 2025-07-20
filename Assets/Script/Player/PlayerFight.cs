@@ -12,75 +12,40 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class PlayerFight : MonoBehaviour
 {
-	public Sprite icon;
-	public FightWeight fightWeight;
-	public GridController gridController;
-	
 	bool canAttack = false;
-	bool canSkip = false;
-
-	private void Start()
-	{
-		FightController.instance.endRound += StopFight;
-	}
-
-
 	private void Update()
 	{
-		if (canSkip)
-		{
-			if (Input.GetKey(KeyCode.Space))
-			{
-				canSkip = false;
-				// FightController.instance.NextStep();
-			}
-		}
 		if (canAttack)
 		{
 			if (Input.GetKey(KeyCode.Space))
 			{
 				canAttack = false;
-				StartCoroutine(SetCanSkipDelay());
 				//释放符文
 				GridAttackEvent.RaiseEvent(null,this);
-				LogController.instance.logDelegate?.Invoke("Player: 释放符文");
+				GetComponent<PlayerMove_new>().PlayerMoveEvent.RaiseEvent(null, this);
+				StartCoroutine(EndAttack());
 			}
 		}
 	}
 
-	IEnumerator SetCanSkipDelay()
-	{
-		yield return new WaitForSeconds(0.2f);
-		canSkip = true;
-	}
-	IEnumerator SetCannotSkipDelay()
-	{
-		yield return new WaitForSeconds(0.2f);
-		canSkip = false;
-	}
-
-	//进战
-	public void StartFight()
-	{
-		// canAttack = true;
-		// canSkip = false;
-		// CallSymbols();
-	}
-
-	private void StopFight()
-	{
-		canAttack = false;
-		StartCoroutine(SetCannotSkipDelay());
-	}
-	public ObjectEventSO GridMoveEvent;
-	public ObjectEventSO GridCallEvent;
-	public ObjectEventSO GridAttackEvent;
-	public void CallSymbols()
+	public void SetCanAttack()
 	{
 		canAttack = true;
-		GridCallEvent.RaiseEvent(null,this);
-		GridMoveEvent.RaiseEvent(null,this);
-		gridController.SetSymbol(gridController.defaultGrid.Count);
-		LogController.instance.logDelegate?.Invoke("Player: 召唤符文");
+		GetComponent<PlayerMove_new>().canMove = false;
 	}
+	public void SetCanNotAttack()
+	{
+		canAttack = false;
+		GetComponent<PlayerMove_new>().canMove = true;
+	}
+
+	IEnumerator EndAttack()
+	{
+		GetComponent<PlayerMove_new>().canMove = true;
+		yield return new WaitForSeconds(0f);
+		
+		EndGridAttackEvent.RaiseEvent(null,this);
+	}
+	public ObjectEventSO GridAttackEvent;
+	public ObjectEventSO EndGridAttackEvent;
 }

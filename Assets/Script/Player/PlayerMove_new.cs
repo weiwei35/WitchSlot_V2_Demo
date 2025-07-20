@@ -37,15 +37,11 @@ public class PlayerMove_new : MonoBehaviour
 		lastValidPosition = transform.position;
 		targetPosition = transform.position;
 		
-		FightController.instance.startRound += InRoundMove;
-		FightController.instance.endRound += EndRound;
 		FightController.instance.setRoom += StopMove;
 	}
 
 	private void OnDisable()
 	{
-		FightController.instance.startRound -= InRoundMove;
-		FightController.instance.endRound -= EndRound;
 		FightController.instance.setRoom -= StopMove;
 	}
 
@@ -55,24 +51,6 @@ public class PlayerMove_new : MonoBehaviour
 	}
 	public void StopMove()
 	{
-		canMove = false;
-	}
-	public void PlayerMove()
-	{
-		canMove = true;
-		moveStep = 2;
-	}
-
-	private void EndRound()
-	{
-		if (inRound) inRound = false;
-		canMove = true;
-		moveStep = int.MaxValue;
-	}
-
-	private void InRoundMove()
-	{
-		inRound = true;
 		canMove = false;
 	}
 
@@ -177,7 +155,14 @@ public class PlayerMove_new : MonoBehaviour
 	{
 		// 只在移动时检测碰撞
 		if (!isMoving) return;
-    
+
+		if (other.CompareTag("TouchableItem"))
+		{
+			rb.DOComplete();
+			// 清空已排队的移动
+			moveQueue.Clear();
+			isMoving = false;
+		}
 		if (other.CompareTag("Enemy") || other.CompareTag("MapWall"))
 		{
 			rb.DOComplete();
@@ -189,61 +174,13 @@ public class PlayerMove_new : MonoBehaviour
 			isMoving = false;
         
 			// 可选：添加碰撞反馈效果
-			ShakeCamera(0.1f, 0.15f);
+			ShakeCamera(0.05f, 0.15f);
 		}
 	}
 
-// 可选：碰撞反馈效果
+	// 可选：碰撞反馈效果
 	private void ShakeCamera(float duration, float strength)
 	{
 		Camera.main.DOShakePosition(duration, strength);
 	}
-
-	// [Header("检测设置")]
-	// [SerializeField] private float detectionRadius = 5f; // 检测半径
-	// [SerializeField] private LayerMask enemyLayer;      // 敌人层级
-	// public void CheckEnemyAround()
-	// {
-	// 	// 使用OverlapSphere高效检测圆形区域内的敌人
-	// 	Collider2D[] hitColliders = Physics2D.OverlapCircleAll(
-	// 		transform.position, 
-	// 		detectionRadius, 
-	// 		enemyLayer.value);
- //        
-	// 	// 处理检测结果
-	// 	bool enemyAround = false;
-	// 	if (hitColliders.Length > 0)
-	// 	{
-	// 		foreach (var col in hitColliders)
-	// 		{
-	// 			// 避免检测到自身
-	// 			if (col.gameObject != this.gameObject)
-	// 			{
-	// 				// 计算实际距离
-	// 				float distance = Vector3.Distance(transform.position, col.transform.position);
-	//
-	// 				if (distance <= detectionRadius)
-	// 				{
-	// 					enemyAround = true;
-	// 					// Debug.Log($"发现敌人: {col.name} | 距离: {distance:F2}米");
-	//
-	// 					EnemyCommon enemyTarget = col.GetComponent<EnemyCommon>();
-	// 					if (enemyTarget != null && !enemyTarget.inFight)
-	// 					{
-	// 						enemyTarget.JoinFight();
-	// 					}
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	//
-	// 	if (enemyAround && !inRound)
-	// 	{
-	// 		//进战
-	// 		FightController.instance.StartFight();
-	// 	}else if (enemyAround && inRound)
-	// 	{
-	// 		FightController.instance.AddFight();
-	// 	}
-	// }
 }

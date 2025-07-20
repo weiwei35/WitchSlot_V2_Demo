@@ -13,13 +13,9 @@ public class PlayerInfoList_UI : MonoBehaviour
 	public PlayerInfo_UI playerInfo_UI;
 	private void Start()
 	{
-		FightController.instance.prepareFight += SetPlayer;
+		SetPlayer();
 	}
 
-	private void OnDisable()
-	{
-		FightController.instance.prepareFight -= SetPlayer;
-	}
 
 	private void SetPlayer()
 	{

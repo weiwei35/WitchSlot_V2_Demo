@@ -20,3 +20,4 @@ MonoBehaviour:
   hurtArea:
   - {x: 0, y: 1}
   - {x: 1, y: 1}
+  symbol: {fileID: 11400000, guid: 60025a55e27e8e643b5561231f9699a7, type: 2}

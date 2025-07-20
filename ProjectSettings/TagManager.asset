@@ -13,6 +13,7 @@ TagManager:
   - Next
   - MapWall
   - Enemy
+  - TouchableItem
   layers:
   - Default
   - TransparentFX

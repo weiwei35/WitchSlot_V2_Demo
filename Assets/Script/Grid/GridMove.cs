@@ -27,6 +27,12 @@ public class GridMove : MonoBehaviour
 		isEndSet = false;
 	}
 
+	public void ClearMove()
+	{
+		rotateDirection = 0;
+		savedDirection = Direction.Right;
+	}
+
 	public void EndSet()
 	{
 		canMove = false;

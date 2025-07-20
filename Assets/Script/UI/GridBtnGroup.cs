@@ -12,8 +12,6 @@ public class GridBtnGroup : MonoBehaviour
 {
 	private void Start()
 	{
-		FightController.instance.endRound += DisableBtn;
-		FightController.instance.startRound += ResetBtn;
 	}
 	public Button attackBtn;
 	public Button moveBtn;

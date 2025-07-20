@@ -14,18 +14,6 @@ public class EnemyList : MonoBehaviour
 	public GameObject enemyListParent;
 	private List<EnemyListItem_UI> enemyList = new List<EnemyListItem_UI>();
 
-	private void Start()
-	{
-		FightController.instance.prepareFight += SetEnemyList;
-		FightController.instance.meetEnemy += SetEnemyListAdd;
-	}
-
-	private void OnDisable()
-	{
-		FightController.instance.prepareFight -= SetEnemyList;
-		FightController.instance.meetEnemy -= SetEnemyListAdd;
-	}
-
 	public void DeleteEnemy(object obj)
 	{
 		EnemyCommon enemy = obj as EnemyCommon;
@@ -70,7 +58,6 @@ public class EnemyList : MonoBehaviour
 	{
 		EnemyGroup enemyGroup = GameObject.FindGameObjectWithTag("EnemyGroup").GetComponent<EnemyGroup>();
 		yield return new WaitForSeconds(enemyGroup.enemiesInFight.Count*0.5f);
-		FightController.instance.startRound?.Invoke();
 	}
 	public void SetEnemyList()
 	{

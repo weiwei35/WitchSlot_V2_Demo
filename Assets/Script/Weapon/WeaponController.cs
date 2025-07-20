@@ -17,62 +17,57 @@ public class WeaponController : MonoBehaviour
 	private int coldTime;
 	private WeaponItem_UI weaponItemUI;
 	private WeaponSO weapon;
-	bool needRefresh = false;
 	List<Vector2Int> pos = new List<Vector2Int>();
+	Dictionary<Vector2Int,SymbolSO> symbols = new Dictionary<Vector2Int,SymbolSO>();
 	[Header("广播事件")] 
 	public ObjectEventSO GridMoveEvent;
 	public ObjectEventSO GridCallEvent;
-	public ObjectEventSO WeaponCallSymbol;
-	public ObjectEventSO WeaponRefreshSymbol;
+	public DictionaryEventSO WeaponCallSymbol;
 	private void Start()
 	{
 		weaponItemUI = GetComponent<WeaponItem_UI>();
 		weapon = weaponItemUI.weapon;
 		coldTime = weapon.coldTime;
 		pos = weapon.hurtArea.ToList();
+
+		foreach (var attackPos in pos)
+		{
+			symbols.Add(attackPos,weapon.symbol);
+		}
 	}
 
 	public void ResetWeapon()
 	{
-		needRefresh = false;
-		GridMove.rotateDirection = 0;
 		if (weapon != null)
 		{
 			coldTime = weapon.coldTime;
+			pos.Clear();
 			pos = weapon.hurtArea.ToList();
+			symbols.Clear();
+			foreach (var attackPos in pos)
+			{
+				symbols.Add(attackPos,weapon.symbol);
+			}
 			CheckRotate();
 		}
 	}
 	public void PlayerWalk()
 	{
-		if (needRefresh)
-		{
-			CheckRotate();
-			WeaponRefreshSymbol.RaiseEvent(pos,this);
-			StartCoroutine(CallSymbolDelay());
-		}
 		if (coldTime > 0)
 			coldTime--;
-		if (coldTime==0)
+		if (coldTime<=0)
 		{
 			CheckRotate();
 			CallSymbol();
 			coldTime = -1;
-			needRefresh = true;
 		}
-	}
-
-	IEnumerator CallSymbolDelay()
-	{
-		yield return new WaitForSeconds(0.2f);
-		CallSymbol();
 	}
 
 	private void CallSymbol()
 	{
 		GridCallEvent.RaiseEvent(null,this);
 		GridMoveEvent.RaiseEvent(null,this);
-		WeaponCallSymbol.RaiseEvent(pos,this);
+		WeaponCallSymbol.RaiseEvent(symbols,this);//传递字典<位置，符文>
 	}
 
 	private void CheckRotate()
@@ -83,5 +78,26 @@ public class WeaponController : MonoBehaviour
        		Vector2Int posRotate = ToolFunctions.RotateGridInt(hurtPos,GridMove.rotateDirection);
        		pos.Add(posRotate);
        	}
+        symbols.Clear();
+        foreach (var attackPos in pos)
+        {
+	        symbols.Add(attackPos,weapon.symbol);
+        }
+	}
+
+	public void EndSymbolAttack()
+	{
+		if (weapon != null)
+		{
+			coldTime = weapon.coldTime;
+			pos.Clear();
+			pos = weapon.hurtArea.ToList();
+			symbols.Clear();
+			foreach (var attackPos in pos)
+			{
+				symbols.Add(attackPos,weapon.symbol);
+			}
+			CheckRotate();
+		}
 	}
 }

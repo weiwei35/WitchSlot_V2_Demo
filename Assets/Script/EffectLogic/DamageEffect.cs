@@ -10,9 +10,8 @@ public class DamageEffect : Effect
 		{
 			case EffectTargetType.One:
 				to.TakeDamage(value);
-				var effect = Instantiate(effectPrefab, to.transform.position, Quaternion.identity);
-				Destroy(effect, 5);
-				LogController.instance.logDelegate?.Invoke($"对{to.name}造成{value}点伤害");
+				
+				// LogController.instance.logDelegate?.Invoke($"对{to.name}造成{value}点伤害");
 				break;
 			case EffectTargetType.All:
 				var enemyGroup = GameObject.FindGameObjectWithTag("EnemyGroup").GetComponent<EnemyGroup>();

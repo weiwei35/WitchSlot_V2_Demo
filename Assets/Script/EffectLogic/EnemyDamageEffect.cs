@@ -13,7 +13,7 @@ public class EnemyDamageEffect : Effect
                 to.TakeDamage(value);
                 var effect = Instantiate(effectPrefab, to.transform.position, Quaternion.identity);
                 Destroy(effect, 5);
-                LogController.instance.logDelegate?.Invoke($"对{to.name}造成{value}点伤害");
+                // LogController.instance.logDelegate?.Invoke($"对{to.name}造成{value}点伤害");
                 break;
         }
     }
@@ -31,7 +31,7 @@ public class EnemyDamageEffect : Effect
             if (distance.magnitude < 0.1f)
             {
                 to.TakeDamage(value);
-                LogController.instance.logDelegate?.Invoke($"对{to.name}造成{value}点伤害");
+                // LogController.instance.logDelegate?.Invoke($"对{to.name}造成{value}点伤害");
                 EnemyAttackSuccess.RaiseEvent(null, to);
             }
             else

@@ -21,3 +21,4 @@ MonoBehaviour:
   - {x: 1, y: 0}
   - {x: 2, y: 0}
   - {x: 3, y: 0}
+  symbol: {fileID: 11400000, guid: e479227f3415e7e4493beb1126d7b904, type: 2}

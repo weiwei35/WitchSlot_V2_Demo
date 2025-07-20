@@ -64,7 +64,7 @@ public class EnemyCommon : CharacterBase
     {
         EnemyMove enemyMove = GetComponent<EnemyMove>();
         enemyMove.FindPath();
-        if(enemyMove.movePath.Count<=0) return new List<Vector3>{transform.position};
+        if(enemyMove.movePath.Count<=1) return new List<Vector3>{transform.position};
         return new List<Vector3>{enemyMove.movePath[1] };
     }
     [HideInInspector]
