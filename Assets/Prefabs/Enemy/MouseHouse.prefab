@@ -704,6 +704,8 @@ MonoBehaviour:
   hp: {fileID: 0}
   defense: {fileID: 0}
   isDead: 0
+  damageNum_hurt: {fileID: 5866601767730072595, guid: 25970b4577a658e439cfd92135c68661, type: 3}
+  damageNum_heal: {fileID: 4143695706053804876, guid: 045d4e5774afd8248acb6a54adf0d50a, type: 3}
   enemyName: "\u91CE\u517D\u5DE2\u7A74"
   enemyIcon: {fileID: 2123850562, guid: 4ee13cc3436614c46a913e4f8f5b10f4, type: 3}
   enemyHP: 10
@@ -713,11 +715,13 @@ MonoBehaviour:
   attack: 0
   skill: []
   isStandEnemy: 1
+  stopDistance: 0
   hpText: {fileID: 4512853941669192665}
   hpObj: {fileID: 2061558092356784749}
   EnemyDieEvent: {fileID: 11400000, guid: 802b1ca5473098c4f95620e862c8e314, type: 2}
   inFight: 0
   newAdd: 1
+  gridSize: 0.8
 --- !u!114 &-4304776375292456362
 MonoBehaviour:
   m_ObjectHideFlags: 0

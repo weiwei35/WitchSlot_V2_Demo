@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 //using NaughtyAttributes;
 using Random = UnityEngine.Random;
 /// <summary>
@@ -28,12 +29,20 @@ public class WeaponController : MonoBehaviour
 		weaponItemUI = GetComponent<WeaponItem_UI>();
 		weapon = weaponItemUI.weapon;
 		coldTime = weapon.coldTime;
-		pos = weapon.hurtArea.ToList();
-
-		foreach (var attackPos in pos)
+		// pos = weapon.hurtArea.ToList();
+		
+		foreach (var symbolList in weapon.symbolList)
 		{
-			symbols.Add(attackPos,weapon.symbol);
+			foreach (var areaPos in symbolList.area)
+			{
+				symbols.Add(areaPos, symbolList.symbol);
+				pos.Add(areaPos);
+			}
 		}
+		// foreach (var attackPos in pos)
+		// {
+		// 	symbols.Add(attackPos,weapon.symbol);
+		// }
 	}
 
 	public void ResetWeapon()
@@ -42,11 +51,19 @@ public class WeaponController : MonoBehaviour
 		{
 			coldTime = weapon.coldTime;
 			pos.Clear();
-			pos = weapon.hurtArea.ToList();
 			symbols.Clear();
-			foreach (var attackPos in pos)
+			// pos = weapon.hurtArea.ToList();
+			// foreach (var attackPos in pos)
+			// {
+			// 	symbols.Add(attackPos,weapon.symbol);
+			// }
+			foreach (var symbolList in weapon.symbolList)
 			{
-				symbols.Add(attackPos,weapon.symbol);
+				foreach (var areaPos in symbolList.area)
+				{
+					symbols.Add(areaPos, symbolList.symbol);
+					pos.Add(areaPos);
+				}
 			}
 			CheckRotate();
 		}
@@ -73,15 +90,25 @@ public class WeaponController : MonoBehaviour
 	private void CheckRotate()
 	{
 		pos.Clear();
-       	foreach (var hurtPos in weapon.hurtArea)
-       	{
-       		Vector2Int posRotate = ToolFunctions.RotateGridInt(hurtPos,GridMove.rotateDirection);
-       		pos.Add(posRotate);
-       	}
         symbols.Clear();
-        foreach (var attackPos in pos)
+       	// foreach (var hurtPos in weapon.hurtArea)
+       	// {
+       	// 	Vector2Int posRotate = ToolFunctions.RotateGridInt(hurtPos,GridMove.rotateDirection);
+       	// 	pos.Add(posRotate);
+       	// }
+        // foreach (var attackPos in pos)
+        // {
+	       //  symbols.Add(attackPos,weapon.symbol);
+        // }
+        
+        foreach (var symbolList in weapon.symbolList)
         {
-	        symbols.Add(attackPos,weapon.symbol);
+	        foreach (var areaPos in symbolList.area)
+	        {
+		        Vector2Int posRotate = ToolFunctions.RotateGridInt(areaPos,GridMove.rotateDirection);
+		        pos.Add(posRotate);
+		        symbols.Add(posRotate, symbolList.symbol);
+	        }
         }
 	}
 
@@ -91,11 +118,19 @@ public class WeaponController : MonoBehaviour
 		{
 			coldTime = weapon.coldTime;
 			pos.Clear();
-			pos = weapon.hurtArea.ToList();
 			symbols.Clear();
-			foreach (var attackPos in pos)
+			// pos = weapon.hurtArea.ToList();
+			// foreach (var attackPos in pos)
+			// {
+			// 	symbols.Add(attackPos,weapon.symbol);
+			// }
+			foreach (var symbolList in weapon.symbolList)
 			{
-				symbols.Add(attackPos,weapon.symbol);
+				foreach (var areaPos in symbolList.area)
+				{
+					symbols.Add(areaPos, symbolList.symbol);
+					pos.Add(areaPos);
+				}
 			}
 			CheckRotate();
 		}

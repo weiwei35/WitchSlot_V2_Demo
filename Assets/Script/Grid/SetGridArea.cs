@@ -24,7 +24,10 @@ public class SetGridArea : MonoBehaviour
 	{
 		gridObjects.Clear();
 		gridPos = new List<Vector2Int>();
-		List<WeaponSO> currentWeapons = RandomWeapon(weaponManager.weaponDataList, 2);
+		List<WeaponSO> currentWeapons = new List<WeaponSO>();
+		currentWeapons.Add(RandomWeaponWithType(weaponManager.weaponDataList,WeaponType.武器));
+		currentWeapons.Add(RandomWeaponWithType(weaponManager.weaponDataList,WeaponType.衣服));
+		// List<WeaponSO> currentWeapons = RandomWeapon(weaponManager.weaponDataList, 2);
 		gridPos = ToolFunctions.SetGrid(currentWeapons);
 		SetWeapon(currentWeapons);
 
@@ -74,8 +77,19 @@ public class SetGridArea : MonoBehaviour
 			
 			weaponManager.playerWeaponLibrary.weapons.Add(weapon);
 		}
+		LayoutRebuilder.ForceRebuildLayoutImmediate(weaponParent.GetComponent<RectTransform>());
 	}
 
+	public WeaponSO RandomWeaponWithType(List<WeaponSO> source,WeaponType type)
+	{
+		List<WeaponSO> weapons = new List<WeaponSO>();
+		foreach (var weapon in source)
+		{
+			if(weapon.type == type) weapons.Add(weapon);
+		}
+		
+		return weapons[Random.Range(0, weapons.Count)];
+	}
 	//随机选取两个不同type的装备
 	public List<WeaponSO> RandomWeapon(List<WeaponSO> source, int n)
 	{

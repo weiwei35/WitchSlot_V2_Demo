@@ -22,7 +22,6 @@ public class PlayerFight : MonoBehaviour
 				canAttack = false;
 				//释放符文
 				GridAttackEvent.RaiseEvent(null,this);
-				GetComponent<PlayerMove_new>().PlayerMoveEvent.RaiseEvent(null, this);
 				StartCoroutine(EndAttack());
 			}
 		}
@@ -44,8 +43,8 @@ public class PlayerFight : MonoBehaviour
 		GetComponent<PlayerMove_new>().canMove = true;
 		yield return new WaitForSeconds(0f);
 		
-		EndGridAttackEvent.RaiseEvent(null,this);
+		// EndGridAttackEvent.RaiseEvent(null,this);
 	}
 	public ObjectEventSO GridAttackEvent;
-	public ObjectEventSO EndGridAttackEvent;
+	// public ObjectEventSO EndGridAttackEvent;
 }

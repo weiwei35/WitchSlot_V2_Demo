@@ -89,15 +89,6 @@ public class EnemyController : MonoBehaviour
 	public void EnemyMove()
 	{
 		if(!enemyCommon.inFight) return;
-		// if(step <= 0)
-		// {
-			// targetIcon.SetActive(false);
-			// transform.parent.GetComponent<EnemyGroup>().NextEnemyMove();
-			// SetMovement();
-			// isCurrentEnemy = false;
-			// return;
-		// }
-		// step--;
 		
 		if(timeCounter > 0) timeCounter--;
 		if (skillReady)
@@ -304,15 +295,6 @@ public class EnemyController : MonoBehaviour
 			SetMovement();
 			transform.parent.GetComponent<EnemyGroup>()
 				.enemiesInFight.Add(enemyCommon);
-        
-			if (!FightController.instance.inFight)
-			{
-				// FightController.instance.StartFight();
-			}
-			else
-			{
-				// FightController.instance.AddFight();
-			}
 		}
 	}
 

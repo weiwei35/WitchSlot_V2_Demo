@@ -17,25 +17,22 @@ public class EnemyGroup : MonoBehaviour
 {
 	public List<EnemyCommon> enemies;
 	public List<EnemyCommon> enemiesInFight;
-	private bool enemyAllDie = false;
+	public bool enemyAllDie = false;
 
 	private void Start()
 	{
 		enemyAllDie = false;
 	}
-
 	public ObjectEventSO EndRoomEvent;
 	public void EnemyDie(EnemyCommon enemy)
 	{
 		if(enemiesInFight.Contains(enemy))
 			enemiesInFight.Remove(enemy);
 		enemies.Remove(enemy);
-		// LogController.instance.logDelegate?.Invoke("击杀怪物："+enemy.name);
 		if (enemies.Count == 0)
 		{
 			enemyAllDie = true;
 		}
-
 		if (enemyAllDie)
 		{
 			EndRoomEvent.RaiseEvent(null,this);

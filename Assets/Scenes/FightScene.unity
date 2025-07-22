@@ -233,9 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultGrid: []
   player: {fileID: 968575025}
-  EndStepEvent: {fileID: 11400000, guid: 7edc741226f683c4db0553091a0713a2, type: 2}
-  RotateGridEvent: {fileID: 11400000, guid: c20175febf2e7104083170780fa17639, type: 2}
   SetRandomSymbolEvent: {fileID: 11400000, guid: 98737bf1e96a3524b849aa7c6d9b9cf8, type: 2}
+  EndGridAttackEvent: {fileID: 11400000, guid: 5317959d8978cba488456e2f732b5165, type: 2}
   enemyGroup: {fileID: 1426623086}
   AddSkillPointEvent: {fileID: 11400000, guid: 62922f224b2868641b62411ebf5f0708, type: 2}
   RotateGridUIEvent: {fileID: 11400000, guid: 3c3f689b714b6274d85e244be23f29eb, type: 2}
@@ -1057,7 +1056,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridAttackEvent: {fileID: 11400000, guid: c453399013955ec4ab45ffa15e8e67ae, type: 2}
-  EndGridAttackEvent: {fileID: 11400000, guid: 5317959d8978cba488456e2f732b5165, type: 2}
 --- !u!114 &968575023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,6 +1107,9 @@ MonoBehaviour:
   hp: {fileID: 11400000, guid: 45bae52cf24f9e448a782c6f187adbc7, type: 2}
   defense: {fileID: 11400000, guid: 05960aabdd115ae4095d7737cc06fa25, type: 2}
   isDead: 0
+  damageNum_hurt: {fileID: 5617686091126449503, guid: d8f5577eb4cb9544aabf9428e808d21c, type: 3}
+  damageNum_heal: {fileID: 4666293474388653646, guid: 8f2b4f929d44a0f4f8d9a5bf2b53e7ce, type: 3}
+  damageNum_defence: {fileID: 4666293474388653646, guid: b9809b62b708a9849818053849e77bd4, type: 3}
   hpText: {fileID: 2073942542}
   playerIcon: {fileID: 21300000, guid: c41df215eec35b346a1798a197f01ef5, type: 3}
   playerName: "\u5973\u5DEB"

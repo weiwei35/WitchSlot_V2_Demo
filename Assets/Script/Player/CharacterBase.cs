@@ -1,4 +1,5 @@
 using System;
+using DamageNumbersPro;
 using UnityEngine;
 
 public class CharacterBase : MonoBehaviour
@@ -10,6 +11,10 @@ public class CharacterBase : MonoBehaviour
 	public int CurrentHp { get=>hp.currentValue; set=>hp.SetValue(value); }
 
 	public bool isDead = false;
+	
+	public DamageNumber damageNum_hurt;
+	public DamageNumber damageNum_heal;
+	public DamageNumber damageNum_defence;
 	public virtual void Awake()
 	{
 		animator = GetComponent<Animator>();
@@ -31,6 +36,11 @@ public class CharacterBase : MonoBehaviour
 			var currentDefense = defense.currentValue - damage>=0?defense.currentValue - damage:0;
 			defense.currentValue = currentDefense;
 		}
+
+		if (currentDamage > 0)
+		{
+			damageNum_hurt.Spawn(transform.position,currentDamage);
+		}
 		if (CurrentHp > currentDamage)
 		{
 			// Debug.Log(damage);
@@ -48,6 +58,7 @@ public class CharacterBase : MonoBehaviour
 	{
 		var amount = defense.currentValue + value;
 		defense.SetValue(amount);
+		damageNum_defence.Spawn(transform.position,value);
 	}
 	public void ResetDefense()
 	{
@@ -58,5 +69,7 @@ public class CharacterBase : MonoBehaviour
 	{
 		if(CurrentHp+value>=hp.maxValue) CurrentHp = hp.maxValue;
 		else CurrentHp += value;
+		
+		damageNum_heal.Spawn(transform.position,value);
 	}
 }

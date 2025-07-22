@@ -31,7 +31,7 @@ public class WeaponGroup : MonoBehaviour
 			weaponList.Add(weaponObj);
 			switch (weapon.type)
 			{
-				case WeaponType.帽子:
+				case WeaponType.鞋子:
 					weaponObj.transform.SetParent(weaponGrid_top.transform);
 					weaponObj.weapon = weapon;
 					weaponObj.Init();
@@ -63,7 +63,7 @@ public class WeaponGroup : MonoBehaviour
 		weaponList.Add(weaponObj);
 		switch (weapon.type)
 		{
-			case WeaponType.帽子:
+			case WeaponType.鞋子:
 				weaponObj.transform.SetParent(weaponGrid_top.transform);
 				weaponObj.weapon = weapon;
 				weaponObj.Init();

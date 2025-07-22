@@ -37,6 +37,8 @@ public class MapController : MonoBehaviour
 					enemyGroup.enemies.Add(enemyObj);
 					index++;
 				}
+
+				enemyGroup.enemyAllDie = false;
 			}
 
 			StartCoroutine(RoomLoaded());

@@ -17,32 +17,134 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: f8891075770cbc649b6af99c893d7d4b
   m_SerializeEntries:
-  - m_GUID: 55e679b5987a5d441ab514a74f1beed5
-    m_Address: "\u5251"
+  - m_GUID: a001795579a0a2640bb80d08c7ab9ae5
+    m_Address: weapon_008
     m_ReadOnly: 0
     m_SerializedLabels:
     - WeaponData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c78bb6aaf60cb764c86b45ced90af702
-    m_Address: "\u5E3D\u5B50"
+  - m_GUID: 317f9f8c13e8c3f4599daf6be1ee7dc4
+    m_Address: weapon_005
     m_ReadOnly: 0
     m_SerializedLabels:
     - WeaponData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1c879194cc0411c4fb2571bf57c2cdcc
-    m_Address: "\u9524\u5934"
+  - m_GUID: d543f44eb98ccc447bc9e3a5171b1fd4
+    m_Address: weapon_007
     m_ReadOnly: 0
     m_SerializedLabels:
     - WeaponData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 67fad738e77706b4196178ba84d25958
-    m_Address: "\u6212\u6307"
+  - m_GUID: caa592db12ed66f42a710c954e1a2621
+    m_Address: weapon_009
     m_ReadOnly: 0
     m_SerializedLabels:
     - WeaponData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c27af1c864c823b4ca1f2a26040adf9c
-    m_Address: "\u6597\u7BF7"
+  - m_GUID: 82543bdd55eaa7445a2c981ff7bd015c
+    m_Address: weapon_006
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32b62e781fa86c84e8ee374f33716fe5
+    m_Address: "\u7ED3\u6676\u6CD5\u6756"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 709e1fc4ce5c6e0448ebc1ec5180ae55
+    m_Address: "\u677E\u6728\u9B54\u68D2"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1ec19aabc3da4c45b32070c9faf03b8
+    m_Address: "\u8001\u5F0F\u4EEA\u5F0F\u5251"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84cc962f77ea4884da875a98dc352b74
+    m_Address: "\u94DC\u9996\u77ED\u5315"
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13eea25bb38146d47ba33c2ddacbddaf
+    m_Address: weapon_010
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e95a314bcab373646a66fce5b280cfcc
+    m_Address: weapon_011
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 226f980fef5f29140aee4142c6135dec
+    m_Address: weapon_012
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40bd6205ed0a4364ca69512ac2220ac4
+    m_Address: weapon_013
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7da010d1972802c498bda3bb894fbf83
+    m_Address: weapon_014
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bc07d052fc3e5648b63bcdca44510f7
+    m_Address: weapon_015
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64e243fe0e550b142a88399cd0b82a9f
+    m_Address: weapon_016
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c68c46e0a8460640ba76ec549236165
+    m_Address: clothes_001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41af04365e88e084dba33632cf7a7a53
+    m_Address: clothes_002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c38961772b7388440be5544334538551
+    m_Address: clothes_003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8520d4b236b563439c4357a66c0be71
+    m_Address: clothes_004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 459fa0d48cbe26c469adf67889e35f73
+    m_Address: clothes_005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e20139496453704cbfbaf1cec4a307a
+    m_Address: clothes_006
     m_ReadOnly: 0
     m_SerializedLabels:
     - WeaponData

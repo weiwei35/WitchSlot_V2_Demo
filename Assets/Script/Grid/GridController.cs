@@ -22,9 +22,8 @@ public class GridController : MonoBehaviour
     
     Dictionary<Vector2Int,SymbolSO> symbolDic = new Dictionary<Vector2Int,SymbolSO>();
     [Header("广播事件")]
-    public ObjectEventSO EndStepEvent;
-    public DictionaryEventSO RotateGridEvent;
     public DictionaryEventSO SetRandomSymbolEvent;
+    public ObjectEventSO EndGridAttackEvent;
 
     private void Start()
     {
@@ -87,11 +86,13 @@ public class GridController : MonoBehaviour
         if (areaDefence > 0)
         {
             player.UpdateDefense(areaDefence);
+            yield return new WaitForSeconds(0.5f);
         }
 
         if (areaHeal > 0)
         {
             player.UpdateHp(areaHeal);
+            yield return new WaitForSeconds(0.5f);
         }
         foreach (var grid in gridView_Map.gridObjs.ToList())
         {
@@ -100,22 +101,23 @@ public class GridController : MonoBehaviour
                 allGridPos.Add(grid.transform.position);
                 foreach (Transform enemy in enemyGroup.gameObject.transform)
                 {
-                    CharacterBase enemyBase = enemy.GetComponent<CharacterBase>();
+                    EnemyCommon enemyBase = enemy.GetComponent<EnemyCommon>();
                     Vector3 gridPos = new Vector3(grid.transform.position.x, grid.transform.position.y);
                     if (enemy != null && Vector3.Distance(gridPos, enemy.position) < 0.1f) //判断怪物位置是否有符文
                     {
                         hurtGridPos.Add(gridPos);
                         enemyBase.TakeDamage(areaHurt);
-                        if (enemyGroup.enemiesInFight.Count == 0) yield break;
+                        if (enemyGroup.enemiesInFight.Count == 0) break;
                         yield return new WaitForSeconds(0.5f);
-                        if (enemyGroup.enemiesInFight.Count == 0) yield break;
+                        if (enemyGroup.enemiesInFight.Count == 0) break;
                     }
                 }
             }
-            if (enemyGroup.enemiesInFight.Count == 0) yield break;
+            if (enemyGroup.enemiesInFight.Count == 0) break;
         }
-
         CountSkillPoint();
+        EndGridAttackEvent.RaiseEvent(null,this);
+        player.GetComponent<PlayerMove_new>().PlayerMoveEvent.RaiseEvent(null, this);
     }
     //计算法力点:没打出伤害的符文格每个+2点
     public ObjectEventSO AddSkillPointEvent;

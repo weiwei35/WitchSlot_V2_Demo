@@ -188,12 +188,23 @@ public class ToolFunctions : MonoBehaviour
 	public static List<Vector2Int> SetGrid(List<WeaponSO> weapons)
 	{
 		List<Vector2Int> gridPos = new List<Vector2Int>();
+		// foreach (var weapon in weapons)
+		// {
+		// 	// Debug.LogError(weapon.weaponName);
+		// 	foreach (var pos in weapon.hurtArea)
+		// 	{
+		// 		if(!gridPos.Contains(pos)) gridPos.Add(pos);
+		// 	}
+		// }
+
 		foreach (var weapon in weapons)
 		{
-			// Debug.LogError(weapon.weaponName);
-			foreach (var pos in weapon.hurtArea)
+			foreach (var symbolList in weapon.symbolList)
 			{
-				if(!gridPos.Contains(pos)) gridPos.Add(pos);
+				foreach (var pos in symbolList.area)
+				{
+					if(!gridPos.Contains(pos)) gridPos.Add(pos);
+				}
 			}
 		}
 		return gridPos;

@@ -884,6 +884,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="DamageNumbersPro.csproj">
+      <Project>{8852369d-99ab-1da3-f63c-7cb965d97236}</Project>
+      <Name>DamageNumbersPro</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -704,6 +704,8 @@ MonoBehaviour:
   hp: {fileID: 0}
   defense: {fileID: 0}
   isDead: 0
+  damageNum_hurt: {fileID: 5866601767730072595, guid: 25970b4577a658e439cfd92135c68661, type: 3}
+  damageNum_heal: {fileID: 4143695706053804876, guid: 045d4e5774afd8248acb6a54adf0d50a, type: 3}
   enemyName: "\u53F2\u83B1\u59C6"
   enemyIcon: {fileID: 1620724797, guid: 29ea1aeac578348468ed54e2ee74f78c, type: 3}
   enemyHP: 6

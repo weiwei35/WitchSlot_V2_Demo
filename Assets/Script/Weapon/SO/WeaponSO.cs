@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,15 @@ public class WeaponSO : ItemInfoDataSO
 {
     public int coldTime;
     public WeaponType type;
-    public List<Vector2Int> hurtArea;
+    public RandomType randomType;
+    // public List<Vector2Int> hurtArea;
+    // public SymbolSO symbol;
+    public List<SymbolList> symbolList;
+}
+
+[Serializable]
+public class SymbolList
+{
     public SymbolSO symbol;
+    public List<Vector2Int> area;
 }

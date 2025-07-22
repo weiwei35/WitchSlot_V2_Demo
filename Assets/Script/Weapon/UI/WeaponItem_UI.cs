@@ -29,13 +29,29 @@ public class WeaponItem_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	{
 		//显示tips
 		ShowTipsEvent.RaiseEventWithGameObject(weapon,gameObject,this);
-		ShowHurtAreaEvent.RaiseEvent(weapon.hurtArea,this);
+		List<Vector2Int> gridPos = new List<Vector2Int>();
+		foreach (var symbolList in weapon.symbolList)
+		{
+			foreach (var pos in symbolList.area)
+			{
+				if(!gridPos.Contains(pos)) gridPos.Add(pos);
+			}
+		}
+		ShowHurtAreaEvent.RaiseEvent(gridPos,this);
 	}
 
 	public virtual void OnPointerExit(PointerEventData eventData)
 	{
 		//隐藏tips
 		HideTipsEvent.RaiseEventWithGameObject(weapon,gameObject,this);
-		HideHurtAreaEvent.RaiseEvent(weapon.hurtArea,this);
+		List<Vector2Int> gridPos = new List<Vector2Int>();
+		foreach (var symbolList in weapon.symbolList)
+		{
+			foreach (var pos in symbolList.area)
+			{
+				if(!gridPos.Contains(pos)) gridPos.Add(pos);
+			}
+		}
+		HideHurtAreaEvent.RaiseEvent(gridPos,this);
 	}
 }

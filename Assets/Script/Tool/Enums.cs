@@ -48,7 +48,7 @@ public enum Direction { Up, Down, Left, Right }
 
 public enum WeaponType
 {
-    帽子,
+    鞋子,
     武器,
     衣服,
     珠宝
