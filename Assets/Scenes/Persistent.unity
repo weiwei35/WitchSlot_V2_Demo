@@ -3094,6 +3094,8 @@ GameObject:
   - component: {fileID: 409756236}
   - component: {fileID: 409756237}
   - component: {fileID: 409756238}
+  - component: {fileID: 409756240}
+  - component: {fileID: 409756239}
   m_Layer: 5
   m_Name: WeaponGroup
   m_TagString: Untagged
@@ -3142,6 +3144,7 @@ MonoBehaviour:
   weaponGrid_jewelry: {fileID: 602478439}
   weaponItem: {fileID: 1534120770821196027, guid: 9cd2d7e5425d69240b5f098abb1d0065, type: 3}
   weaponList: []
+  SetWeaponReadyEvent: {fileID: 11400000, guid: 920f14f1952435c46b105860078835cb, type: 2}
   ChangeGridHurtArea: {fileID: 11400000, guid: 3c230dd5cff799a41857967398776622, type: 2}
 --- !u!114 &409756238
 MonoBehaviour:
@@ -3162,6 +3165,62 @@ MonoBehaviour:
       - m_Target: {fileID: 409756237}
         m_TargetAssemblyTypeName: WeaponGroup, Assembly-CSharp
         m_MethodName: SetWeaponItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &409756239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409756235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 409756237}
+        m_TargetAssemblyTypeName: WeaponGroup, Assembly-CSharp
+        m_MethodName: SetWeaponReady
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &409756240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409756235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 5317959d8978cba488456e2f732b5165, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 409756237}
+        m_TargetAssemblyTypeName: WeaponGroup, Assembly-CSharp
+        m_MethodName: EndAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4798,7 +4857,6 @@ GameObject:
   - component: {fileID: 875872037}
   - component: {fileID: 875872040}
   - component: {fileID: 875872034}
-  - component: {fileID: 875872041}
   - component: {fileID: 875872039}
   - component: {fileID: 875872038}
   - component: {fileID: 875872042}
@@ -4998,34 +5056,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &875872041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875872028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: 3c3f689b714b6274d85e244be23f29eb, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 875872033}
-        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
-        m_MethodName: RotateGrid
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &875872042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5042,18 +5072,6 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 875872033}
-        m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
-        m_MethodName: ResetGridPosition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 875872033}
         m_TargetAssemblyTypeName: GridView_UI, Assembly-CSharp
         m_MethodName: ClearGrid
@@ -8748,7 +8766,7 @@ MonoBehaviour:
   gridObjectPrefab: {fileID: 8541187676849553045, guid: 68a8744fcb2bd044bbb2ef5b6e749969, type: 3}
   selectColor: {r: 0.8235294, g: 1, b: 0.7882353, a: 1}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  weaponItem: {fileID: 1534120770821196027, guid: 9cd2d7e5425d69240b5f098abb1d0065, type: 3}
+  weaponItem: {fileID: 1534120770821196027, guid: bea9c74cd4fe18946b49b59fc12de625, type: 3}
   weaponParent: {fileID: 259097936}
   gridUI: {fileID: 875872033}
   SetGridHurtArea: {fileID: 11400000, guid: 21747a367472b654cb6faa59939c69cc, type: 2}

@@ -16,21 +16,26 @@ public class GridController : MonoBehaviour
     
     // public GridView_UI gridView_UI;
     private GridView_Map gridView_Map;
-    private GridMove gridMove;
     public static Vector2Int playerFaceGridPosCurrent = new Vector2Int(1,0);//角色朝向位置
     public CharacterBase player;
     
     Dictionary<Vector2Int,SymbolSO> symbolDic = new Dictionary<Vector2Int,SymbolSO>();
+    
+    public bool canAttack = false;
     [Header("广播事件")]
     public DictionaryEventSO SetRandomSymbolEvent;
     public ObjectEventSO EndGridAttackEvent;
+    public ObjectEventSO PlayerCallSymbolEvent;
 
     private void Start()
     {
         gridView_Map = GetComponent<GridView_Map>();
-        gridMove = GetComponent<GridMove>();
     }
 
+    public void SetCanAttack()
+    {
+        canAttack = true;
+    }
     public void SetDefaultGrid(object obj)
     {
         defaultGrid.Clear();
@@ -107,17 +112,18 @@ public class GridController : MonoBehaviour
                     {
                         hurtGridPos.Add(gridPos);
                         enemyBase.TakeDamage(areaHurt);
-                        if (enemyGroup.enemiesInFight.Count == 0) break;
+                        if (enemyGroup.enemies.Count == 0) break;
                         yield return new WaitForSeconds(0.5f);
-                        if (enemyGroup.enemiesInFight.Count == 0) break;
+                        if (enemyGroup.enemies.Count == 0) break;
                     }
                 }
             }
-            if (enemyGroup.enemiesInFight.Count == 0) break;
+            if (enemyGroup.enemies.Count == 0) break;
         }
         CountSkillPoint();
         EndGridAttackEvent.RaiseEvent(null,this);
-        player.GetComponent<PlayerMove_new>().PlayerMoveEvent.RaiseEvent(null, this);
+        PlayerCallSymbolEvent.RaiseEvent(null, this);
+        canAttack = false;
     }
     //计算法力点:没打出伤害的符文格每个+2点
     public ObjectEventSO AddSkillPointEvent;

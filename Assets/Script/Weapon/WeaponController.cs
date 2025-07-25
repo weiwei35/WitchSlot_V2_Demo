@@ -18,121 +18,99 @@ public class WeaponController : MonoBehaviour
 	private int coldTime;
 	private WeaponItem_UI weaponItemUI;
 	private WeaponSO weapon;
-	List<Vector2Int> pos = new List<Vector2Int>();
 	Dictionary<Vector2Int,SymbolSO> symbols = new Dictionary<Vector2Int,SymbolSO>();
+	Dictionary<Vector2Int,SymbolSO> symbolsCurrent = new Dictionary<Vector2Int,SymbolSO>();
+	private bool attacked = false;
+	public bool canAttack = false;
+	public WeaponGroup group;
 	[Header("广播事件")] 
-	public ObjectEventSO GridMoveEvent;
-	public ObjectEventSO GridCallEvent;
 	public DictionaryEventSO WeaponCallSymbol;
 	private void Start()
 	{
 		weaponItemUI = GetComponent<WeaponItem_UI>();
 		weapon = weaponItemUI.weapon;
-		coldTime = weapon.coldTime;
-		// pos = weapon.hurtArea.ToList();
-		
 		foreach (var symbolList in weapon.symbolList)
 		{
 			foreach (var areaPos in symbolList.area)
 			{
 				symbols.Add(areaPos, symbolList.symbol);
-				pos.Add(areaPos);
 			}
 		}
-		// foreach (var attackPos in pos)
-		// {
-		// 	symbols.Add(attackPos,weapon.symbol);
-		// }
+		coldTime = symbols.Count;
 	}
 
 	public void ResetWeapon()
 	{
 		if (weapon != null)
 		{
-			coldTime = weapon.coldTime;
-			pos.Clear();
 			symbols.Clear();
-			// pos = weapon.hurtArea.ToList();
-			// foreach (var attackPos in pos)
-			// {
-			// 	symbols.Add(attackPos,weapon.symbol);
-			// }
 			foreach (var symbolList in weapon.symbolList)
 			{
 				foreach (var areaPos in symbolList.area)
 				{
 					symbols.Add(areaPos, symbolList.symbol);
-					pos.Add(areaPos);
 				}
 			}
-			CheckRotate();
+			coldTime = symbols.Count;
 		}
 	}
+
+	public void GetCurrentSymbols(int count)
+	{
+		symbolsCurrent.Clear();
+		List<Vector2Int> keys = new List<Vector2Int>();
+		List<SymbolSO> values = new List<SymbolSO>();
+		foreach (var symbolList in weapon.symbolList)
+		{
+			foreach (var areaPos in symbolList.area)
+			{
+				keys.Add(areaPos);
+				values.Add(symbolList.symbol);
+			}
+		}
+		for (int i = 0; i < count; i++)
+		{
+			symbolsCurrent.Add(keys[i],values[i]);
+		}
+	}
+	//每次移动，每个装备加载1个符文
 	public void PlayerWalk()
 	{
 		if (coldTime > 0)
-			coldTime--;
-		if (coldTime<=0)
 		{
-			CheckRotate();
-			CallSymbol();
+			coldTime--;
+			GetCurrentSymbols(symbols.Count - coldTime);
+			CallSymbol(symbolsCurrent);
+		}
+		if (coldTime<=0 && !attacked)
+		{
+			canAttack = true;
+			attacked = true;
+			CallSymbol(symbols);
 			coldTime = -1;
+			group.SetWeaponReady();
 		}
 	}
 
-	private void CallSymbol()
+	private void CallSymbol(Dictionary<Vector2Int,SymbolSO> symbolsResult)
 	{
-		GridCallEvent.RaiseEvent(null,this);
-		GridMoveEvent.RaiseEvent(null,this);
-		WeaponCallSymbol.RaiseEvent(symbols,this);//传递字典<位置，符文>
+		WeaponCallSymbol.RaiseEvent(symbolsResult,this);//传递字典<位置，符文>
 	}
-
-	private void CheckRotate()
-	{
-		pos.Clear();
-        symbols.Clear();
-       	// foreach (var hurtPos in weapon.hurtArea)
-       	// {
-       	// 	Vector2Int posRotate = ToolFunctions.RotateGridInt(hurtPos,GridMove.rotateDirection);
-       	// 	pos.Add(posRotate);
-       	// }
-        // foreach (var attackPos in pos)
-        // {
-	       //  symbols.Add(attackPos,weapon.symbol);
-        // }
-        
-        foreach (var symbolList in weapon.symbolList)
-        {
-	        foreach (var areaPos in symbolList.area)
-	        {
-		        Vector2Int posRotate = ToolFunctions.RotateGridInt(areaPos,GridMove.rotateDirection);
-		        pos.Add(posRotate);
-		        symbols.Add(posRotate, symbolList.symbol);
-	        }
-        }
-	}
-
 	public void EndSymbolAttack()
 	{
+		attacked = false;
+		canAttack = false;
 		if (weapon != null)
 		{
-			coldTime = weapon.coldTime;
-			pos.Clear();
 			symbols.Clear();
-			// pos = weapon.hurtArea.ToList();
-			// foreach (var attackPos in pos)
-			// {
-			// 	symbols.Add(attackPos,weapon.symbol);
-			// }
 			foreach (var symbolList in weapon.symbolList)
 			{
 				foreach (var areaPos in symbolList.area)
 				{
 					symbols.Add(areaPos, symbolList.symbol);
-					pos.Add(areaPos);
 				}
 			}
-			CheckRotate();
+			coldTime = symbols.Count;
 		}
 	}
 }

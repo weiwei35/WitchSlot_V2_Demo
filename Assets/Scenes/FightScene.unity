@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 510471406}
   - component: {fileID: 510471407}
   - component: {fileID: 510471413}
+  - component: {fileID: 510471414}
   m_Layer: 0
   m_Name: GridController
   m_TagString: Untagged
@@ -193,8 +194,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridController: {fileID: 510471404}
   gridColor: {r: 1, g: 0.8980392, b: 0, a: 1}
-  gridColorRed: {r: 1, g: 0, b: 0, a: 1}
-  player: {fileID: 968575025}
   gridObj: {fileID: 7113100669743845582, guid: b65ee29090f55694dac1cd860ef4deca, type: 3}
   gridParent: {fileID: 377257003}
   gridObjs: []
@@ -233,8 +232,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultGrid: []
   player: {fileID: 968575025}
+  canAttack: 0
   SetRandomSymbolEvent: {fileID: 11400000, guid: 98737bf1e96a3524b849aa7c6d9b9cf8, type: 2}
   EndGridAttackEvent: {fileID: 11400000, guid: 5317959d8978cba488456e2f732b5165, type: 2}
+  PlayerCallSymbolEvent: {fileID: 11400000, guid: 738103ed368272c48ab4dda2a73b23b8, type: 2}
   enemyGroup: {fileID: 1426623086}
   AddSkillPointEvent: {fileID: 11400000, guid: 62922f224b2868641b62411ebf5f0708, type: 2}
   RotateGridUIEvent: {fileID: 11400000, guid: 3c3f689b714b6274d85e244be23f29eb, type: 2}
@@ -472,6 +473,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GridController, Assembly-CSharp
         m_MethodName: SetSymbolInGrid
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &510471414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510471400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 920f14f1952435c46b105860078835cb, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 510471404}
+        m_TargetAssemblyTypeName: GridController, Assembly-CSharp
+        m_MethodName: SetCanAttack
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1436,7 +1465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ac5b15861f6e449826e74b174b717e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHPEvent: {fileID: 11400000, guid: 51ca08a290f3ff548981bb8c1be8c8cb, type: 2}
+  EnterUndergroundEvent: {fileID: 11400000, guid: af54876738f5e65478a712887056de21, type: 2}
 --- !u!114 &1403396822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,6 +1600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   enemiesInFight: []
+  enemyAllDie: 0
   EndRoomEvent: {fileID: 11400000, guid: f7c28e063a6053d459d6775d44a56ae7, type: 2}
 --- !u!1 &2024845870
 GameObject:

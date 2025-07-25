@@ -21,13 +21,38 @@ public class WeaponGroup : MonoBehaviour
 	public WeaponItem_UI weaponItem;
 
 	public List<WeaponItem_UI> weaponList;
-	
+
+	public ObjectEventSO SetWeaponReadyEvent;
+	private bool weaponReady = false;
+
+	public void EndAttack()
+	{
+		weaponReady = false;
+	}
+	public void SetWeaponReady()
+	{
+		if(CheckWeaponReady()&&!weaponReady)
+		{
+			weaponReady = true;
+			SetWeaponReadyEvent.RaiseEvent(null, this);
+		}
+	}
+	private bool CheckWeaponReady()
+	{
+		foreach (var weaponUI in weaponList)
+		{
+			WeaponController weapon = weaponUI.GetComponent<WeaponController>();
+			if (!weapon.canAttack) return false;
+		}
+		return true;
+	}
 	public void SetWeaponItem()
 	{
 		foreach (var weapon in manager.playerWeaponLibrary.weapons)
 		{
 			if(weaponList.Any(item => item.weapon == weapon)) continue;
 			var weaponObj = Instantiate(weaponItem);
+			weaponObj.GetComponent<WeaponController>().group = this;
 			weaponList.Add(weaponObj);
 			switch (weapon.type)
 			{

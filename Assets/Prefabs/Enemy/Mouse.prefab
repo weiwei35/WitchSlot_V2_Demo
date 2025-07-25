@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 3684380651322744344}
   - component: {fileID: -8259541345048482364}
   - component: {fileID: -4304776375292456362}
+  - component: {fileID: -41030753462759630}
   m_Layer: 7
   m_Name: Mouse
   m_TagString: Enemy
@@ -792,6 +793,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSO: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3101247363741587189}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: RefreshMoveStep
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3101247363741587189}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: CheckPlayerAround
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3101247363741587189}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: MoveFollowPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-41030753462759630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5419653748720566275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 738103ed368272c48ab4dda2a73b23b8, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:

@@ -20,8 +20,6 @@ public class GridView_Map : MonoBehaviour
 	
 	[Header("攻击范围")]
 	public Color gridColor;
-	public Color gridColorRed;
-	public Player player;
 	public GridObj gridObj;
 	public GameObject gridParent;
 	public List<GridObj> gridObjs;
@@ -135,7 +133,7 @@ public class GridView_Map : MonoBehaviour
 	}
 	private void Update()
 	{
-		if(!canAttack) return;
+		if(!canAttack || !gridController.canAttack) return;
 		if (!isShowHurt)
 		{
 			if (Input.GetKeyDown(KeyCode.Q))
@@ -154,12 +152,12 @@ public class GridView_Map : MonoBehaviour
 				if(!isHideSymbol)
 				{
 					HideSymbol();
+					// DeleteSymbol();
 					isShowHurt = false;
 				}
 			}
 		}
 	}
-
 	void HideSymbol()
 	{
 		isHideSymbol = true;

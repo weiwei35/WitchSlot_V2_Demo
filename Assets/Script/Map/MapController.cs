@@ -13,9 +13,12 @@ using Random = UnityEngine.Random;
 
 public class MapController : MonoBehaviour
 {
-	//Asset文件保存路径
-	private const string assetPath = "Assets/GameData/EnemyHP/";
-	public IntEventSO enemyHPEvent;
+	public ObjectEventSO EnterUndergroundEvent;
+	private void OnEnable()
+	{
+		EnterUndergroundEvent.RaiseEvent(null,this);
+	}
+
 	public void LoadRoom(object obj)
 	{
 		DeleteRoomBefore();

@@ -31,7 +31,6 @@ public class GridView_UI : MonoBehaviour
 			Destroy(grid.gameObject);
 		}
 		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
-		float minY = float.MaxValue;
 		foreach (var pos in gridPos)
 		{
 			var grid = Instantiate(gridObj, gridGroup.transform);
@@ -45,17 +44,6 @@ public class GridView_UI : MonoBehaviour
 		gridPlayer.transform.localPosition = new Vector3(0,0,0);
 		gridPlayer.GetComponent<Image>().sprite = playerSprite;
 		gridPlayer.GetComponent<Image>().SetNativeSize();
-		foreach (Transform grid in gridGroup.transform)
-		{
-			if(grid.transform.localPosition.y < minY) minY = grid.transform.localPosition.y;
-		}
-		if (minY <= 0)
-		{
-			foreach (Transform grid in gridGroup.transform)
-			{
-				// grid.transform.localPosition -= new Vector3(0, minY-100, 0);
-			}
-		}
 	}
 	//在格子区域显示召唤出的符文
 	public void SetGridSymbol(Dictionary<Vector2Int,SymbolSO> symbolDic)
@@ -70,19 +58,6 @@ public class GridView_UI : MonoBehaviour
 				gridSymbol.symbolData = symbolDic[gridPosition.gridPosition];
 				gridSymbol.SetSymbol();
 			}
-		}
-	}
-
-	//将格子槽位的坐标属性旋转，位置上不用旋转
-	private int angleSave = 0;
-	public void RotateGrid(object o)
-	{
-		int angle = (int)o;
-		angleSave = angle;
-		foreach (Transform grid in gridGroup.transform)
-		{
-			GridPosition gridPosition = grid.GetComponent<GridPosition>();
-			gridPosition.gridPosition = ToolFunctions.RotateGridInt(gridPosition.gridPosition,angle);
 		}
 	}
 	//清除符文
@@ -105,38 +80,16 @@ public class GridView_UI : MonoBehaviour
 	public void ShowWeaponHurtArea(object o)
 	{
 		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
-		List<Vector2Int> gridPosRotate = new List<Vector2Int>();
-		if (angleSave != 0)
-		{
-			foreach (var pos in gridPos)
-			{
-				gridPosRotate.Add(ToolFunctions.RotateGridInt(pos, angleSave));
-			}
-			foreach (var pos in gridPosRotate)
-			{
-				foreach (var grid in gridList)
-				{
-					if (grid.gridPosition == pos)
-					{
-						grid.GetComponent<Image>().color = selectColor;
-					}
-				}
-			}
-		}
-		else
-		{
-			foreach (var pos in gridPos)
-            {
-            	foreach (var grid in gridList)
-            	{
-            		if (grid.gridPosition == pos)
-            		{
-            			grid.GetComponent<Image>().color = selectColor;
-            		}
-            	}
-            }
-		}
-		
+		foreach (var pos in gridPos)
+        {
+        	foreach (var grid in gridList)
+        	{
+        		if (grid.gridPosition == pos)
+        		{
+        			grid.GetComponent<Image>().color = selectColor;
+        		}
+        	}
+        }
 	}
 
 	public void ResetWeaponHurtArea()
@@ -144,15 +97,6 @@ public class GridView_UI : MonoBehaviour
 		foreach (var grid in gridList)
 		{
 			grid.GetComponent<Image>().color = defaultColor;
-		}
-	}
-
-	public void ResetGridPosition()
-	{
-		foreach (Transform grid in gridGroup.transform)
-		{
-			GridPosition gridPosition = grid.GetComponent<GridPosition>();
-			gridPosition.gridPosition = ToolFunctions.RotateGridCounterClockwise(gridPosition.gridPosition,GridMove.rotateDirection);
 		}
 	}
 }
