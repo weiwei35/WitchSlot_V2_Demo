@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Tools;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -23,21 +24,18 @@ public class PlayerInfo_UI : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		playerIcon.sprite = player.playerIcon;
 		playerName.text = player.playerName;
-	}
-	
-	private void Update()
-	{
-		if (player != null)
-		{
-			HP.text = playerHP.currentValue.ToString();
-			SetHP();
-		}
+		SetHpBar(playerHP.currentValue);
 	}
 
-	public Slider HPSlider;
-	private void SetHP()
+	public MMProgressBar hpBar;
+	public void SetHpBar(int amount)
 	{
-		if (playerHP != null) HPSlider.value = (float)playerHP.currentValue / playerHP.maxValue;
+		hpBar.UpdateBar(amount, 0f, playerHP.maxValue);
+	}
+
+	public void SetDefense(int amount)
+	{
+		
 	}
 	public EnemySkillList SkillList;
 	private GameObject skill;

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef05359695e8314d82c23473b3d7076, type: 3}
   m_Name: PlayerHP
   m_EditorClassIdentifier: 
-  maxValue: 100
-  currentValue: 100
+  maxValue: 10
+  currentValue: 10
   ValueChangedEvent: {fileID: 11400000, guid: f78a2f8fbdc8d2948b2bf4a7741f3918, type: 2}

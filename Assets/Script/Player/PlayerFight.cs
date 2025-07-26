@@ -13,6 +13,7 @@ using Random = UnityEngine.Random;
 public class PlayerFight : MonoBehaviour
 {
 	bool canAttack = false;
+	bool skipStep = false;
 	private void Update()
 	{
 		if (canAttack)
@@ -25,8 +26,22 @@ public class PlayerFight : MonoBehaviour
 				StartCoroutine(EndAttack());
 			}
 		}
+		else
+		{
+			if (Input.GetKey(KeyCode.E) && !skipStep)
+			{
+				skipStep = true;
+				GetComponent<PlayerMove_new>().PlayerMoveEvent.RaiseEvent(null,this);
+				StartCoroutine(ResetSkipStep());
+			}
+		}
 	}
 
+	IEnumerator ResetSkipStep()
+	{
+		yield return new WaitForSeconds(1f);
+		skipStep = false;
+	}
 	public void SetCanAttack()
 	{
 		canAttack = true;

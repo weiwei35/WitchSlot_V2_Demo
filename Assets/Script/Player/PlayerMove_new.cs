@@ -29,6 +29,7 @@ public class PlayerMove_new : MonoBehaviour
 	public bool canMove = false;
 	bool isMoving = false;
 	public bool inRound = false;
+	private bool isStay = false;
 
 	public ObjectEventSO PlayerMoveEvent;
 	void Start()
@@ -127,7 +128,8 @@ public class PlayerMove_new : MonoBehaviour
 		SnapToGridCenter();
         
 		isMoving = false;
-		// if(!isStay) PlayerMoveEvent.RaiseEvent(null, this);
+		if(!isStay) PlayerMoveEvent.RaiseEvent(null, this);
+		isStay = false;
 	}
     
 	// 获取当前位置所属网格的中心
@@ -149,7 +151,6 @@ public class PlayerMove_new : MonoBehaviour
 	{
 		Vector3 gridCenter = GetCurrentGridCenter();
 		rb.MovePosition(gridCenter);
-		PlayerMoveEvent.RaiseEvent(null, this);
 	}
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -165,6 +166,7 @@ public class PlayerMove_new : MonoBehaviour
 		}
 		if (other.CompareTag("Enemy") || other.CompareTag("MapWall"))
 		{
+			isStay = true;
 			rb.DOComplete();
 			rb.MovePosition(lastValidPosition); // 回退到上次有效位置
 
