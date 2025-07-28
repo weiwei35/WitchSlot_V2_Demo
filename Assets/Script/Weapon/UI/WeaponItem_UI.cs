@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 //using NaughtyAttributes;
 using Random = UnityEngine.Random;
 
-public class WeaponItem_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class WeaponItem_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler
 {
 	public WeaponSO weapon;
 	public Image icon;
@@ -53,5 +53,10 @@ public class WeaponItem_UI : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 			}
 		}
 		HideHurtAreaEvent.RaiseEvent(gridPos,this);
+	}
+
+	public virtual void OnPointerClick(PointerEventData eventData)
+	{
+		return;
 	}
 }

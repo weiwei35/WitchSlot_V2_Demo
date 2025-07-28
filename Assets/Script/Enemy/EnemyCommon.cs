@@ -20,7 +20,6 @@ public class EnemyCommon : CharacterBase
     public int moveStep;
     public EnemyAttackSO attackData;
     [HideInInspector]
-    public FightWeight fightweight;
     public float attack;
     public List<EnemySkillSO> skill;
     public bool isStandEnemy = false;
@@ -34,12 +33,6 @@ public class EnemyCommon : CharacterBase
     
     public bool inFight = false;
     public bool newAdd = true;
-
-    public override void Awake()
-    {
-        base.Awake();
-        fightweight = GetComponent<FightWeight>();
-    }
 
     public virtual void EnemyDie()
     {

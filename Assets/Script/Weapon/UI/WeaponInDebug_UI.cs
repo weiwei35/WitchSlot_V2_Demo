@@ -9,13 +9,15 @@ using UnityEngine.EventSystems;
 //using NaughtyAttributes;
 using Random = UnityEngine.Random;
 
-public class WeaponInBag_UI : WeaponItem_UI
+public class WeaponInDebug_UI : WeaponItem_UI
 {
 	public WeaponGroup group;
 	public override void OnPointerClick(PointerEventData eventData)
 	{
 		//替换装备
-		group.ChangeWeapon(weapon);
+		group.manager.playerWeaponLibrary.weapons.Add(weapon);
+		group.PutWeaponInBag(weapon);
+		group.debugObj.SetActive(false);
 	}
 
 	public override void OnPointerEnter(PointerEventData eventData)

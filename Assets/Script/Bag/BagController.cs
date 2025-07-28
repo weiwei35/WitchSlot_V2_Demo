@@ -32,6 +32,7 @@ public class BagController : MonoBehaviour
         else
         {
             //需要替换
+            Debug.LogError("数量超出背包");
         }
     }
 

@@ -60,7 +60,11 @@ public class EnemyMove : MonoBehaviour
 			rb.DOMove(movePath[1], 0.1f)
 				.SetEase(Ease.OutQuad)
 				.SetUpdate(UpdateType.Fixed)
-				.OnComplete(()=>isMoving=false);
+				.OnComplete(() =>
+				{
+					isMoving = false;
+					GetComponent<EnemyController>().SetMovement();
+				});
 			// rb.MovePosition(movePath[1]);
 		}
 	}

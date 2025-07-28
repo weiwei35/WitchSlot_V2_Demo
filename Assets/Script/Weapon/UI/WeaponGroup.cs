@@ -85,6 +85,7 @@ public class WeaponGroup : MonoBehaviour
 	public void TakeOnWeapon(WeaponSO weapon)
 	{
 		var weaponObj = Instantiate(weaponItem);
+		weaponObj.GetComponent<WeaponController>().group = this;
 		weaponList.Add(weaponObj);
 		switch (weapon.type)
 		{
@@ -143,7 +144,7 @@ public class WeaponGroup : MonoBehaviour
 		return getWeapon;
 	}
 
-	private void PutWeaponInBag(WeaponSO weapon)
+	public void PutWeaponInBag(WeaponSO weapon)
 	{
 		bagController.AddWeapon(weapon);
 	}
@@ -179,5 +180,39 @@ public class WeaponGroup : MonoBehaviour
 		List<Vector2Int> gridPos = new List<Vector2Int>();
 		gridPos = ToolFunctions.SetGrid(currentWeapons);
 		ChangeGridHurtArea.RaiseEvent(gridPos,this);
+	}
+	
+	[Header("Debug添加武器")]
+	public GameObject debugObj;
+
+	public GameObject weaponList_debug;
+	public WeaponInDebug_UI weaponitem_debug;
+	public void SetDebugPanel()
+	{
+		foreach (Transform obj in weaponList_debug.transform)
+		{
+			Destroy(obj.gameObject);
+		}
+		List<WeaponSO> weaponCanGet = new();
+		foreach (var weapon in manager.weaponDataList)
+		{
+			if(!manager.playerWeaponLibrary.weapons.Contains(weapon))
+				weaponCanGet.Add(weapon);
+		}
+
+		foreach (var weapon in weaponCanGet)
+		{
+			var obj = Instantiate(weaponitem_debug, weaponList_debug.transform);
+			obj.weapon = weapon;
+			obj.group = this;
+			obj.Init();
+		}
+	}
+
+	[ContextMenu("DebugWeapon")] //菜单中调用方法
+	public void ShowDebugPanel()
+	{
+		debugObj.SetActive(true);
+		SetDebugPanel();
 	}
 }

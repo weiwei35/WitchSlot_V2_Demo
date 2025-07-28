@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		SetMoveAction();
 	}
-	private void SetMovement()
+	public void SetMovement()
 	{
 		if (enemyMove.canMove && !enemyCommon.isStandEnemy)
 		{
@@ -97,15 +97,15 @@ public class EnemyController : MonoBehaviour
 			foreach (var pos in hurtArea)
 			{
 				currentAction.effect.ApplyEffect(enemyCommon,player,pos);
+				SetMovement();
 			}
 			return;
 		}
 		//是否在player附近？攻击：移动
-		if (enemyMove.canMove || !enemyCommon.isStandEnemy)
+		if (enemyMove.canMove && !enemyCommon.isStandEnemy)
 		{
 			currentmoveAction.effect.ApplyEffect(enemyCommon,player);
 			actionText.text = step.ToString();
-			SetMovement();
 		}
 		else
 		{
@@ -160,6 +160,14 @@ public class EnemyController : MonoBehaviour
 				break;
 			}
 		}
+		// if (skillReady)
+		// {
+		// 	skillReady = false;
+		// 	foreach (var pos in hurtArea)
+		// 	{
+		// 		currentAction.effect.ApplyEffect(enemyCommon,player,pos);
+		// 	}
+		// }
 	}
 
 	private void SetStepDirction(int index)//0移动；1攻击

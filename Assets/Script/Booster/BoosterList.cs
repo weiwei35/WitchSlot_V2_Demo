@@ -15,6 +15,10 @@ public class BoosterList : MonoBehaviour
 	public GameObject boosterParent;
 	public void Init()
 	{
+		foreach (Transform obj in boosterParent.transform)
+		{
+			Destroy(obj.gameObject);
+		}
 		foreach (var booster in boosters)
 		{
 			var boosterItem = Instantiate(boosterItem_UI,boosterParent.transform);

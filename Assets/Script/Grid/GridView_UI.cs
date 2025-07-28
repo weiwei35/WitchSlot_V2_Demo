@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,27 +24,49 @@ public class GridView_UI : MonoBehaviour
 	public Sprite playerSprite;
 	
 	List<GridPosition> gridList = new List<GridPosition>();
+	List<GridPosition> gridListExpanded = new List<GridPosition>();
 	public void InitGrid(object o)
 	{
+		foreach (var obj in gridListExpanded)
+		{
+			Destroy(obj.gameObject);
+		}
+		gridListExpanded.Clear();
+		ClearGrid();
 		gridList.Clear();
+		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
 		foreach (Transform grid in gridGroup.transform)
 		{
-			Destroy(grid.gameObject);
+			GridPosition pos = grid.GetComponent<GridPosition>();
+			grid.GetComponent<Image>().color = unlockColor;
+			if (gridPos.Contains(pos.gridPosition))
+			{
+				gridList.Add(pos);
+				grid.GetComponent<Image>().color = defaultColor;
+				gridPos.Remove(pos.gridPosition);
+			}
+
+			if (pos.gridPosition == Vector2Int.zero)
+			{
+				gridPlayer = pos;
+				grid.GetComponent<Image>().color = defaultColor;
+                gridPlayer.GetComponent<Image>().sprite = playerSprite;
+                gridPlayer.GetComponent<Image>().SetNativeSize();
+			}
 		}
-		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
-		foreach (var pos in gridPos)
+
+		if (gridPos.Count > 0)
 		{
-			var grid = Instantiate(gridObj, gridGroup.transform);
-			grid.gridPosition = new Vector2Int((int)pos.x, (int)pos.y);
-			grid.transform.localPosition = new Vector3(pos.x,pos.y)*100;
-			
-			gridList.Add(grid);
+			foreach (var pos in gridPos)
+			{
+				var grid = Instantiate(gridObj, gridGroup.transform);
+				grid.gridPosition = pos;
+				grid.GetComponent<Image>().color = defaultColor;
+				grid.transform.localPosition = new Vector3(pos.x*120,pos.y*120);
+				gridList.Add(grid);
+				gridListExpanded.Add(grid);
+			}
 		}
-		gridPlayer = Instantiate(gridObj, gridGroup.transform);
-		gridPlayer.gridPosition = new Vector2Int(0,0);
-		gridPlayer.transform.localPosition = new Vector3(0,0,0);
-		gridPlayer.GetComponent<Image>().sprite = playerSprite;
-		gridPlayer.GetComponent<Image>().SetNativeSize();
 	}
 	//在格子区域显示召唤出的符文
 	public void SetGridSymbol(Dictionary<Vector2Int,SymbolSO> symbolDic)
@@ -77,6 +100,7 @@ public class GridView_UI : MonoBehaviour
 
 	public Color selectColor;
 	public Color defaultColor;
+	public Color unlockColor;
 	public void ShowWeaponHurtArea(object o)
 	{
 		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
