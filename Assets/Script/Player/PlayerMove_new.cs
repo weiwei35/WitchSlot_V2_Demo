@@ -27,6 +27,7 @@ public class PlayerMove_new : MonoBehaviour
 	private Vector3 targetPos;
 	private Rigidbody2D rb;
 	public bool canMove = false;
+	public bool setRooming = false;
 	bool isMoving = false;
 	public bool inRound = false;
 	private bool isStay = false;
@@ -49,10 +50,12 @@ public class PlayerMove_new : MonoBehaviour
 	public void StartMove()
 	{
 		canMove = true;
+		setRooming = false;
 	}
 	public void StopMove()
 	{
 		canMove = false;
+		setRooming = true;
 	}
 
 	private void Update()

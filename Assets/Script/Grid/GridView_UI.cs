@@ -120,7 +120,33 @@ public class GridView_UI : MonoBehaviour
 	{
 		foreach (var grid in gridList)
 		{
-			grid.GetComponent<Image>().color = defaultColor;
+			if (grid != null) grid.GetComponent<Image>().color = defaultColor;
+		}
+	}
+
+	public void ShowJewelryGrid(object o)
+	{
+		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
+		foreach (var pos in gridPos)
+		{
+			foreach (Transform grid in gridGroup.transform)
+			{
+				GridPosition gridPosition = grid.GetComponent<GridPosition>();
+				if (gridPosition.gridPosition == pos)
+				{
+					grid.GetComponent<Image>().color = selectColor;
+					gridPosition.canSelect = true;
+				}
+			}
+		}
+	}
+
+	public void ResetJewelryGrid()
+	{
+		foreach (Transform grid in gridGroup.transform)
+		{
+			GridPosition gridPosition = grid.GetComponent<GridPosition>();
+			gridPosition.canSelect = false;
 		}
 	}
 }

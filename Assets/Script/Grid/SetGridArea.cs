@@ -26,7 +26,7 @@ public class SetGridArea : MonoBehaviour
 		gridPos = new List<Vector2Int>();
 		List<WeaponSO> currentWeapons = new List<WeaponSO>();
 		currentWeapons.Add(RandomWeaponWithType(weaponManager.weaponDataList,WeaponType.武器));
-		currentWeapons.Add(RandomWeaponWithType(weaponManager.weaponDataList,WeaponType.衣服));
+		currentWeapons.Add(RandomWeaponWithType(weaponManager.weaponDataList,WeaponType.珠宝));
 		// List<WeaponSO> currentWeapons = RandomWeapon(weaponManager.weaponDataList, 2);
 		gridPos = ToolFunctions.SetGrid(currentWeapons);
 		SetWeapon(currentWeapons);

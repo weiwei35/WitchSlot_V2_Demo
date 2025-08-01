@@ -17,6 +17,7 @@ public class WeaponGroup : MonoBehaviour
 	public GameObject weaponGrid_weapon;
 	public GameObject weaponGrid_wear;
 	public GameObject weaponGrid_jewelry;
+	public GameObject selectBtn;
 
 	public WeaponItem_UI weaponItem;
 
@@ -70,6 +71,7 @@ public class WeaponGroup : MonoBehaviour
 					weaponObj.transform.SetParent(weaponGrid_jewelry.transform);
 					weaponObj.weapon = weapon;
 					weaponObj.Init();
+					selectBtn.SetActive(true);
 					break;
 				case WeaponType.衣服:
 					weaponObj.transform.SetParent(weaponGrid_wear.transform);
@@ -103,6 +105,7 @@ public class WeaponGroup : MonoBehaviour
 				weaponObj.transform.SetParent(weaponGrid_jewelry.transform);
 				weaponObj.weapon = weapon;
 				weaponObj.Init();
+				selectBtn.SetActive(true);
 				break;
 			case WeaponType.衣服:
 				weaponObj.transform.SetParent(weaponGrid_wear.transform);
@@ -173,13 +176,34 @@ public class WeaponGroup : MonoBehaviour
 		ResetHurtArea();
 	}
 
-	private void ResetHurtArea()
+	public void ResetHurtArea()
 	{
 		//重新设置攻击区域
 		List<WeaponSO> currentWeapons = weaponList.Select(obj => obj.weapon).ToList();
 		List<Vector2Int> gridPos = new List<Vector2Int>();
 		gridPos = ToolFunctions.SetGrid(currentWeapons);
 		ChangeGridHurtArea.RaiseEvent(gridPos,this);
+	}
+
+	public ObjectEventSO ChangeJewelryArea;
+	public void SelectJewelryGrid()
+	{
+		List<Vector2Int> gridPos = new List<Vector2Int>();
+		foreach (var weapon in weaponList)
+		{
+			if (weapon.weapon.type == WeaponType.珠宝)
+			{
+				//选择珠宝的活动格子
+				foreach (var symbolList in weapon.weapon.symbolList)
+				{
+					if (symbolList.selectArea.Count > 0)
+					{
+						gridPos = symbolList.selectArea.ToList();
+					}
+				}
+			}
+		}
+		if(gridPos.Count > 0) ChangeJewelryArea.RaiseEvent(gridPos,this);
 	}
 	
 	[Header("Debug添加武器")]

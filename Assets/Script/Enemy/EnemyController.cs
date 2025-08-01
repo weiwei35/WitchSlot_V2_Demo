@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
 		enemyMove = GetComponent<EnemyMove>();
 		enemyCommon = GetComponent<EnemyCommon>();
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-		SetMoveAction();
+		// SetMovement();
 	}
 	public void SetMovement()
 	{

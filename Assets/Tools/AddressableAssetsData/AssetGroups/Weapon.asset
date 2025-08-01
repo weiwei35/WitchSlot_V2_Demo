@@ -149,6 +149,96 @@ MonoBehaviour:
     m_SerializedLabels:
     - WeaponData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 68360469783ebcd4187289bb2fb7910c
+    m_Address: clothes_007
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85a640ae5e1231047bd4c1d4c420ab84
+    m_Address: clothes_008
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acb8c201386bc17468e2a3347926ac5b
+    m_Address: clothes_009
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06db90c153417364181c1b32017724d6
+    m_Address: clothes_010
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5283dd483fea5c64487ff4bf77c030e0
+    m_Address: clothes_011
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c9c2bcc064129c44bc503730c0a68e5
+    m_Address: clothes_012
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbbb2add786949e4ea8419f3a0f75a35
+    m_Address: clothes_013
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b32325270df2eee4bb73aa428ec63cbf
+    m_Address: clothes_014
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5640becf9d2b72d409abd5e9d86ad3d0
+    m_Address: clothes_015
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4582aeccd9c477e438f931e6def8f6cb
+    m_Address: jewelry_001
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7cef13d62a6ca042b5dda8874559af9
+    m_Address: jewelry_002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 340bd58094cfac149bdfc65688531b4f
+    m_Address: jewelry_003
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da2bd08912eb17f42bda05413f5f4940
+    m_Address: jewelry_004
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c64855b124525c242ae7267596172d1d
+    m_Address: jewelry_005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10a6e386ce6e47741b252070db20d990
+    m_Address: jewelry_006
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - WeaponData
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 30081ddc9e661924994bce7c3a3c4f97, type: 2}
   m_SchemaSet:

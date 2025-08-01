@@ -113,4 +113,23 @@ public class WeaponController : MonoBehaviour
 			coldTime = symbols.Count;
 		}
 	}
+
+	public void SetJewelryGrid(object o)
+	{
+		if (weapon.type == WeaponType.珠宝)
+		{
+			Vector2Int gridPos = (Vector2Int)o;
+			foreach (var symbolList in weapon.symbolList)
+			{
+				if (symbolList.selectArea.Count > 0)
+				{
+					symbolList.area.Clear();
+					symbolList.area.Add(gridPos);
+					ResetWeapon();
+					group.ResetHurtArea();
+					break;
+				}
+			}
+		}
+	}
 }

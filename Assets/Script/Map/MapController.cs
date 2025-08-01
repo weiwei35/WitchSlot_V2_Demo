@@ -43,8 +43,6 @@ public class MapController : MonoBehaviour
 
 				enemyGroup.enemyAllDie = false;
 			}
-
-			StartCoroutine(RoomLoaded());
 		}
 	}
 
@@ -54,12 +52,6 @@ public class MapController : MonoBehaviour
 		{
 			Destroy(room.gameObject);
 		}
-	}
-
-	IEnumerator RoomLoaded()
-	{
-		yield return new WaitForSeconds(1f);
-		// FightController.instance.StartFight();
 	}
 
 	//TEST：引导遮罩

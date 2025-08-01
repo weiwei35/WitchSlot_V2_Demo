@@ -28,7 +28,7 @@ public class EnemyDamageEffect : Effect
             var effect = Instantiate(effectPrefab, position, Quaternion.identity);
             Destroy(effect, 5);
             Vector3 distance = to.transform.position - position;
-            if (distance.magnitude < 0.1f)
+            if (distance.magnitude < 0.4f)
             {
                 to.TakeDamage(value);
                 // LogController.instance.logDelegate?.Invoke($"对{to.name}造成{value}点伤害");

@@ -704,14 +704,14 @@ MonoBehaviour:
   hp: {fileID: 0}
   defense: {fileID: 0}
   isDead: 0
-  damageNum_hurt: {fileID: 5866601767730072595, guid: 25970b4577a658e439cfd92135c68661, type: 3}
-  damageNum_heal: {fileID: 4143695706053804876, guid: 045d4e5774afd8248acb6a54adf0d50a, type: 3}
+  damageNum_hurt: {fileID: 5617686091126449503, guid: d8f5577eb4cb9544aabf9428e808d21c, type: 3}
+  damageNum_heal: {fileID: 4666293474388653646, guid: 8f2b4f929d44a0f4f8d9a5bf2b53e7ce, type: 3}
+  damageNum_defence: {fileID: 4666293474388653646, guid: b9809b62b708a9849818053849e77bd4, type: 3}
   enemyName: "\u91CE\u517D\u5DE2\u7A74"
   enemyIcon: {fileID: 2123850562, guid: 4ee13cc3436614c46a913e4f8f5b10f4, type: 3}
   enemyHP: 10
   moveStep: 0
   attackData: {fileID: 11400000, guid: 70f7e0011e28da3478ea7149be65cbe7, type: 2}
-  fightweight: {fileID: 0}
   attack: 0
   skill: []
   isStandEnemy: 1

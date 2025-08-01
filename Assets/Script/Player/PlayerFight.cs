@@ -50,7 +50,7 @@ public class PlayerFight : MonoBehaviour
 	public void SetCanNotAttack()
 	{
 		canAttack = false;
-		GetComponent<PlayerMove_new>().canMove = true;
+		if(!GetComponent<PlayerMove_new>().setRooming)GetComponent<PlayerMove_new>().canMove = true;
 	}
 
 	IEnumerator EndAttack()

@@ -28,6 +28,16 @@ public class WeaponManager : MonoBehaviour
 	{
 		if(handle.Status == AsyncOperationStatus.Succeeded){
 			weaponDataList = new List<WeaponSO>(handle.Result);
+			foreach (var weapon in weaponDataList)
+			{
+				if (weapon.type == WeaponType.珠宝)
+				{
+					foreach (var symbolList in weapon.symbolList)
+					{
+						if(symbolList.selectArea.Count>0) symbolList.area.Clear();
+					}
+				}
+			}
 		}
 		else{
 			Debug.LogError("No Weapon Data");

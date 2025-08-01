@@ -18,4 +18,5 @@ public class SymbolList
 {
     public SymbolSO symbol;
     public List<Vector2Int> area;
+    public List<Vector2Int> selectArea;
 }

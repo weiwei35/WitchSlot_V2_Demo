@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 510471407}
   - component: {fileID: 510471413}
   - component: {fileID: 510471414}
+  - component: {fileID: 510471415}
   m_Layer: 0
   m_Name: GridController
   m_TagString: Untagged
@@ -500,6 +501,58 @@ MonoBehaviour:
       - m_Target: {fileID: 510471404}
         m_TargetAssemblyTypeName: GridController, Assembly-CSharp
         m_MethodName: SetCanAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &510471415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510471400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: f312d9e791930734dbccc71794bd8b5b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 510471401}
+        m_TargetAssemblyTypeName: GridView_Map, Assembly-CSharp
+        m_MethodName: SetEndAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 510471404}
+        m_TargetAssemblyTypeName: GridController, Assembly-CSharp
+        m_MethodName: ClearGrids
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 510471405}
+        m_TargetAssemblyTypeName: GridMove, Assembly-CSharp
+        m_MethodName: ClearMove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1119,6 +1172,7 @@ MonoBehaviour:
   inputCoolDown: 0.1
   moveStep: 2
   canMove: 0
+  setRooming: 0
   inRound: 0
   PlayerMoveEvent: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
 --- !u!114 &968575025
