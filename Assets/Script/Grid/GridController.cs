@@ -15,7 +15,7 @@ public class GridController : MonoBehaviour
     public List<Vector2Int> defaultGrid = new List<Vector2Int>();//默认攻击范围
     
     // public GridView_UI gridView_UI;
-    private GridView_Map gridView_Map;
+    public GridView_Map gridView_Map;
     public static Vector2Int playerFaceGridPosCurrent = new Vector2Int(1,0);//角色朝向位置
     public CharacterBase player;
     
@@ -29,7 +29,6 @@ public class GridController : MonoBehaviour
 
     private void Start()
     {
-        gridView_Map = GetComponent<GridView_Map>();
     }
 
     public void SetCanAttack()

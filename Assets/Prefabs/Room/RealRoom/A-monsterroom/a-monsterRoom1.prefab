@@ -3182,6 +3182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickNextRoomEvent: {fileID: 11400000, guid: be39a3019be76fe46a98015f066a6376, type: 2}
+  LeaveRoomEvent: {fileID: 11400000, guid: 2f19187a44695594da7d655c7cb58f65, type: 2}
 --- !u!1 &6256629704044036652
 GameObject:
   m_ObjectHideFlags: 0

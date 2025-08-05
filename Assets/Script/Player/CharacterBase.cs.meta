@@ -8,6 +8,8 @@ MonoImporter:
   - defense: {instanceID: 0}
   - damageNum_hurt: {fileID: 5617686091126449503, guid: d8f5577eb4cb9544aabf9428e808d21c, type: 3}
   - damageNum_heal: {fileID: 4666293474388653646, guid: 8f2b4f929d44a0f4f8d9a5bf2b53e7ce, type: 3}
+  - damageNum_defence: {fileID: 4666293474388653646, guid: b9809b62b708a9849818053849e77bd4, type: 3}
+  - defencePrefab: {fileID: 5268290709141487888, guid: 097cfd72fc514a7419dca42b4c77c15b, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

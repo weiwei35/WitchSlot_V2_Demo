@@ -10,7 +10,6 @@ public class PlayerInfo_UI : MonoBehaviour
 	public Image playerIcon;
 	public TMP_Text playerName;
 	public IntVariable playerHP;
-	public TMP_Text HP;
 
 	private void OnEnable()
 	{
@@ -33,47 +32,18 @@ public class PlayerInfo_UI : MonoBehaviour
 		hpBar.UpdateBar(amount, 0f, playerHP.maxValue);
 	}
 
+	public GameObject defenceState;
+	public TMP_Text defenceAmount;
 	public void SetDefense(int amount)
 	{
-		
-	}
-	public EnemySkillList SkillList;
-	private GameObject skill;
-	public Button openButton;
-	bool isOpenDetail = false;
-	GameObject skillDetail;
-	public void OpenPlayerDetail()
-	{
-		if (!isOpenDetail)
+		if (amount > 0)
 		{
-			isOpenDetail = true;
-			var skillList = Instantiate(SkillList,transform.parent);
-            skillList.transform.SetSiblingIndex(transform.GetSiblingIndex()+1);
-            skillList.InitSkillList(player.skill);
-            skillDetail = skillList.gameObject;
-            LayoutRebuilder.ForceRebuildLayoutImmediate(transform.parent.GetComponent<RectTransform>());
-            skill = skillList.gameObject;
-            openButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "A";
-            
-            OpenBoosterDetail();
+			defenceState.SetActive(true);
+			defenceAmount.text = amount.ToString();
 		}
 		else
 		{
-			isOpenDetail = false;
-			Destroy(skillDetail);
-			LayoutRebuilder.ForceRebuildLayoutImmediate(transform.parent.GetComponent<RectTransform>());
-			openButton.transform.GetChild(0).GetComponent<TMP_Text>().text = "V";
+			defenceState.SetActive(false);
 		}
-	}
-
-	public BoosterList boosterList;
-	private void OpenBoosterDetail()
-	{
-		var booster = Instantiate(boosterList,skillDetail.transform);
-		booster.Init();
-		LayoutRebuilder.ForceRebuildLayoutImmediate(booster.transform.GetComponent<RectTransform>());
-		LayoutRebuilder.ForceRebuildLayoutImmediate(skillDetail.transform.GetComponent<RectTransform>());
-		LayoutRebuilder.ForceRebuildLayoutImmediate(transform.GetComponent<RectTransform>());
-		LayoutRebuilder.ForceRebuildLayoutImmediate(transform.parent.GetComponent<RectTransform>());
 	}
 }

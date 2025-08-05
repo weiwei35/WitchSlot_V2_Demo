@@ -470,7 +470,6 @@ GameObject:
   - component: {fileID: 1063520091355669152}
   - component: {fileID: 3398505766879907589}
   - component: {fileID: 3760222704919818599}
-  - component: {fileID: 6787804057818152560}
   - component: {fileID: 4898005369759509697}
   - component: {fileID: 3101247363741587189}
   - component: {fileID: -4937544323386978179}
@@ -627,23 +626,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6787804057818152560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5419653748720566275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d32826993f10e84e9594d8a6bb69521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 10
-  fightIndex: -1
-  playerFight: {fileID: 0}
-  enemyController: {fileID: 3101247363741587189}
-  StartStepEvent_Player: {fileID: 0}
 --- !u!114 &4898005369759509697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,12 +690,12 @@ MonoBehaviour:
   damageNum_hurt: {fileID: 5617686091126449503, guid: d8f5577eb4cb9544aabf9428e808d21c, type: 3}
   damageNum_heal: {fileID: 4666293474388653646, guid: 8f2b4f929d44a0f4f8d9a5bf2b53e7ce, type: 3}
   damageNum_defence: {fileID: 4666293474388653646, guid: b9809b62b708a9849818053849e77bd4, type: 3}
+  defencePrefab: {fileID: 5268290709141487888, guid: 097cfd72fc514a7419dca42b4c77c15b, type: 3}
   enemyName: "\u5DE8\u9F20"
   enemyIcon: {fileID: 1148354704, guid: 64d2069a216d710459bab9ca6a05ecbc, type: 3}
   enemyHP: 3
   moveStep: 4
   attackData: {fileID: 11400000, guid: 6698490292907254d9ea57b705d32ff7, type: 2}
-  fightweight: {fileID: 0}
   attack: 1
   skill: []
   isStandEnemy: 0

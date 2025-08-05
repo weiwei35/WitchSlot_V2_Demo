@@ -8,6 +8,8 @@ public class DefenseEffect : Effect
 		if (targetType == EffectTargetType.Self)
 		{
 			from.UpdateDefense(value);
+			var effect = Instantiate(effectPrefab, from.transform.position, Quaternion.identity);
+			Destroy(effect, 5);
 		}
 
 		if (targetType == EffectTargetType.One)

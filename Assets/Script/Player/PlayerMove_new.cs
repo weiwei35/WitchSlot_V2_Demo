@@ -29,13 +29,16 @@ public class PlayerMove_new : MonoBehaviour
 	public bool canMove = false;
 	public bool setRooming = false;
 	bool isMoving = false;
-	public bool inRound = false;
+	public bool endFight = false;
 	private bool isStay = false;
+	
+	private SpriteRenderer playerSprite;
 
 	public ObjectEventSO PlayerMoveEvent;
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		playerSprite = GetComponent<SpriteRenderer>();
 		lastValidPosition = transform.position;
 		targetPosition = transform.position;
 		
@@ -45,17 +48,24 @@ public class PlayerMove_new : MonoBehaviour
 	private void OnDisable()
 	{
 		FightController.instance.setRoom -= StopMove;
+		DOTween.KillAll();
 	}
 
 	public void StartMove()
 	{
 		canMove = true;
 		setRooming = false;
+		endFight = false;
 	}
 	public void StopMove()
 	{
 		canMove = false;
 		setRooming = true;
+	}
+
+	public void EndRoomFight()
+	{
+		endFight = true;
 	}
 
 	private void Update()
@@ -69,16 +79,18 @@ public class PlayerMove_new : MonoBehaviour
 			Vector3 nextMove = moveQueue.Dequeue();
 			StartCoroutine(MoveToGrid(nextMove));
 		}
-		if (canMove && (moveStep > 0||!inRound) && !isMoving)
+		if (canMove && !isMoving)
 		{
 			// 键盘输入检测
 			if (Input.GetKey(KeyCode.A))
 			{
 				RegisterMove(-Vector3.right);
+				playerSprite.flipX = true;
 			}
 			else if (Input.GetKey(KeyCode.D))
 			{
 				RegisterMove(Vector3.right);
+				playerSprite.flipX = false;
 			}
 			else if (Input.GetKey(KeyCode.W))
 			{
@@ -131,7 +143,7 @@ public class PlayerMove_new : MonoBehaviour
 		SnapToGridCenter();
         
 		isMoving = false;
-		if(!isStay) PlayerMoveEvent.RaiseEvent(null, this);
+		if(!isStay && !endFight) PlayerMoveEvent.RaiseEvent(null, this);
 		isStay = false;
 	}
     

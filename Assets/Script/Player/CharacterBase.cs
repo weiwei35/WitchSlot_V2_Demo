@@ -15,6 +15,8 @@ public class CharacterBase : MonoBehaviour
 	public DamageNumber damageNum_hurt;
 	public DamageNumber damageNum_heal;
 	public DamageNumber damageNum_defence;
+
+	public GameObject defencePrefab;
 	public virtual void Awake()
 	{
 		animator = GetComponent<Animator>();
@@ -35,6 +37,12 @@ public class CharacterBase : MonoBehaviour
 			currentDamage = defense.currentValue - damage>=0?0:damage - defense.currentValue;
 			var currentDefense = defense.currentValue - damage>=0?defense.currentValue - damage:0;
 			defense.currentValue = currentDefense;
+			defense.SetValue(currentDefense);
+			if (currentDamage <= 0)
+			{
+				var effect = Instantiate(defencePrefab, transform.position, Quaternion.identity);
+				Destroy(effect, 5);
+			}
 		}
 
 		if (currentDamage > 0)

@@ -12,6 +12,15 @@ public class GetWeaponFree : LoadingHallItems
 {
 	//获取随机装备
 	public ObjectEventSO GetWeaponEvent;
+
+	private void OnEnable()
+	{
+		if (getWeapon)
+		{
+			gameObject.SetActive(false);
+		}
+	}
+
 	public override void PlayerEnter()
 	{
 		GetWeaponEvent.RaiseEvent(null,this);

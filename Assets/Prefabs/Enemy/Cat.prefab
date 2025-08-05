@@ -470,7 +470,6 @@ GameObject:
   - component: {fileID: 1063520091355669152}
   - component: {fileID: 3398505766879907589}
   - component: {fileID: 3760222704919818599}
-  - component: {fileID: 6787804057818152560}
   - component: {fileID: 4898005369759509697}
   - component: {fileID: 3101247363741587189}
   - component: {fileID: 5999084616863843626}
@@ -626,23 +625,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6787804057818152560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5419653748720566275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d32826993f10e84e9594d8a6bb69521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 10
-  fightIndex: 0
-  playerFight: {fileID: 0}
-  enemyController: {fileID: 3101247363741587189}
-  StartStepEvent_Player: {fileID: 0}
 --- !u!114 &4898005369759509697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,8 +656,6 @@ MonoBehaviour:
   enemyMove: {fileID: 0}
   enemyCommon: {fileID: 0}
   targetIcon: {fileID: 6043771496131840165}
-  stepStatic: 3
-  attackData: {fileID: 11400000, guid: d5facfaa2009cd445b088f08034bf3a4, type: 2}
   actionIcon: {fileID: 2728229696140614111}
   actionText: {fileID: 2714288840850857777}
   moveStep: {fileID: 4122083823096600757, guid: ee354f345276952419aa776c2a4919b3, type: 3}
@@ -686,6 +666,11 @@ MonoBehaviour:
   attackIcon: {fileID: 21300000, guid: e5166ed082977a945819447e5bcb9dfb, type: 3}
   attackBg: {fileID: 21300000, guid: 85bef7c3546a07e478f39b6029af0c95, type: 3}
   moveBg: {fileID: 21300000, guid: 8d9e2902efb204c45a905b3f67faf158, type: 3}
+  detectionRadius: 3
+  gridSize: 0.8
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5999084616863843626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,16 +686,26 @@ MonoBehaviour:
   hp: {fileID: 0}
   defense: {fileID: 0}
   isDead: 0
+  damageNum_hurt: {fileID: 0}
+  damageNum_heal: {fileID: 0}
+  damageNum_defence: {fileID: 0}
   enemyName: "\u72EE\u5B50"
   enemyIcon: {fileID: 1874060719, guid: 95c682479a2e1e4428c9233c03e3d4ef, type: 3}
-  fightweight: {fileID: 6787804057818152560}
+  enemyHP: 0
+  moveStep: 0
+  attackData: {fileID: 0}
   attack: 1
   skill:
   - {fileID: 11400000, guid: 9a1e1704cc50bf44497c17973a315bee, type: 2}
   - {fileID: 11400000, guid: ab1fa5d6906d55d47a89248e25130070, type: 2}
+  isStandEnemy: 0
+  stopDistance: 0
   hpText: {fileID: 4512853941669192665}
   hpObj: {fileID: 2061558092356784749}
   EnemyDieEvent: {fileID: 11400000, guid: 802b1ca5473098c4f95620e862c8e314, type: 2}
+  inFight: 0
+  newAdd: 1
+  gridSize: 0.8
 --- !u!114 &3684380651322744344
 MonoBehaviour:
   m_ObjectHideFlags: 0

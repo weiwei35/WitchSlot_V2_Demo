@@ -15,14 +15,15 @@ public class Entrance : LoadingHallItems
 	//已经领取武器可进入地图，否则提示领取武器
 	[Header("Feedbacks")]
 	public MMF_Player LoadSceneFeedback;
+
+	public ObjectEventSO LeaveRoomEvent;
 	public override void PlayerEnter()
 	{
 		if (getWeapon)
 		{
 			//进入地图
+			LeaveRoomEvent.RaiseEvent(null,this);
 			LoadSceneFeedback?.PlayFeedbacks();
-			// SceneManager.LoadSceneAsync("FightScene",LoadSceneMode.Additive);
-			// SceneManager.UnloadSceneAsync("GameHallScene");
 		}
 		else
 		{

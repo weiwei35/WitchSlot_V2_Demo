@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: -937914938109522462}
   - component: {fileID: 3819469518704681494}
   - component: {fileID: 7278014463455605221}
+  - component: {fileID: 6942186521169577206}
+  - component: {fileID: 7769552239779637817}
   m_Layer: 5
   m_Name: weapon
   m_TagString: Untagged
@@ -239,13 +241,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: f312d9e791930734dbccc71794bd8b5b, type: 2}
+  eventSO: {fileID: 11400000, guid: 2f19187a44695594da7d655c7cb58f65, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7913454513548595839}
         m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
         m_MethodName: EndSymbolAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6942186521169577206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155350047255467821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: f7c28e063a6053d459d6775d44a56ae7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7913454513548595839}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: SetEndFight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7769552239779637817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155350047255467821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: f312d9e791930734dbccc71794bd8b5b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7913454513548595839}
+        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
+        m_MethodName: SetStartFight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

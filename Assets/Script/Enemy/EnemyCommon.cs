@@ -38,6 +38,7 @@ public class EnemyCommon : CharacterBase
     {
         transform.parent.GetComponent<EnemyGroup>().EnemyDie(this);
         EnemyDieEvent.RaiseEvent(this,this);
+        Destroy(gameObject);
     }
 
     private void Update()
@@ -45,7 +46,6 @@ public class EnemyCommon : CharacterBase
         if (isDead)
         {
             EnemyDie();
-            Destroy(gameObject);
         }
         // hpText.text = CurrentHp.ToString();
         var scale = hpObj.transform.localScale;

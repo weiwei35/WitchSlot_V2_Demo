@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: 7f7fa12d7dc704547888f1856f3dfdc1
+  - enabled: 1
+    path: Assets/Scenes/FakeFightScene.unity
+    guid: c6d5ba677e65bb849bc0ef32014fc5bf
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 300a9cf781e50214dae704a572fe611b, type: 2}

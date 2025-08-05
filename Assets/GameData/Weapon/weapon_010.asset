@@ -17,10 +17,11 @@ MonoBehaviour:
   itemIcon: {fileID: -1441199194, guid: 7f6e17509cd478b449469c95311b6f46, type: 3}
   coldTime: 3
   type: 1
-  randomType: 1
+  randomType: 0
   symbolList:
   - symbol: {fileID: 11400000, guid: e479227f3415e7e4493beb1126d7b904, type: 2}
     area:
     - {x: 1, y: 0}
     - {x: 2, y: 0}
     - {x: 2, y: 1}
+    selectArea: []

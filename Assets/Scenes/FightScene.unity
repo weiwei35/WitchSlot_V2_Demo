@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultGrid: []
+  gridView_Map: {fileID: 510471401}
   player: {fileID: 968575025}
   canAttack: 0
   SetRandomSymbolEvent: {fileID: 11400000, guid: 98737bf1e96a3524b849aa7c6d9b9cf8, type: 2}
@@ -522,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: f312d9e791930734dbccc71794bd8b5b, type: 2}
+  eventSO: {fileID: 11400000, guid: 2f19187a44695594da7d655c7cb58f65, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -970,12 +971,12 @@ GameObject:
   - component: {fileID: 968575021}
   - component: {fileID: 968575018}
   - component: {fileID: 968575022}
-  - component: {fileID: 968575023}
   - component: {fileID: 968575024}
   - component: {fileID: 968575025}
   - component: {fileID: 968575030}
   - component: {fileID: 968575031}
   - component: {fileID: 968575032}
+  - component: {fileID: 968575033}
   - component: {fileID: 968575028}
   m_Layer: 10
   m_Name: Player
@@ -1138,23 +1139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GridAttackEvent: {fileID: 11400000, guid: c453399013955ec4ab45ffa15e8e67ae, type: 2}
---- !u!114 &968575023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 968575016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d32826993f10e84e9594d8a6bb69521, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weight: 15
-  fightIndex: 0
-  playerFight: {fileID: 968575022}
-  enemyController: {fileID: 0}
-  StartStepEvent_Player: {fileID: 11400000, guid: a3e770f6ce8d0f4439727543ab8b39e5, type: 2}
 --- !u!114 &968575024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,7 +1157,7 @@ MonoBehaviour:
   moveStep: 2
   canMove: 0
   setRooming: 0
-  inRound: 0
+  endFight: 0
   PlayerMoveEvent: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
 --- !u!114 &968575025
 MonoBehaviour:
@@ -1193,6 +1177,7 @@ MonoBehaviour:
   damageNum_hurt: {fileID: 5617686091126449503, guid: d8f5577eb4cb9544aabf9428e808d21c, type: 3}
   damageNum_heal: {fileID: 4666293474388653646, guid: 8f2b4f929d44a0f4f8d9a5bf2b53e7ce, type: 3}
   damageNum_defence: {fileID: 4666293474388653646, guid: b9809b62b708a9849818053849e77bd4, type: 3}
+  defencePrefab: {fileID: 5268290709141487888, guid: 097cfd72fc514a7419dca42b4c77c15b, type: 3}
   hpText: {fileID: 2073942542}
   playerIcon: {fileID: 21300000, guid: c41df215eec35b346a1798a197f01ef5, type: 3}
   playerName: "\u5973\u5DEB"
@@ -1294,6 +1279,34 @@ MonoBehaviour:
       - m_Target: {fileID: 968575022}
         m_TargetAssemblyTypeName: PlayerFight, Assembly-CSharp
         m_MethodName: SetCanNotAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &968575033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968575016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: f7c28e063a6053d459d6775d44a56ae7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 968575024}
+        m_TargetAssemblyTypeName: PlayerMove_new, Assembly-CSharp
+        m_MethodName: EndRoomFight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1484,7 +1497,6 @@ GameObject:
   - component: {fileID: 1403396820}
   - component: {fileID: 1403396821}
   - component: {fileID: 1403396822}
-  - component: {fileID: 1403396823}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -1520,6 +1532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnterUndergroundEvent: {fileID: 11400000, guid: af54876738f5e65478a712887056de21, type: 2}
+  fakeRoomData: {fileID: 0}
 --- !u!114 &1403396822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1540,34 +1553,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MapController, Assembly-CSharp
         m_MethodName: LoadRoom
         m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1403396823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403396819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: e1ae86163583c5f4e8928f1d0feba571, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1403396821}
-        m_TargetAssemblyTypeName: MapController, Assembly-CSharp
-        m_MethodName: SetGuidMask
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

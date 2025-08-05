@@ -25,6 +25,17 @@ public class WeaponController : MonoBehaviour
 	public WeaponGroup group;
 	[Header("广播事件")] 
 	public DictionaryEventSO WeaponCallSymbol;
+
+	bool canCallSymbol = false;
+	public void SetStartFight()
+	{
+		canCallSymbol = true;
+	}
+
+	public void SetEndFight()
+	{
+		canCallSymbol = false;
+	}
 	private void Start()
 	{
 		weaponItemUI = GetComponent<WeaponItem_UI>();
@@ -76,6 +87,7 @@ public class WeaponController : MonoBehaviour
 	//每次移动，每个装备加载1个符文
 	public void PlayerWalk()
 	{
+		if(!canCallSymbol) return;
 		if (coldTime > 0)
 		{
 			coldTime--;

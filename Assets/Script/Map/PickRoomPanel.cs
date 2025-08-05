@@ -82,6 +82,11 @@ public class PickRoomPanel : MonoBehaviour
 		}
 	}
 
+	public void LoadFakeRoom()
+	{
+		LoadRoomEvent.RaiseEvent(null,this);
+	}
+
 	public void SetRoomDeSelected()
 	{
 		foreach (RoomPickUI room in rooms) { room.SetDeselect(); }

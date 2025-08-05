@@ -17,6 +17,13 @@ public class MapController : MonoBehaviour
 	private void OnEnable()
 	{
 		EnterUndergroundEvent.RaiseEvent(null,this);
+		LoadFakeRoom();
+	}
+	public RoomDataSO fakeRoomData;
+
+	public void LoadFakeRoom()
+	{
+		LoadRoom(fakeRoomData);
 	}
 
 	public void LoadRoom(object obj)
@@ -52,18 +59,5 @@ public class MapController : MonoBehaviour
 		{
 			Destroy(room.gameObject);
 		}
-	}
-
-	//TEST：引导遮罩
-	public void SetGuidMask()
-	{
-		Tilemap tilemap = GameObject.FindWithTag("MapWall").GetComponent<Tilemap>();
-		Bounds bounds = ToolFunctions.GetTilemapBounds(tilemap);
-		// Debug.Log($"Tilemap范围: 左下角 {bounds.min}, 右上角 {bounds.max}");
-		Vector3 maskCenter = bounds.center;
-		Vector3[] corners = new Vector3[2];
-		corners[0] = bounds.min;
-		corners[1] = bounds.max;
-		// ShowUIMask_Tutorial.instance.Guide(corners,maskCenter);
 	}
 }
