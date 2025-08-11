@@ -1906,8 +1906,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5931301807880369493}
   - component: {fileID: 1409837231874117891}
-  - component: {fileID: 8594353196080654546}
-  - component: {fileID: 8708907486261425446}
   m_Layer: 5
   m_Name: HorizontalBar
   m_TagString: Untagged
@@ -2300,26 +2298,6 @@ MonoBehaviour:
   BarTarget: 0.9400001
   DelayedBarIncreasingProgress: 0.9400001
   DelayedBarDecreasingProgress: 0.9400001
---- !u!81 &8594353196080654546
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365822453772063086}
-  m_Enabled: 1
---- !u!114 &8708907486261425446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365822453772063086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8aa3525151bb343b66b059b6095946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2551121365333876145
 GameObject:
   m_ObjectHideFlags: 0

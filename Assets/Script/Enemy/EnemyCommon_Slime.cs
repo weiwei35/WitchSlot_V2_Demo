@@ -58,11 +58,11 @@ public class EnemyCommon_Slime : EnemyCommon
 	public EnemyCommon callEnemy;
 	public override void EnemyDie()
 	{
-		base.EnemyDie();
 		
 		var enemy= Instantiate(callEnemy,transform.position,Quaternion.identity,transform.parent);
 		ToolFunctions.SetEnemyHP(enemy);
 			
 		transform.parent.GetComponent<EnemyGroup>().enemies.Add(enemy);
+		base.EnemyDie();
 	}
 }

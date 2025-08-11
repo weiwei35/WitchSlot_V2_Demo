@@ -4,4 +4,17 @@ public class GridObj : MonoBehaviour
 {
 	public SymbolSO symbol;
 	public Vector2 gridPos;
+
+	public GameObject effect;
+
+	public void SetAnim()
+	{
+		Animation anim = GetComponent<Animation>();
+		anim.Play();
+	}
+
+	public void SetEffect()
+	{
+		var o = Instantiate(effect,transform);
+	}
 }

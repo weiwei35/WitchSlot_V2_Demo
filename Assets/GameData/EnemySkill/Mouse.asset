@@ -18,4 +18,4 @@ MonoBehaviour:
   effects:
   - icon: {fileID: 927317921, guid: 88da975d78a918c4aa0a8dfa627a55dc, type: 3}
     effect: {fileID: 11400000, guid: 26d10f9e9f6f0f54ebaf356359ad9993, type: 2}
-    coldTime: 0
+    coldTime: 1

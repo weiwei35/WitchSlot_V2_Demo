@@ -14,6 +14,7 @@ TagManager:
   - MapWall
   - Enemy
   - TouchableItem
+  - MiniMap
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - GuideUI
   - Player
   - Tips
-  - 
+  - PostLayer
   - 
   - 
   - 

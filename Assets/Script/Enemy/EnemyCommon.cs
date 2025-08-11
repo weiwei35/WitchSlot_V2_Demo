@@ -24,7 +24,6 @@ public class EnemyCommon : CharacterBase
     public List<EnemySkillSO> skill;
     public bool isStandEnemy = false;
     public float stopDistance;
-	
     [Tooltip("怪物展示")] 
     public TMP_Text hpText;
     public GameObject hpObj;

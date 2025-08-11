@@ -21,7 +21,7 @@ public class GridMove : MonoBehaviour
 
 	public void SetMove()
 	{
-		transform.position = Vector3.zero;
+		transform.position = gridController.player.transform.position;
 		transform.rotation = Quaternion.identity;
 		canMove = true;
 		isEndSet = false;
@@ -39,6 +39,11 @@ public class GridMove : MonoBehaviour
 		isEndSet = true;
 	}
 
+	public void HideSymbol()
+	{
+		canMove = false;
+	}
+
 	private void Update()
 	{
 		if (canMove && !isEndSet)
@@ -54,7 +59,7 @@ public class GridMove : MonoBehaviour
 
 	public void SetGridGroupRotate()
 	{
-		Direction dir = GetFacePos();
+		Direction dir = GetMousePos();
 		switch (dir)
 		{
 			case Direction.Up:
@@ -78,10 +83,11 @@ public class GridMove : MonoBehaviour
 	/// <summary>
 	/// 根据鼠标位置设置对应朝向的攻击范围
 	/// </summary>
-	public Direction savedDirection = Direction.Right;
+	public Direction savedDirection = Direction.Empty;
 	public void SetGridGroupPos()
 	{
-		Direction dir = GetFacePos();
+		transform.position = gridController.player.transform.position;
+		Direction dir = GetMousePos();
 		switch (dir)
 		{
 			case Direction.Up:
@@ -163,9 +169,24 @@ public class GridMove : MonoBehaviour
 		// 基于坐标差判断主要方向
 		if (Mathf.Abs(difference.y) > Mathf.Abs(difference.x))
 		{
+			// if (difference.y > 0)
+			// {
+			// 	Debug.Log("UP");
+			// }
+			// else
+			// {
+			// 	Debug.Log("DOWN");
+			// }
 			return difference.y > 0 ? Direction.Up : Direction.Down;
 		}
-
+		// if (difference.x > 0)
+		// {
+		// 	Debug.Log("Right");
+		// }
+		// else
+		// {
+		// 	Debug.Log("Left");
+		// }
 		return difference.x > 0 ? Direction.Right : Direction.Left;
 	}
 }

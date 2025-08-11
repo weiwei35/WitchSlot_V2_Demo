@@ -120,9 +120,16 @@ public class GridController : MonoBehaviour
             if (enemyGroup.enemies.Count == 0) break;
         }
         CountSkillPoint();
-        EndGridAttackEvent.RaiseEvent(null,this);
         PlayerCallSymbolEvent.RaiseEvent(null, this);
+        StartCoroutine(AttackAnimEnd());
         canAttack = false;
+    }
+
+    IEnumerator AttackAnimEnd()
+    {
+        yield return new WaitForSeconds(0.2f);
+        
+        EndGridAttackEvent.RaiseEvent(null,this);
     }
     //计算法力点:没打出伤害的符文格每个+2点
     public ObjectEventSO AddSkillPointEvent;

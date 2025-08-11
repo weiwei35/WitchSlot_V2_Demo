@@ -29,13 +29,13 @@ public class EnemyController : MonoBehaviour
 	
 	bool skillReady = false;
 	int timeCounter = 0;
+	bool isSleepy = false;
 	
 	private void Start()
 	{
 		enemyMove = GetComponent<EnemyMove>();
 		enemyCommon = GetComponent<EnemyCommon>();
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-		// SetMovement();
 	}
 	public void SetMovement()
 	{
@@ -48,34 +48,7 @@ public class EnemyController : MonoBehaviour
 			SetSkillAction();
 		}
 	}
-	public void AttackFail()
-	{
-		// if (isCurrentEnemy && !endAttack)
-		// {
-		// 	endAttack = true;
-		// 	SetMovement();
-		// 	if (enemyMove.canMove)
-		// 	{
-		// 		StartFight();
-		// 	}
-		// 	else
-		// 	{
-		// 		targetIcon.SetActive(false);
-		// 		transform.parent.GetComponent<EnemyGroup>().NextEnemyMove();
-		// 	}
-		// }
-	}
-	public void AttackSuccess()
-	{
-		// if (isCurrentEnemy && !endAttack)
-		// {
-		// 	endAttack = true;
-		// 	targetIcon.SetActive(false);
-		// 	transform.parent.GetComponent<EnemyGroup>().NextEnemyMove();
-		// 	SetMovement();
-		// 	isCurrentEnemy = false;
-		// }
-	}
+
 
 	public void MoveFollowPlayer()
 	{
@@ -88,22 +61,38 @@ public class EnemyController : MonoBehaviour
 	}
 	public void EnemyMove()
 	{
-		if(!enemyCommon.inFight) return;
-		
-		if(timeCounter > 0) timeCounter--;
+		if(!enemyCommon.inFight || enemyCommon.isDead) return;
+		if (timeCounter > 0)
+		{
+			timeCounter--;
+			return;
+		}
+		else
+		{
+			isSleepy = false;
+		}
 		if (skillReady)
 		{
 			skillReady = false;
 			foreach (var pos in hurtArea)
 			{
 				currentAction.effect.ApplyEffect(enemyCommon,player,pos);
-				SetMovement();
+				// SetMovement();
 			}
+			if(currentAction.coldTime > 0)
+        	{
+		        Destroy(stepObj);
+        		attackName.text = "眩晕";
+		        isSleepy = true;
+		        timeCounter = currentAction.coldTime;
+        		return;
+        	}
 			return;
 		}
 		//是否在player附近？攻击：移动
 		if (enemyMove.canMove && !enemyCommon.isStandEnemy)
 		{
+			SetMoveAction();
 			currentmoveAction.effect.ApplyEffect(enemyCommon,player);
 			actionText.text = step.ToString();
 		}
@@ -111,7 +100,6 @@ public class EnemyController : MonoBehaviour
 		{
 			SetSkillAction();
 		}
-		// StartCoroutine(EnemyMoveStep());
 	}
 
 	public GameObject moveStep;
@@ -124,6 +112,7 @@ public class EnemyController : MonoBehaviour
 	public Sprite attackIcon;
 	public Sprite attackBg;
 	public Sprite moveBg;
+	public TMP_Text attackName;
 	private void SetMoveAction()
 	{
 		currentmoveAction = enemyCommon.attackData.moveAction;
@@ -132,6 +121,7 @@ public class EnemyController : MonoBehaviour
 		
 		//显示移动路线
 		SetStepDirction(0);
+		attackName.text = "移动";
 	}
 	private void SetSkillAction()
 	{
@@ -146,7 +136,7 @@ public class EnemyController : MonoBehaviour
 				actionText.text = currentAction.effect.value.ToString();
 				//显示移动路线
 				SetStepDirction(1);
-				timeCounter = action.coldTime+1;
+				attackName.text = "攻击";
 				break;
 			}
 			if (action.coldTime == 0)
@@ -157,17 +147,10 @@ public class EnemyController : MonoBehaviour
 				actionText.text = currentAction.effect.value.ToString();
 				//显示移动路线
 				SetStepDirction(1);
+				attackName.text = "攻击";
 				break;
 			}
 		}
-		// if (skillReady)
-		// {
-		// 	skillReady = false;
-		// 	foreach (var pos in hurtArea)
-		// 	{
-		// 		currentAction.effect.ApplyEffect(enemyCommon,player,pos);
-		// 	}
-		// }
 	}
 
 	private void SetStepDirction(int index)//0移动；1攻击
@@ -237,7 +220,7 @@ public class EnemyController : MonoBehaviour
 
 	public void RefreshMoveStep()
 	{
-		if(!enemyCommon.inFight) return;
+		if(!enemyCommon.inFight||isSleepy) return;
 		if (enemyMove.canMove && !skillReady)
 		{
 			SetStepDirction(0);
@@ -295,15 +278,44 @@ public class EnemyController : MonoBehaviour
 	}
 
 // 战斗触发逻辑单独封装
+	public ObjectEventSO EnemyAddEvent;
 	private void TriggerCombat()
 	{
 		if (!enemyCommon.inFight)
 		{
 			enemyCommon.inFight = true;
-			SetMovement();
+			// SetMovement();
 			transform.parent.GetComponent<EnemyGroup>()
 				.enemiesInFight.Add(enemyCommon);
+			EnemyAddEvent.RaiseEvent(null,this);
 		}
 	}
-
+	public void AttackFail()
+	{
+		// if (isCurrentEnemy && !endAttack)
+		// {
+		// 	endAttack = true;
+		// 	SetMovement();
+		// 	if (enemyMove.canMove)
+		// 	{
+		// 		StartFight();
+		// 	}
+		// 	else
+		// 	{
+		// 		targetIcon.SetActive(false);
+		// 		transform.parent.GetComponent<EnemyGroup>().NextEnemyMove();
+		// 	}
+		// }
+	}
+	public void AttackSuccess()
+	{
+		// if (isCurrentEnemy && !endAttack)
+		// {
+		// 	endAttack = true;
+		// 	targetIcon.SetActive(false);
+		// 	transform.parent.GetComponent<EnemyGroup>().NextEnemyMove();
+		// 	SetMovement();
+		// 	isCurrentEnemy = false;
+		// }
+	}
 }

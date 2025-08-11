@@ -43,11 +43,16 @@ public class CharacterBase : MonoBehaviour
 				var effect = Instantiate(defencePrefab, transform.position, Quaternion.identity);
 				Destroy(effect, 5);
 			}
+			else
+			{
+				// animator.SetTrigger("hit");
+			}
 		}
 
 		if (currentDamage > 0)
 		{
 			damageNum_hurt.Spawn(transform.position,currentDamage);
+			animator.SetTrigger("hit");
 		}
 		if (CurrentHp > currentDamage)
 		{

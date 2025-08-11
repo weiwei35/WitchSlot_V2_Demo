@@ -19,23 +19,10 @@ public class EnemyList : MonoBehaviour
 		EnemyCommon enemy = obj as EnemyCommon;
 		foreach (var child in enemyList)
 		{
-			if (child != null && child.enemyCommon == enemy)
+			if (child != null && child.enemyCommon.GetInstanceID() == enemy?.GetInstanceID())
 			{
 				Destroy(child.gameObject);
 			}
-		}
-	}
-
-	IEnumerator SetEnemyListOneByOne()
-	{
-		EnemyGroup enemyGroup = GameObject.FindGameObjectWithTag("EnemyGroup").GetComponent<EnemyGroup>();
-		foreach (var enemy in enemyGroup.enemiesInFight.ToList())
-		{
-			var enemyItem = Instantiate(enemyObj, enemyListParent.transform);
-			enemyItem.InitEnemy(enemy);
-			enemyList.Add(enemyItem);
-			enemy.newAdd = false;
-			yield return new WaitForSeconds(0.2f);
 		}
 	}
 	IEnumerator SetEnemyListOne()
@@ -52,17 +39,6 @@ public class EnemyList : MonoBehaviour
 				yield return new WaitForSeconds(0.2f);
 			}
 		}
-	}
-
-	IEnumerator StartFight()
-	{
-		EnemyGroup enemyGroup = GameObject.FindGameObjectWithTag("EnemyGroup").GetComponent<EnemyGroup>();
-		yield return new WaitForSeconds(enemyGroup.enemiesInFight.Count*0.5f);
-	}
-	public void SetEnemyList()
-	{
-		StartCoroutine(SetEnemyListOneByOne());
-		StartCoroutine(StartFight());
 	}
 
 	public void SetEnemyListAdd()

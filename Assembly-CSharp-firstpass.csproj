@@ -896,6 +896,10 @@
       <Project>{8d055569-9118-3225-72c4-613352756238}</Project>
       <Name>MoreMountains.Feedbacks</Name>
     </ProjectReference>
+    <ProjectReference Include="AllIn1SpriteShaderAssembly.csproj">
+      <Project>{2df3abf2-863a-f2cf-d93f-266986bb57a1}</Project>
+      <Name>AllIn1SpriteShaderAssembly</Name>
+    </ProjectReference>
     <ProjectReference Include="MoreMountains.Tools.Editor.csproj">
       <Project>{88fb1812-a351-21bb-b62d-859c374e5c5f}</Project>
       <Name>MoreMountains.Tools.Editor</Name>
@@ -911,6 +915,10 @@
     <ProjectReference Include="MoreMountains.Feedbacks.TextMeshPro.csproj">
       <Project>{37422bc4-aa96-61c9-5fe8-32aa209dcefa}</Project>
       <Name>MoreMountains.Feedbacks.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="AllIn1VfxDemoScriptAssemblies.csproj">
+      <Project>{90c4650c-55a0-3acb-04a8-a73de28f151a}</Project>
+      <Name>AllIn1VfxDemoScriptAssemblies</Name>
     </ProjectReference>
     <ProjectReference Include="DamageNumbersPro.csproj">
       <Project>{8852369d-99ab-1da3-f63c-7cb965d97236}</Project>
@@ -928,6 +936,10 @@
       <Project>{768a9b61-9997-ed30-0467-66112ef8d375}</Project>
       <Name>Lofelt.NiceVibrations.Demo</Name>
     </ProjectReference>
+    <ProjectReference Include="AllIn1VfxTexDemoAssembly.csproj">
+      <Project>{74af3819-ebf2-44a8-f24c-8f2646d1ddc8}</Project>
+      <Name>AllIn1VfxTexDemoAssembly</Name>
+    </ProjectReference>
     <ProjectReference Include="MoreMountains.Feedbacks.Cinemachine.csproj">
       <Project>{cf71fa20-d1f4-1029-c1c2-18be7f9c6842}</Project>
       <Name>MoreMountains.Feedbacks.Cinemachine</Name>
@@ -935,6 +947,10 @@
     <ProjectReference Include="MoreMountains.Feedbacks.HDRP.csproj">
       <Project>{6877f694-c735-19cd-6f1a-4d054a2d5fa9}</Project>
       <Name>MoreMountains.Feedbacks.HDRP</Name>
+    </ProjectReference>
+    <ProjectReference Include="AllIn1VfxAssmebly.csproj">
+      <Project>{545dadc4-c1ae-3669-a865-334552da4194}</Project>
+      <Name>AllIn1VfxAssmebly</Name>
     </ProjectReference>
     <ProjectReference Include="Lofelt.NiceVibrations.Editor.csproj">
       <Project>{7b9cc89d-9d2a-93c2-9e57-03a1a19b32bb}</Project>

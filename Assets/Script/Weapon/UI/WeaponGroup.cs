@@ -88,6 +88,7 @@ public class WeaponGroup : MonoBehaviour
 	{
 		var weaponObj = Instantiate(weaponItem);
 		weaponObj.GetComponent<WeaponController>().group = this;
+		weaponObj.GetComponent<WeaponController>().SetStartFight();
 		weaponList.Add(weaponObj);
 		switch (weapon.type)
 		{

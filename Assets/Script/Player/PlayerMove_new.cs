@@ -143,7 +143,7 @@ public class PlayerMove_new : MonoBehaviour
 		SnapToGridCenter();
         
 		isMoving = false;
-		if(!isStay && !endFight) PlayerMoveEvent.RaiseEvent(null, this);
+		if(!isStay && !endFight) PlayerMoveEvent.RaiseEvent(transform.position, this);
 		isStay = false;
 	}
     

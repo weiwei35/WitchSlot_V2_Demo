@@ -44,7 +44,7 @@ public enum RoomType
     事件,
     休息
 }
-public enum Direction { Up, Down, Left, Right }
+public enum Direction { Up, Down, Left, Right, Empty}
 
 public enum WeaponType
 {
