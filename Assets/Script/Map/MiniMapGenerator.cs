@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -6,24 +8,30 @@ public class MiniMapGenerator : MonoBehaviour
 {
     public Tilemap tilemap;
     public string wallTag = "MapWall"; // 筛选条件
-    public SpriteRenderer mapDisplay; // 显示小地图的精灵渲染器
+
+    public PlayerMiniMapIndicator playerMini;
 
     public Image mapImage;
     
     private int[,] mapData;
-    private BoundsInt cellBounds;
+    public BoundsInt cellBounds;
     private Vector3Int minPosition;
+    
+    public event Action OnMapGenerated;
 
-    void OnEnable()
+    public void SetMap()
     {
-        if (tilemap == null)
-        {
-            tilemap = GetComponent<Tilemap>();
-        }
+        StartCoroutine(SetupMiniMap());
+    }
 
-        mapImage = GameObject.FindWithTag("MiniMap").GetComponent<Image>();
+    IEnumerator SetupMiniMap()
+    {
+        yield return new WaitForSeconds(0.5f);
+        tilemap = GameObject.FindWithTag("MapWall").GetComponent<Tilemap>();
+                
         AnalyzeTilemap();
         GenerateMiniMap();
+        playerMini.Initialize();
     }
 
     // 分析Tilemap数据
@@ -69,35 +77,45 @@ public class MiniMapGenerator : MonoBehaviour
         if (texture.width == 0 || texture.height == 0)
         {
             Debug.Log("无有效区域");
-            if (mapDisplay != null) mapDisplay.sprite = null;
             return;
         }
         Rect rect = new Rect(0, 0, texture.width, texture.height);
         Vector2 pivot = new Vector2(0.5f, 0.5f); // 居中显示
         Sprite sprite = Sprite.Create(texture, rect, pivot);
     
-        if (mapDisplay != null)
-        {
-            mapImage.sprite = sprite;
-            mapImage.SetNativeSize();
-            mapImage.transform.localScale = new Vector3(5, 5, 5);
-        }
+        mapImage.sprite = sprite;
+        mapImage.SetNativeSize();
+        mapImage.transform.localScale = new Vector3(5, 5, 5);
+        OnMapGenerated?.Invoke();
     }
-    private BoundsInt effectiveRect;
+    public BoundsInt effectiveRect;
 
-    void CalculateEffectiveArea()
+    private void CalculateEffectiveArea()
     {
-        int width = cellBounds.size.x;
-        int height = cellBounds.size.y;
+        BoundsInt bounds = cellBounds;
 
-        int minX = width, minY = height;
-        int maxX = -1, maxY = -1;
+        int minX = int.MaxValue;
+        int minY = int.MaxValue;
+        int maxX = int.MinValue;
+        int maxY = int.MinValue;
 
-        for (int x = 0; x < width; x++)
+        // 获取有效区域的起始坐标（用于映射到 mapData）
+        Vector3Int effectiveOrigin = bounds.position;
+        int arrayWidth = mapData.GetLength(0);
+        int arrayHeight = mapData.GetLength(1);
+
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
             {
-                if (mapData[x, y] == 1)
+                // 将世界坐标转换为 mapData 数组索引
+                int arrayX = x - effectiveOrigin.x;
+                int arrayY = y - effectiveOrigin.y;
+
+                // 仅在范围内访问数组
+                if (arrayX >= 0 && arrayY >= 0 && 
+                    arrayX < arrayWidth && arrayY < arrayHeight &&
+                    mapData[arrayX, arrayY] == 1)
                 {
                     if (x < minX) minX = x;
                     if (x > maxX) maxX = x;
@@ -107,19 +125,22 @@ public class MiniMapGenerator : MonoBehaviour
             }
         }
 
-        // 裁剪后尺寸
-        if (maxX < 0 || maxY < 0 || minX >= width || minY >= height)
+        // 空地图逻辑优化
+        if (maxX <= minX || maxY <= minY)
         {
-            // 没有有效瓦片时输出空白小地图
-            effectiveRect = new BoundsInt();
-            effectiveRect.size = Vector3Int.zero;
+            effectiveRect = new BoundsInt(Vector3Int.zero, Vector3Int.zero);
         }
         else
         {
-            effectiveRect = new BoundsInt(minX, minY, 0, (maxX - minX) + 1, (maxY - minY) + 1,0);
+            effectiveRect = new BoundsInt(
+                new Vector3Int(minX, minY, 0),
+                new Vector3Int(maxX - minX + 1, maxY - minY + 1, 0)
+            );
         }
     }
-    Texture2D GenerateMiniMapSection(int pixelPerTile = 4)
+
+
+    public Texture2D GenerateMiniMapSection(int pixelPerTile = 4)
     {
         int effWidth = effectiveRect.size.x;
         int effHeight = effectiveRect.size.y;
@@ -131,10 +152,20 @@ public class MiniMapGenerator : MonoBehaviour
         {
             for (int y = 0; y < effHeight; y++)
             {
-                int originX = effectiveRect.xMin + x;
-                int originY = effectiveRect.yMin + y;
+                int worldX = effectiveRect.xMin + x;
+                int worldY = effectiveRect.yMin + y;
 
-                Color pixelColor = mapData[originX, originY] == 1 ? Color.black : Color.white;
+                // 转换为 mapData 的相对索引
+                int arrayX = worldX - cellBounds.xMin;
+                int arrayY = worldY - cellBounds.yMin;
+
+                // 确保数组索引合法
+                bool inBounds = arrayX >= 0 && arrayY >= 0 &&
+                                arrayX < mapData.GetLength(0) &&
+                                arrayY < mapData.GetLength(1);
+
+                int tileVal = inBounds ? mapData[arrayX, arrayY] : 0;
+                Color pixelColor = tileVal == 1 ? Color.black : Color.white;
 
                 // 填充每个格子为 4x4 像素
                 for (int px = 0; px < pixelPerTile; px++)
@@ -146,8 +177,8 @@ public class MiniMapGenerator : MonoBehaviour
                 }
             }
         }
+
         texture.Apply();
         return texture;
     }
-
 }

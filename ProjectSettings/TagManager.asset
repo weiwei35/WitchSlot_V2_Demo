@@ -15,6 +15,7 @@ TagManager:
   - Enemy
   - TouchableItem
   - MiniMap
+  - MiniMap_Player
   layers:
   - Default
   - TransparentFX
