@@ -12,8 +12,21 @@ using Random = UnityEngine.Random;
 
 public class WeaponManager : MonoBehaviour 
 {
+	public static WeaponManager instance;
+
+	private void Awake()
+	{
+		if (instance == null)
+		{
+			instance = this;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
 	public List<WeaponSO> weaponDataList;//所有符文
-	public WeaponLibraryData playerWeaponLibrary;//玩家牌堆
+	public LibraryData playerWeaponLibrary;//玩家牌堆
 
 	private void Start()
 	{

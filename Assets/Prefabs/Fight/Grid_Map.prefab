@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2836247476446364958}
   - component: {fileID: 2938811293173999410}
   - component: {fileID: -4737506383017536154}
-  - component: {fileID: 7220924118042876290}
+  - component: {fileID: 5046931342781828761}
   m_Layer: 0
   m_Name: Grid_Map
   m_TagString: Untagged
@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a2af92eeb2191284ba8c1a46fc0f7e15, type: 2}
+  - {fileID: 2100000, guid: 3d96fed9e2ae7c643bd4db2ac718eca3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,11 +125,12 @@ Animation:
   m_GameObject: {fileID: 3390172018072465117}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: b4d0b07ba365bde4bae50be4ea9ff150, type: 2}
+  m_Animation: {fileID: 7400000, guid: 65ad774f53aa0434aac7fab7bf2a522c, type: 2}
   m_Animations:
+  - {fileID: 7400000, guid: 65ad774f53aa0434aac7fab7bf2a522c, type: 2}
   - {fileID: 7400000, guid: b4d0b07ba365bde4bae50be4ea9ff150, type: 2}
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &-4737506383017536154
@@ -160,7 +161,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7220924118042876290
+--- !u!114 &5046931342781828761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

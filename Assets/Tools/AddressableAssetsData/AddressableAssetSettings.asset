@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: b0c9e4fa14addc74abbd884b3fd285b0
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: c25ea68afadeb660fa6eb30883cb1f74
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -95,6 +95,7 @@ MonoBehaviour:
     - SkillData
     - RoomData
     - WeaponData
+    - BoosterData
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 35da3d72b83bd2d4480ef7aacaa63250, type: 2}

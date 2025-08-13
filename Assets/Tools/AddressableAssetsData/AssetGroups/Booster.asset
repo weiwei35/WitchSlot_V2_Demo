@@ -20,17 +20,8 @@ MonoBehaviour:
   - m_GUID: b6639e5309fd0bf47be1f2213ea2f87e
     m_Address: Booster1
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2b857ee6bcd99ad419c39e8b47253332
-    m_Address: Booster2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0bce1cfc5b7c0704f921ff499c3e2de1
-    m_Address: Booster3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - BoosterData
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 30081ddc9e661924994bce7c3a3c4f97, type: 2}

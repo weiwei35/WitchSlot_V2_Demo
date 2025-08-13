@@ -10,7 +10,7 @@ public class GridObj : MonoBehaviour
 	public void SetAnim()
 	{
 		Animation anim = GetComponent<Animation>();
-		anim.Play();
+		anim.Play("格子生效特效");
 	}
 
 	public void SetEffect()

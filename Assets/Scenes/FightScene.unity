@@ -1138,6 +1138,7 @@ Transform:
   m_Children:
   - {fileID: 2073942541}
   - {fileID: 1207666403}
+  - {fileID: 1929544627}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &968575021
@@ -1682,6 +1683,51 @@ MonoBehaviour:
   enemiesInFight: []
   enemyAllDie: 0
   EndRoomEvent: {fileID: 11400000, guid: f7c28e063a6053d459d6775d44a56ae7, type: 2}
+--- !u!1 &1929544626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1929544627}
+  - component: {fileID: 1929544628}
+  m_Layer: 10
+  m_Name: BoosterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1929544627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929544626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 968575020}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1929544628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929544626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174e6b29bc895c2419a7a727c373f82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boosterPrefab: {fileID: 4536465801236114408, guid: 8897766c56148944fb4d440535faa559, type: 3}
 --- !u!1 &2024845870
 GameObject:
   m_ObjectHideFlags: 0

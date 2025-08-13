@@ -11027,10 +11027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4b4e78e250a734cb671a8338830e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boosters:
-  - {fileID: 11400000, guid: b6639e5309fd0bf47be1f2213ea2f87e, type: 2}
-  - {fileID: 11400000, guid: 2b857ee6bcd99ad419c39e8b47253332, type: 2}
-  - {fileID: 11400000, guid: 0bce1cfc5b7c0704f921ff499c3e2de1, type: 2}
+  boosterManager: {fileID: 1488514149}
   boosterItem_UI: {fileID: 414545103595716864, guid: 30b98dc34c3e2f845827091f9fbba9f2, type: 3}
   boosterParent: {fileID: 1803431342}
 --- !u!1 &1463576113
@@ -11179,6 +11176,7 @@ GameObject:
   - component: {fileID: 1488514146}
   - component: {fileID: 1488514147}
   - component: {fileID: 1488514148}
+  - component: {fileID: 1488514149}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -11240,6 +11238,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646103a5830391d4485ccb5a2c7935cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1488514149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488514143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ebdaccbece31c479ed81701743dc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boosterDataList: []
+  playerLibrary: {fileID: 11400000, guid: eacb5f47d8882ab4390c8ce82c8f5680, type: 2}
 --- !u!1 &1489249791
 GameObject:
   m_ObjectHideFlags: 0

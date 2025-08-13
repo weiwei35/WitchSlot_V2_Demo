@@ -8,7 +8,7 @@ public class CharacterBase : MonoBehaviour
 
 	public IntVariable hp;
 	public IntVariable defense;
-	public int CurrentHp { get=>hp.currentValue; set=>hp.SetValue(value); }
+	public float CurrentHp { get=>hp.currentValue; set=>hp.SetValue(value); }
 
 	public bool isDead = false;
 	
@@ -28,7 +28,7 @@ public class CharacterBase : MonoBehaviour
 		ResetDefense();
 	}
 
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 		var currentDamage = damage;
 		//先扣除护甲

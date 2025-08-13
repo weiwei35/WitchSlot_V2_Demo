@@ -27,7 +27,7 @@ public class PlayerInfo_UI : MonoBehaviour
 	}
 
 	public MMProgressBar hpBar;
-	public void SetHpBar(int amount)
+	public void SetHpBar(float amount)
 	{
 		hpBar.UpdateBar(amount, 0f, playerHP.maxValue);
 	}

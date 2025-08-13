@@ -31,7 +31,7 @@ public class PlayerFight : MonoBehaviour
 			if (Input.GetKey(KeyCode.E) && !skipStep)
 			{
 				skipStep = true;
-				GetComponent<PlayerMove_new>().PlayerMoveEvent.RaiseEvent(transform.position,this);
+				GetComponent<PlayerMove_new>().PlayerMoveEvent.RaiseEvent(null,this);
 				StartCoroutine(ResetSkipStep());
 			}
 		}
