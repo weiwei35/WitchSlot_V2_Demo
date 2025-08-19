@@ -16,6 +16,7 @@ TagManager:
   - TouchableItem
   - MiniMap
   - MiniMap_Player
+  - Light
   layers:
   - Default
   - TransparentFX

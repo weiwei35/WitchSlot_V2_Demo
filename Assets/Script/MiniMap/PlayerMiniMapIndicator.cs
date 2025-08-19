@@ -35,6 +35,8 @@ public class PlayerMiniMapIndicator : MonoBehaviour
 
     #region 内部状态
     private BoundsInt effectiveArea;
+    private BoundsInt maskArea;
+    private Vector3Int playerTilePosition;
     private Vector3 previousPosition;
     #endregion
 
@@ -98,6 +100,7 @@ public class PlayerMiniMapIndicator : MonoBehaviour
         {
             UpdateIndicatorPosition();
             previousPosition = playerTransform.position;
+            mapGenerator.CheckLightInArea(maskArea,playerTilePosition);
         }
     }
     #endregion
@@ -135,7 +138,30 @@ public class PlayerMiniMapIndicator : MonoBehaviour
             // 设置图标尺寸（原尺寸 3x3）
             float iconSize = 3.0f;
             rectTransform.sizeDelta = new Vector2(iconSize, iconSize);
+            UpdateMiniMapPosition();
+            //mask区域250*200
+            playerTilePosition = tilePos;
+            int maskPixleXCount = 250 /5 / 4;
+            int maskPixleYCount = 200 /5 / 4;
+            int maskXMin = tilePos.x - maskPixleXCount/2;
+            int maskYMin = tilePos.y - maskPixleYCount/2;
+            int maskXMax = tilePos.x + maskPixleXCount/2;
+            int maskYMax = tilePos.y + maskPixleYCount/2-1;
+            maskArea = new BoundsInt(
+                new Vector3Int(maskXMin, maskYMin, 0),
+                new Vector3Int(maskXMax - maskXMin + 1, maskYMax - maskYMin + 1, 0)
+            );
         }
+    }
+
+    private void UpdateMiniMapPosition()
+    {
+        RectTransform rectMap = mapGenerator.GetComponent<RectTransform>();
+        float mapWidth = rectMap.rect.width;
+        float mapHeight = rectMap.rect.height;
+        Vector3 newPos = (new Vector2(mapWidth / 2, mapHeight / 2) - rectTransform.anchoredPosition) *
+                         rectMap.localScale.x;
+        rectMap.anchoredPosition = newPos;
     }
     #endregion
 

@@ -47,7 +47,7 @@ public class Booster_Move : _BoosterItem_Logic
 				}
 			}
 		}
-		Debug.Log("对目标："+playerFacePos+"造成伤害："+hurtCounter*hurtAmount);
+		// Debug.Log("对目标："+playerFacePos+"造成伤害："+hurtCounter*hurtAmount);
 		StartCoroutine(SetEnemyHurt(playerFacePos, hurtCounter * hurtAmount));
 		var effectObj = Instantiate(effect, playerFacePos, Quaternion.identity);
 	}

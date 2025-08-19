@@ -11,10 +11,16 @@ public class Testing_PathFinding : MonoBehaviour
     
     public LayerMask layerMask;
     public Pathfinding pathfinding;
+
     private void Awake()
     {
         instance = this;
-        pathfinding = new Pathfinding(22, 8,transform.position);
+    }
+
+    public void SetGridSystem(int width, int height,Vector3 origin)
+    {
+        transform.position = origin;
+        pathfinding = new Pathfinding(width, height,origin);
     }
     private bool CheckCollisionAtPoint(Vector2 point, LayerMask collisionLayers)
     {

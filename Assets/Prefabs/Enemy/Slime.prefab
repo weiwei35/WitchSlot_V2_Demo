@@ -656,6 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMove: {fileID: 0}
   enemyCommon: {fileID: 0}
+  EnemyActionEvent: {fileID: 11400000, guid: e30a1207b4a8bba4fbcbd2d39b338ee2, type: 2}
   targetIcon: {fileID: 6043771496131840165}
   actionIcon: {fileID: 2728229696140614111}
   actionText: {fileID: 2714288840850857777}
@@ -667,11 +668,13 @@ MonoBehaviour:
   attackIcon: {fileID: 21300000, guid: e5166ed082977a945819447e5bcb9dfb, type: 3}
   attackBg: {fileID: 21300000, guid: 85bef7c3546a07e478f39b6029af0c95, type: 3}
   moveBg: {fileID: 21300000, guid: 8d9e2902efb204c45a905b3f67faf158, type: 3}
+  attackName: {fileID: 0}
   detectionRadius: 3
   gridSize: 0.8
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
+  EnemyAddEvent: {fileID: 0}
 --- !u!114 &2176481501543216889
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -830,6 +830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMove: {fileID: 0}
   enemyCommon: {fileID: 0}
+  EnemyActionEvent: {fileID: 11400000, guid: e30a1207b4a8bba4fbcbd2d39b338ee2, type: 2}
   targetIcon: {fileID: 6043771496131840165}
   actionIcon: {fileID: 2728229696140614111}
   actionText: {fileID: 2714288840850857777}
@@ -1075,8 +1076,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderTypes: 0
-  normalStrength: 5
+  shaderTypes: 3
+  normalStrength: 4.3
   normalSmoothing: 1
   computingNormal: 0
 --- !u!1 &6043771496131840165

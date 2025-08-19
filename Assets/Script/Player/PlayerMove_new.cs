@@ -23,10 +23,10 @@ public class PlayerMove_new : MonoBehaviour
 	private Queue<Vector3> moveQueue = new Queue<Vector3>();
 	private bool useMoveQueue;
 
-	public int moveStep = 2;
 	private Vector3 targetPos;
 	private Rigidbody2D rb;
 	public bool canMove = false;
+	public bool waitMove = false;
 	public bool setRooming = false;
 	bool isMoving = false;
 	public bool endFight = false;
@@ -65,6 +65,18 @@ public class PlayerMove_new : MonoBehaviour
 		setRooming = true;
 	}
 
+	public void WaitMove()
+	{
+		waitMove = true;
+		StartCoroutine(StopWait());
+	}
+
+	IEnumerator StopWait()
+	{
+		yield return new WaitForSeconds(0.5f);
+		waitMove = false;
+	}
+
 	public void EndRoomFight()
 	{
 		endFight = true;
@@ -72,6 +84,7 @@ public class PlayerMove_new : MonoBehaviour
 
 	private void Update()
 	{
+		if(waitMove) return;
 		// 冷却时间控制
 		if (Time.time - lastMoveTime < inputCoolDown) return;
         
@@ -108,7 +121,6 @@ public class PlayerMove_new : MonoBehaviour
 	// 统一注册移动请求
 	private void RegisterMove(Vector3 direction)
 	{
-		moveStep--;
 		if (isMoving) 
 		{
 			if(useMoveQueue) moveQueue.Enqueue(direction);
@@ -188,7 +200,6 @@ public class PlayerMove_new : MonoBehaviour
 			rb.DOComplete();
 			rb.MovePosition(lastValidPosition); // 回退到上次有效位置
 
-			moveStep++;
 			// 清空已排队的移动
 			moveQueue.Clear();
 			isMoving = false;

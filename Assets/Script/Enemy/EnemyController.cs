@@ -17,6 +17,8 @@ public class EnemyController : MonoBehaviour
 	public EnemyMove enemyMove;
 	[HideInInspector]
 	public EnemyCommon enemyCommon;
+
+	public ObjectEventSO EnemyActionEvent;
 	private Player player;
 	
 	public GameObject targetIcon;
@@ -52,7 +54,11 @@ public class EnemyController : MonoBehaviour
 
 	public void MoveFollowPlayer()
 	{
-		StartCoroutine(EnemyMoveStep());
+		if (enemyCommon.inFight)
+		{
+			EnemyActionEvent.RaiseEvent(null,this);
+			StartCoroutine(EnemyMoveStep());
+		}
 	}
 	IEnumerator EnemyMoveStep()
 	{

@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2d6de4c9c5bc04d8283df6cb07b560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgTilemap: {fileID: 2075864209177136072}
+  wallTilemap: {fileID: 4115382206507231907}
   next: {fileID: 6242458507128229316}
 --- !u!114 &5449307810893302941
 MonoBehaviour:
@@ -4351,4 +4353,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 4115382206507231907}
   wallTag: tiles_
-  mapDisplay: {fileID: 7600412778543957626, guid: c2be1ac5d5852b341b8989ff2fcb6454, type: 3}
+  playerMini: {fileID: 0}
+  mapImage: {fileID: 0}
+  cellBounds:
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Size: {x: 0, y: 0, z: 0}
+  effectiveRect:
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Size: {x: 0, y: 0, z: 0}
