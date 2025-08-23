@@ -53,3 +53,19 @@ public enum WeaponType
     衣服,
     珠宝
 }
+
+// 定义花色枚举
+public enum CardSuit {
+    Spades,     // 黑桃
+    Hearts,     // 红心
+    Diamonds,   // 方片
+    Clubs       // 梅花
+}
+public enum PokerHand {
+    高牌,         // 高牌
+    一对,          // 一对
+    顺子,         // 顺子
+    同花,            // 同花
+    同花顺,
+    三条,     // 三条
+}

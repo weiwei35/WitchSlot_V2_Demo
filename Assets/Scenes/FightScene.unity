@@ -154,6 +154,117 @@ Transform:
   m_Children: []
   m_Father: {fileID: 510471403}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &466379780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466379783}
+  - component: {fileID: 466379782}
+  - component: {fileID: 466379781}
+  - component: {fileID: 466379784}
+  m_Layer: 10
+  m_Name: CardFightManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &466379781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466379780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 5ede9a5ccee805e48817d1a7c582599c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 466379782}
+        m_TargetAssemblyTypeName: CardFightManager, Assembly-CSharp
+        m_MethodName: GetCard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &466379782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466379780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f311c2865b7eb4f857044404b6c071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 968575025}
+  enemyGroup: {fileID: 1426623086}
+  effect: {fileID: 2194967827451950338, guid: 6e954688821358a42bc06d195df8a3de, type: 3}
+--- !u!4 &466379783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466379780}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &466379784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466379780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSO: {fileID: 11400000, guid: 2ab957222c4b22444838ecacd61683c4, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls: []
+  response2Para:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 466379782}
+        m_TargetAssemblyTypeName: CardFightManager, Assembly-CSharp
+        m_MethodName: NormalAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &510471400
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &510471401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +395,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +438,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +469,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +524,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +579,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +610,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +641,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +696,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +727,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1340,8 @@ MonoBehaviour:
   setRooming: 0
   endFight: 0
   PlayerMoveEvent: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
+  PlayerMovePassEvent: {fileID: 11400000, guid: 63da0bb91c2d4514790bfb2247c3838b, type: 2}
+  PlayerMoveCenterEvent: {fileID: 11400000, guid: 6520ec66d4177a143ac89716179e899a, type: 2}
 --- !u!114 &968575025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1275,6 +1415,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &968575031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,6 +1446,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &968575032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,6 +1477,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &968575033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,6 +1508,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &968575034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1387,6 +1539,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1134727579
 GameObject:
   m_ObjectHideFlags: 3
@@ -1656,6 +1811,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1426524044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,6 +2187,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 889328774}
   - {fileID: 1403396820}
+  - {fileID: 466379783}
   - {fileID: 968575020}
   - {fileID: 1426623085}
   - {fileID: 510471403}

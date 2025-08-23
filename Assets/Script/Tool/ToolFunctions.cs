@@ -6,6 +6,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor;
 using UnityEngine.Tilemaps;
 //using NaughtyAttributes;
 using Random = UnityEngine.Random;
@@ -230,7 +231,7 @@ public class ToolFunctions : MonoBehaviour
 		UnityEditor.AssetDatabase.CreateAsset(enemyHP, fullPath);
 		UnityEditor.AssetDatabase.Refresh();
 	}
-
+	
 #if UNITY_EDITOR
 	private void OnApplicationQuit()
 	{

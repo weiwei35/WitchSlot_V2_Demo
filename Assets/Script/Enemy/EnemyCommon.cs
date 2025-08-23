@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -37,6 +38,7 @@ public class EnemyCommon : CharacterBase
     {
         transform.parent.GetComponent<EnemyGroup>().EnemyDie(this);
         EnemyDieEvent.RaiseEvent(this,this);
+        DOTween.KillAll();
         Destroy(gameObject);
     }
 

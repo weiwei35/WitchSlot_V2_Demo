@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de91f42672289a4a9140d6e6d83b35c, type: 3}
   m_Name: PlayerMoveEvent
   m_EditorClassIdentifier: 
-  desc: "\u89D2\u8272\u79FB\u52A8\u4E8B\u4EF6"
-  lastSender: 
+  desc: "\u89D2\u8272\u79FB\u52A8\u4E8B\u4EF6\uFF0C\u4F20\u53C2\u89D2\u8272\u79FB\u52A8\u524D\u65B9\u683C\u5B50"
+  lastSender: Player (PlayerMove_new)

@@ -1816,11 +1816,13 @@ MonoBehaviour:
   gridSize: 0.8
   moveDuration: 0.2
   inputCoolDown: 0.1
-  moveStep: 2
   canMove: 1
+  waitMove: 0
   setRooming: 0
   endFight: 0
   PlayerMoveEvent: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
+  PlayerMovePassEvent: {fileID: 11400000, guid: 63da0bb91c2d4514790bfb2247c3838b, type: 2}
+  PlayerMoveCenterEvent: {fileID: 11400000, guid: 6520ec66d4177a143ac89716179e899a, type: 2}
 --- !u!61 &1008657648
 BoxCollider2D:
   m_ObjectHideFlags: 0

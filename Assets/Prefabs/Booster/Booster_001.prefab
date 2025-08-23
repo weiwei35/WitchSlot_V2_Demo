@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2363160547260563016}
   - component: {fileID: 4475348955187663018}
-  - component: {fileID: -7234002031445192583}
+  - component: {fileID: -9087269191378584023}
   m_Layer: 10
-  m_Name: Booster
+  m_Name: Booster_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -7234002031445192583}
+      - m_Target: {fileID: -9087269191378584023}
         m_TargetAssemblyTypeName: Booster_Move, Assembly-CSharp
         m_MethodName: PlayerMove
         m_Mode: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-7234002031445192583
+--- !u!114 &-9087269191378584023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,9 +70,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4536465801236114408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb098f6ca3058de47b5ea9d416a0e75c, type: 3}
+  m_Script: {fileID: 11500000, guid: 783609440c655b5498a4cc9e3e93c025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveStep: 2
   hurtAmount: 0.5
   effect: {fileID: 723368883752897750, guid: b6a9e787228788c4bb5545f29785d28a, type: 3}
+  playerFacePos: {x: 0, y: 0, z: 0}

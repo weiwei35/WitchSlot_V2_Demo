@@ -15,8 +15,9 @@ public class Booster_Move : _BoosterItem_Logic
 	public float hurtAmount;
 	public GameObject effect;
 	private int counter = 0;
-	private Vector3 playerFacePos;
-	public void PlayerMove(object o)
+	[HideInInspector]
+	public Vector3 playerFacePos;
+	public virtual void PlayerMove(object o)
 	{
 		if (o != null)
 		{
@@ -34,25 +35,11 @@ public class Booster_Move : _BoosterItem_Logic
 		}
 	}
 
-	public void BoosterEffect()
+	public virtual void BoosterEffect()
 	{
-		int hurtCounter = 0;
-		foreach (var weapon in WeaponManager.instance.playerWeaponLibrary.weapons)
-		{
-			foreach (var symbolList in weapon.symbolList)
-			{
-				if (symbolList.symbol.effects[0].effectType == EffectType.伤害)
-				{
-					hurtCounter += symbolList.area.Count;
-				}
-			}
-		}
-		// Debug.Log("对目标："+playerFacePos+"造成伤害："+hurtCounter*hurtAmount);
-		StartCoroutine(SetEnemyHurt(playerFacePos, hurtCounter * hurtAmount));
-		var effectObj = Instantiate(effect, playerFacePos, Quaternion.identity);
 	}
 	
-	IEnumerator SetEnemyHurt(Vector3 pos,float hurt)
+	 public virtual IEnumerator SetEnemyHurt(Vector3 pos,float hurt)
 	{
 		yield return new WaitForSeconds(0.5f);
 		EnemyGroup enemyGroup = GameObject.FindWithTag("EnemyGroup").GetComponent<EnemyGroup>();

@@ -35,8 +35,12 @@ public class PlayerMove_new : MonoBehaviour
 	private SpriteRenderer playerSprite;
 
 	public ObjectEventSO PlayerMoveEvent;
+	public ObjectEventSO PlayerMovePassEvent;
+	public ObjectEventSO PlayerMoveCenterEvent;
 
 	private Vector3 moveEndPos;
+	private Vector3 movePassPos;
+	private Vector3 moveCenterPos;
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -142,6 +146,8 @@ public class PlayerMove_new : MonoBehaviour
 		// 2. 计算目标网格的中心位置
 		Vector3 targetCenter = currentCenter + direction * gridSize;
 		moveEndPos = targetCenter+ direction * gridSize;
+		movePassPos = targetCenter- direction * gridSize;
+		moveCenterPos = targetCenter;
         
 		// 3. 更新位置记录
 		targetPosition = targetCenter;
@@ -158,7 +164,12 @@ public class PlayerMove_new : MonoBehaviour
 		SnapToGridCenter();
         
 		isMoving = false;
-		if(!isStay && !endFight) PlayerMoveEvent.RaiseEvent(moveEndPos, this);
+		if(!isStay && !endFight)
+		{
+			PlayerMoveEvent.RaiseEvent(moveEndPos, this);
+			PlayerMovePassEvent.RaiseEvent(movePassPos, this);;
+			PlayerMoveCenterEvent.RaiseEvent(moveCenterPos, this);;
+		}
 		isStay = false;
 	}
     
