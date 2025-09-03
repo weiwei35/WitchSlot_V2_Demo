@@ -16,7 +16,8 @@ public class CardFightManager : MonoBehaviour
 	private float gridSize = 0.8f;
 	private int hurtCount = 0;
 
-	public GameObject effect;
+	public GameObject effect_normal;
+	public GameObject effect_special;
 
 	public void GetCard(object o)
 	{
@@ -37,12 +38,16 @@ public class CardFightManager : MonoBehaviour
 				SpecialAttack_1();
 				break;
 			case PokerHand.一对:
+				SpecialAttack_1();
 				break;
 			case PokerHand.顺子:
+				SpecialAttack_2();
 				break;
 			case PokerHand.同花:
+				SpecialAttack_3();
 				break;
 			case PokerHand.三条:
+				SpecialAttack_4();
 				break;
 		}
 	}
@@ -79,7 +84,7 @@ public class CardFightManager : MonoBehaviour
         foreach (var pos in hurtPos)
         {
         	SetEnemyHurt(pos, 1);
-        	var effectObj = Instantiate(effect, pos, Quaternion.identity);
+        	var effectObj = Instantiate(effect_normal, pos, Quaternion.identity);
 	        yield return new WaitForSeconds(0.2f);
         }
 	}
@@ -96,7 +101,7 @@ public class CardFightManager : MonoBehaviour
 		foreach (var pos in hurtPos)
 		{
 			SetEnemyHurt(pos, 1);
-			var effectObj = Instantiate(effect, pos, Quaternion.identity);
+			var effectObj = Instantiate(effect_normal, pos, Quaternion.identity);
 		}
 	}
 	void SpadesAttack()
@@ -110,7 +115,7 @@ public class CardFightManager : MonoBehaviour
 		foreach (var pos in hurtPos)
 		{
 			SetEnemyHurt(pos, 1);
-			var effectObj = Instantiate(effect, pos, Quaternion.identity);
+			var effectObj = Instantiate(effect_normal, pos, Quaternion.identity);
 		}
 	}
 	
@@ -120,13 +125,13 @@ public class CardFightManager : MonoBehaviour
 		Vector3 distance = facePos - playerPos;
 		Vector3 left = new Vector2(-distance.y, distance.x);
 		List<Vector3> hurtPos = new List<Vector3>();
-		hurtPos.Add(facePos + distance);
-		hurtPos.Add(facePos + left);
-		hurtPos.Add(facePos - left);
+		hurtPos.Add(facePos);
+		hurtPos.Add(facePos + left + distance);
+		hurtPos.Add(facePos - left + distance);
 		foreach (var pos in hurtPos)
 		{
 			SetEnemyHurt(pos, 1);
-			var effectObj = Instantiate(effect, pos, Quaternion.identity);
+			var effectObj = Instantiate(effect_normal, pos, Quaternion.identity);
 		}
 	}
 
@@ -145,8 +150,74 @@ public class CardFightManager : MonoBehaviour
 		Vector3 attackPos = hurtPos[Random.Range(0, hurtPos.Count)];
 		
 		SetEnemyHurt(attackPos, hurtCount);
-		var effectObj = Instantiate(effect, attackPos, Quaternion.identity);
+		var effectObj = Instantiate(effect_special, attackPos, Quaternion.identity);
 		hurtCount = 0;
+	}
+	public void SpecialAttack_2()
+	{
+		List<Vector3> hurtPos = new List<Vector3>();
+		Vector3 playerPos = player.transform.position;
+		hurtPos.Add(playerPos+new Vector3(1, 0, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, 0, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(0, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(0, -1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(1, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, -1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(1, -1, 0)*gridSize);
+		for (int i = 0; i < 2; i++)
+		{
+			Vector3 attackPos = hurtPos[Random.Range(0, hurtPos.Count)];
+			hurtPos.Remove(attackPos);
+            		
+            SetEnemyHurt(attackPos, hurtCount);
+            var effectObj = Instantiate(effect_special, attackPos, Quaternion.identity);
+            hurtCount = 0;
+		}
+	}
+	public void SpecialAttack_3()
+	{
+		List<Vector3> hurtPos = new List<Vector3>();
+		Vector3 playerPos = player.transform.position;
+		hurtPos.Add(playerPos+new Vector3(1, 0, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, 0, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(0, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(0, -1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(1, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, -1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(1, -1, 0)*gridSize);
+		for (int i = 0; i < 3; i++)
+		{
+			Vector3 attackPos = hurtPos[Random.Range(0, hurtPos.Count)];
+			hurtPos.Remove(attackPos);
+            		
+			SetEnemyHurt(attackPos, hurtCount);
+			var effectObj = Instantiate(effect_special, attackPos, Quaternion.identity);
+			hurtCount = 0;
+		}
+	}
+	public void SpecialAttack_4()
+	{
+		List<Vector3> hurtPos = new List<Vector3>();
+		Vector3 playerPos = player.transform.position;
+		hurtPos.Add(playerPos+new Vector3(1, 0, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, 0, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(0, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(0, -1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(1, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, 1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(-1, -1, 0)*gridSize);
+		hurtPos.Add(playerPos+new Vector3(1, -1, 0)*gridSize);
+		for (int i = 0; i < 4; i++)
+		{
+			Vector3 attackPos = hurtPos[Random.Range(0, hurtPos.Count)];
+			hurtPos.Remove(attackPos);
+            		
+			SetEnemyHurt(attackPos, hurtCount);
+			var effectObj = Instantiate(effect_special, attackPos, Quaternion.identity);
+			hurtCount = 0;
+		}
 	}
 	public void SetEnemyHurt(Vector3 pos,float hurt)
 	{

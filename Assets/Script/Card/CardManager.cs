@@ -39,25 +39,26 @@ public class CardManager : MonoBehaviour
 	}
 
 	//每次行走翻一张牌（小攻击），3张牌都翻完（大攻击），第一张牌翻牌前重置牌组动画
+	Vector3 attackPos = Vector3.zero;
 	public void ShowCard(object o)
 	{
 		if(!canCallCard) return;
-		Vector3 pos = (Vector3)o;
-		if (stepCount == 0)
-		{
+		attackPos = (Vector3)o;
+		// if (stepCount == 0)
+		// {
 			CallCards();
-		}
-		if (stepCount < 3)
-		{
-			cardItems[stepCount]?.GetComponent<Animation>().Play();
-			OneCardEvent.RaiseEvent2Para(pos,cardItems[stepCount].data,this);
-			stepCount++;
-		}
-		if(stepCount == 3)
-		{
-			stepCount = 0;
+		// }
+		// if (stepCount < 3)
+		// {
+		// 	cardItems[stepCount]?.GetComponent<Animation>().Play();
+		// 	OneCardEvent.RaiseEvent2Para(pos,cardItems[stepCount].data,this);
+		// 	stepCount++;
+		// }
+		// if(stepCount == 3)
+		// {
+		// 	stepCount = 0;
 			GetCardType();
-		}
+		// }
 	}
 
 	public void CallCards()
@@ -79,6 +80,7 @@ public class CardManager : MonoBehaviour
 			// Debug.Log(card.displayName);
 			var cardObj = Instantiate(cardPrefab, transform);
 			cardObj.InitCard(card.cardSprite,card);
+			cardObj?.GetComponent<Animation>().Play();
 			cardItems.Add(cardObj);
 		}
 	}
@@ -94,6 +96,7 @@ public class CardManager : MonoBehaviour
         	if (matchingCard != null) {
         		matchingCard.GetComponent<CardItemUI>().image
         			.color = Color.yellow; // 高亮黄色
+		        OneCardEvent.RaiseEvent2Para(attackPos,matchingCard.data,this);
         	}
         }
         // 如果需要显示踢脚牌，也可以标记

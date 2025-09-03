@@ -167,8 +167,8 @@ public class PlayerMove_new : MonoBehaviour
 		if(!isStay && !endFight)
 		{
 			PlayerMoveEvent.RaiseEvent(moveEndPos, this);
-			PlayerMovePassEvent.RaiseEvent(movePassPos, this);;
-			PlayerMoveCenterEvent.RaiseEvent(moveCenterPos, this);;
+			PlayerMovePassEvent.RaiseEvent(movePassPos, this);
+			PlayerMoveCenterEvent.RaiseEvent(moveCenterPos, this);
 		}
 		isStay = false;
 	}
@@ -215,9 +215,16 @@ public class PlayerMove_new : MonoBehaviour
 			moveQueue.Clear();
 			isMoving = false;
         
+			if (other.CompareTag("Enemy"))
+			{
+				PlayerMoveEvent.RaiseEvent(lastValidPosition, this);
+				PlayerMovePassEvent.RaiseEvent(lastValidPosition, this);
+				PlayerMoveCenterEvent.RaiseEvent(lastValidPosition, this);
+			}
 			// 可选：添加碰撞反馈效果
 			ShakeCamera(0.05f, 0.15f);
 		}
+
 	}
 
 	// 可选：碰撞反馈效果

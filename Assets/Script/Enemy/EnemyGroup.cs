@@ -24,10 +24,13 @@ public class EnemyGroup : MonoBehaviour
 		enemyAllDie = false;
 	}
 	public ObjectEventSO EndRoomEvent;
+	public ObjectEventSO EndFightEnemyEvent;
 	public void EnemyDie(EnemyCommon enemy)
 	{
 		if(enemiesInFight.Contains(enemy))
 			enemiesInFight.Remove(enemy);
+		if(enemiesInFight.Count == 0)
+			EndFightEnemyEvent.RaiseEvent(null,this);
 		enemies.Remove(enemy);
 		if (enemies.Count == 0)
 		{
