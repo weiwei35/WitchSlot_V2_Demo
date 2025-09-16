@@ -19,7 +19,7 @@ public class CardManager : MonoBehaviour
 	List<CardData> hand = new List<CardData>();//手牌数据
 	List<CardItemUI> cardItems = new List<CardItemUI>();//手牌UI
 
-	private int stepCount = 0;
+	// private int stepCount = 0;
 
 	public ObjectEventSO ShowCardEvent;
 	public ObjectEventSO OneCardEvent;

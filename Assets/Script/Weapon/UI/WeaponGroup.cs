@@ -22,30 +22,58 @@ public class WeaponGroup : MonoBehaviour
 	public WeaponItem_UI weaponItem;
 
 	public List<WeaponItem_UI> weaponList;
+	Dictionary<Vector2Int,SymbolSO> symbolList = new Dictionary<Vector2Int,SymbolSO>();
+	Dictionary<Vector2Int,SymbolSO> symbolList_current = new Dictionary<Vector2Int,SymbolSO>();
 
+	[Header("广播事件")] 
+	public DictionaryEventSO WeaponCallSymbol;
 	public ObjectEventSO SetWeaponReadyEvent;
-	private bool weaponReady = false;
-
-	public void EndAttack()
+	bool canCallSymbol = false;
+	public void SetStartFight()
 	{
-		weaponReady = false;
+		canCallSymbol = true;
 	}
-	public void SetWeaponReady()
+
+	public void SetEndFight()
 	{
-		if(CheckWeaponReady()&&!weaponReady)
+		canCallSymbol = false;
+	}
+	public void GetSymbolList(Dictionary<Vector2Int,SymbolSO> symbolDic)
+	{
+		foreach (var symbol in symbolDic)
 		{
-			weaponReady = true;
+			symbolList.Add(symbol.Key, symbol.Value);
+			Debug.Log(symbol.Key + "," + symbol.Value);
+		}
+
+		symbolList_current = new Dictionary<Vector2Int, SymbolSO>(symbolList.OrderBy(kvp => kvp.Key.x).ThenBy(kvp => kvp.Key.y));
+	}
+
+	public void ShowSymbolOneByOne()
+	{
+		foreach (var key in new List<Vector2Int>(symbolList_current.Keys))
+		{
+			if (symbolList_current.TryGetValue(key, out var symbol))
+			{
+				Dictionary<Vector2Int, SymbolSO> newSymbolList = new Dictionary<Vector2Int, SymbolSO>();
+				newSymbolList.Add(key, symbol);
+				WeaponCallSymbol.RaiseEvent(newSymbolList, this);
+				Debug.Log($"处理键: {key}");
+				symbolList_current.Remove(key);
+				break;
+			}
+		}
+
+		if (symbolList_current.Count == 0)
+		{
 			SetWeaponReadyEvent.RaiseEvent(null, this);
 		}
 	}
-	private bool CheckWeaponReady()
+
+	public void ResetSymbolList()
 	{
-		foreach (var weaponUI in weaponList)
-		{
-			WeaponController weapon = weaponUI.GetComponent<WeaponController>();
-			if (!weapon.canAttack) return false;
-		}
-		return true;
+		symbolList_current.Clear();
+		symbolList_current = new Dictionary<Vector2Int, SymbolSO>(symbolList.OrderBy(kvp => kvp.Key.x).ThenBy(kvp => kvp.Key.y));
 	}
 	public void SetWeaponItem()
 	{
@@ -182,7 +210,8 @@ public class WeaponGroup : MonoBehaviour
 		//重新设置攻击区域
 		List<WeaponSO> currentWeapons = weaponList.Select(obj => obj.weapon).ToList();
 		List<Vector2Int> gridPos = new List<Vector2Int>();
-		gridPos = ToolFunctions.SetGrid(currentWeapons);
+		// gridPos = 
+		ToolFunctions.SetGrid(currentWeapons);
 		ChangeGridHurtArea.RaiseEvent(gridPos,this);
 	}
 

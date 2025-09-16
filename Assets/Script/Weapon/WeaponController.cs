@@ -23,8 +23,11 @@ public class WeaponController : MonoBehaviour
 	private bool attacked = false;
 	public bool canAttack = false;
 	public WeaponGroup group;
+	// private float timeCounter = 0;
+	// public float symbolColdTime = 2;
 	[Header("广播事件")] 
 	public DictionaryEventSO WeaponCallSymbol;
+
 
 	bool canCallSymbol = false;
 	public void SetStartFight()
@@ -48,6 +51,19 @@ public class WeaponController : MonoBehaviour
 			}
 		}
 		coldTime = symbols.Count;
+	}
+
+	private void Update()
+	{
+		// if (canCallSymbol)
+		// {
+		// 	timeCounter += Time.deltaTime;
+		// 	if (timeCounter >= symbolColdTime)
+		// 	{
+		// 		timeCounter = 0;
+		// 		SetOneSymbol();
+		// 	}
+		// }
 	}
 
 	public void ResetWeapon()
@@ -85,7 +101,7 @@ public class WeaponController : MonoBehaviour
 		}
 	}
 	//每次移动，每个装备加载1个符文
-	public void PlayerWalk()
+	public void SetOneSymbol()
 	{
 		if(!canCallSymbol) return;
 		if (coldTime > 0)
@@ -100,7 +116,6 @@ public class WeaponController : MonoBehaviour
 			attacked = true;
 			CallSymbol(symbols);
 			coldTime = -1;
-			group.SetWeaponReady();
 		}
 	}
 

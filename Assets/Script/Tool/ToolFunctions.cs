@@ -186,29 +186,41 @@ public class ToolFunctions : MonoBehaviour
 	/// </summary>
 	/// <param name="weapons"></param>
 	/// <returns></returns>
-	public static List<Vector2Int> SetGrid(List<WeaponSO> weapons)
+	public static int SetGrid(List<WeaponSO> weapons)
 	{
-		List<Vector2Int> gridPos = new List<Vector2Int>();
+		// List<Vector2Int> gridPos = new List<Vector2Int>();
+		//
 		// foreach (var weapon in weapons)
 		// {
-		// 	// Debug.LogError(weapon.weaponName);
-		// 	foreach (var pos in weapon.hurtArea)
+		// 	foreach (var symbolList in weapon.symbolList)
 		// 	{
-		// 		if(!gridPos.Contains(pos)) gridPos.Add(pos);
+		// 		foreach (var pos in symbolList.area)
+		// 		{
+		// 			if(!gridPos.Contains(pos)) gridPos.Add(pos);
+		// 		}
 		// 	}
 		// }
-
+		// return gridPos;
+		
+		int count = 0;
 		foreach (var weapon in weapons)
 		{
-			foreach (var symbolList in weapon.symbolList)
+			foreach (var symbol in weapon.symbolList)
 			{
-				foreach (var pos in symbolList.area)
-				{
-					if(!gridPos.Contains(pos)) gridPos.Add(pos);
-				}
+				count+=symbol.area.Count;
 			}
 		}
-		return gridPos;
+		return count;
+	}
+
+	public static List<SymbolSO> GetWeaponSymbol(WeaponSO weapon)
+	{
+		List<SymbolSO> symbols = new List<SymbolSO>();
+		foreach (var symbol in weapon.symbolList)
+		{
+			symbols.Add(symbol.symbol);
+		}
+		return symbols;
 	}
 
 	/// <summary>
@@ -230,6 +242,20 @@ public class ToolFunctions : MonoBehaviour
 		UnityEditor.AssetDatabase.DeleteAsset(fullPath);
 		UnityEditor.AssetDatabase.CreateAsset(enemyHP, fullPath);
 		UnityEditor.AssetDatabase.Refresh();
+	}
+	
+	public static IEnumerator SmoothSnap(RectTransform rt, Vector2 targetPos, float duration = 0.3f)
+	{
+		Vector2 start = rt.anchoredPosition;
+		float elapsed = 0f;
+		while (elapsed < duration)
+		{
+			elapsed += Time.deltaTime;
+			float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+			rt.anchoredPosition = Vector2.Lerp(start, targetPos, t);
+			yield return null;
+		}
+		rt.anchoredPosition = targetPos;
 	}
 	
 #if UNITY_EDITOR

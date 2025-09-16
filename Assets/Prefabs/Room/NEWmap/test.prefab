@@ -7815,7 +7815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2d6de4c9c5bc04d8283df6cb07b560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgTilemap: {fileID: 7839370215622490676}
+  bgTilemap: {fileID: 8885892690156564417}
   wallTilemap: {fileID: 4667967286303150100}
   next: {fileID: 1768894297823835838}
 --- !u!114 &7954180092638739726
@@ -10262,7 +10262,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

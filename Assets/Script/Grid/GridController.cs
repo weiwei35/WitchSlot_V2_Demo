@@ -12,8 +12,6 @@ using Random = UnityEngine.Random;
 
 public class GridController : MonoBehaviour
 {
-    public List<Vector2Int> defaultGrid = new List<Vector2Int>();//默认攻击范围
-    
     // public GridView_UI gridView_UI;
     public GridView_Map gridView_Map;
     public static Vector2Int playerFaceGridPosCurrent = new Vector2Int(1,0);//角色朝向位置
@@ -34,15 +32,6 @@ public class GridController : MonoBehaviour
     public void SetCanAttack()
     {
         canAttack = true;
-    }
-    public void SetDefaultGrid(object obj)
-    {
-        defaultGrid.Clear();
-        List<Vector2Int> grid = (List<Vector2Int>)obj;
-        foreach (var pos in grid)
-        {
-            defaultGrid.Add(pos);
-        }
     }
     
     //计算伤害
@@ -107,7 +96,7 @@ public class GridController : MonoBehaviour
                 {
                     EnemyCommon enemyBase = enemy.GetComponent<EnemyCommon>();
                     Vector3 gridPos = new Vector3(grid.transform.position.x, grid.transform.position.y);
-                    if (enemy != null && Vector3.Distance(gridPos, enemy.position) < 0.1f) //判断怪物位置是否有符文
+                    if (enemy != null && Vector3.Distance(gridPos, enemy.position) < 0.5f) //判断怪物位置是否有符文
                     {
                         hurtGridPos.Add(gridPos);
                         enemyBase.TakeDamage(areaHurt);
@@ -158,36 +147,36 @@ public class GridController : MonoBehaviour
     //旋转符文
     private int angleBefore = 0;
     public ObjectEventSO RotateGridUIEvent;
-    public void RotateGrid(int angle)
-    {
-        int angleDiff = ToolFunctions.CalculateClockwiseRotation(angleBefore,angle);
-        angleBefore = angle;
-        Dictionary<Vector2Int,SymbolSO> newSymbolDic = new Dictionary<Vector2Int,SymbolSO>();
-        foreach (var symbol in symbolDic)
-        {
-            Vector2Int pos = ToolFunctions.RotateGridInt(symbol.Key,angleDiff);
-            newSymbolDic.Add(pos, symbol.Value);
-        }
-        symbolDic = newSymbolDic;
-        RotateGridUIEvent.RaiseEvent(angleDiff,this);
-        switch (angle)
-        {
-            case 0:
-                playerFaceGridPosCurrent = new Vector2Int(1, 0);
-                break;
-            case 90:
-                playerFaceGridPosCurrent = new Vector2Int(0, -1);
-                break;
-            case 180:
-                playerFaceGridPosCurrent = new Vector2Int(-1, 0);
-                break;
-            case 270:
-                playerFaceGridPosCurrent = new Vector2Int(0, 1);
-                break;
-        }
-        gridView_Map.SetGrid(symbolDic);
-        gridView_Map.ShowGrid();
-    }
+    // public void RotateGrid(int angle)
+    // {
+    //     int angleDiff = ToolFunctions.CalculateClockwiseRotation(angleBefore,angle);
+    //     angleBefore = angle;
+    //     Dictionary<Vector2Int,SymbolSO> newSymbolDic = new Dictionary<Vector2Int,SymbolSO>();
+    //     foreach (var symbol in symbolDic)
+    //     {
+    //         Vector2Int pos = ToolFunctions.RotateGridInt(symbol.Key,angleDiff);
+    //         newSymbolDic.Add(pos, symbol.Value);
+    //     }
+    //     symbolDic = newSymbolDic;
+    //     RotateGridUIEvent.RaiseEvent(angleDiff,this);
+    //     switch (angle)
+    //     {
+    //         case 0:
+    //             playerFaceGridPosCurrent = new Vector2Int(1, 0);
+    //             break;
+    //         case 90:
+    //             playerFaceGridPosCurrent = new Vector2Int(0, -1);
+    //             break;
+    //         case 180:
+    //             playerFaceGridPosCurrent = new Vector2Int(-1, 0);
+    //             break;
+    //         case 270:
+    //             playerFaceGridPosCurrent = new Vector2Int(0, 1);
+    //             break;
+    //     }
+    //     gridView_Map.SetGrid(symbolDic);
+    //     gridView_Map.ShowGrid();
+    // }
     public void SetSymbolInGrid(object o)
     {
         Dictionary<Vector2Int,SymbolSO> gridPos = (Dictionary<Vector2Int,SymbolSO>)o;
@@ -199,7 +188,7 @@ public class GridController : MonoBehaviour
             }
         }
         gridView_Map.SetGrid(symbolDic);
-        gridView_Map.ShowGrid();
+        // gridView_Map.ShowGrid();
         SetRandomSymbolEvent.RaiseEvent(symbolDic,this);
     }
 }

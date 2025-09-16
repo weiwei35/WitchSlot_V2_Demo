@@ -19,5 +19,6 @@ MonoBehaviour:
   randomRank: 10
   symbolType: 0
   randomType: 0
+  coldTime: 2
   effects:
   - {fileID: 11400000, guid: b8da1b8cdbdfdcb4d8cf421cb8fb96b6, type: 2}

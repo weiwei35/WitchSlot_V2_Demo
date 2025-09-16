@@ -283,6 +283,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +326,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +357,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +412,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +467,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +498,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +529,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &510471415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +584,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,13 +1085,13 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968575016}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 0.5
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 1000
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1078,7 +1102,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &968575022
 MonoBehaviour:
@@ -1105,14 +1129,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f28f8597999c2b43b88ed56857f835d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
   gridSize: 0.8
   moveDuration: 0.2
   inputCoolDown: 0.1
-  moveStep: 2
   canMove: 0
+  waitMove: 0
   setRooming: 0
   endFight: 0
   PlayerMoveEvent: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
+  PlayerMovePassEvent: {fileID: 0}
+  PlayerMoveCenterEvent: {fileID: 0}
 --- !u!114 &968575025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,6 +1213,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &968575031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,6 +1244,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &968575032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,6 +1275,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1134727579
 GameObject:
   m_ObjectHideFlags: 3
@@ -1459,6 +1495,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnterUndergroundEvent: {fileID: 11400000, guid: 53032da8e646cb5428f64c6601447cde, type: 2}
   fakeRoomData: {fileID: 11400000, guid: 6ce3fbe24ff5f6449a5518f33e813e95, type: 2}
+  effectiveRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  cornerPoints: []
 --- !u!114 &1403396822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,6 +1530,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1426524044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1613,7 @@ MonoBehaviour:
   enemiesInFight: []
   enemyAllDie: 0
   EndRoomEvent: {fileID: 11400000, guid: f7c28e063a6053d459d6775d44a56ae7, type: 2}
+  EndFightEnemyEvent: {fileID: 0}
 --- !u!1 &2024845870
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,31 +14,77 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class SetGridArea : MonoBehaviour
 {
+	public GameObject symbolParent;
+	public WeaponSymbolUI symbolGrid;
 	public WeaponManager weaponManager;
 	
 	public List<OutFight_GridObj_UI> gridObjects;
-	public OutFight_GridObj_UI gridObjectPrefab;
-	private List<Vector2Int> gridPos;
 
 	public void SetGridObj()
 	{
 		gridObjects.Clear();
-		gridPos = new List<Vector2Int>();
 		List<WeaponSO> currentWeapons = new List<WeaponSO>();
 		currentWeapons.Add(RandomWeaponWithType(weaponManager.weaponDataList,WeaponType.武器));
 		currentWeapons.Add(RandomWeaponWithType(weaponManager.weaponDataList,WeaponType.衣服));
 		// List<WeaponSO> currentWeapons = RandomWeapon(weaponManager.weaponDataList, 2);
-		gridPos = ToolFunctions.SetGrid(currentWeapons);
 		SetWeapon(currentWeapons);
+		SetWeaponSymbolGrid(currentWeapons);
+	}
 
-		foreach (var pos in gridPos)
+	public void EndSymbolSet()
+	{
+		if (symbolParent.transform.childCount == 0)
 		{
-			var grid = Instantiate(gridObjectPrefab, transform);
-			grid.transform.localPosition = new Vector3(pos.x,pos.y,0)*120;
-			grid.gridPos = pos;
-			gridObjects.Add(grid);
+			GetComponent<SlotSystem>().RemoveAllSlots();
 		}
 	}
+
+	public void SetWeaponSymbolGrid(List<WeaponSO> weapons)
+	{
+		int count = 0;
+		foreach (var weapon in weapons)
+		{
+			List<SymbolSO> symbols =ToolFunctions.GetWeaponSymbol(weapon);
+			foreach (var symbol in symbols)
+			{
+				count++;
+			}
+		}
+		int width = count * 100+(count-1)*20;
+		float startX = width / 2;
+		int i = 0;
+		foreach (var weapon in weapons)
+		{
+			List<SymbolSO> symbols =ToolFunctions.GetWeaponSymbol(weapon);
+            foreach (var symbol in symbols)
+            {
+            	var obj = Instantiate(symbolGrid, symbolParent.transform);
+	            obj.transform.position -= new Vector3(startX, 0, 0);
+	            obj.transform.position += new Vector3(i*120, 0, 0);
+	            obj.transform.position += new Vector3(50, 0, 0);
+            	obj.name = symbol.symbolName;
+	            obj.symbolIcon.sprite = symbol.symbolIcon;
+	            obj.symbol = symbol;
+	            i++;
+            }
+		}
+	}
+
+	public void SubmitBtn()
+	{
+		DraggableImage[] draggableImages = GameObject.FindObjectsOfType<DraggableImage>();
+		List<Vector2Int> pos = new List<Vector2Int>();
+		Dictionary<Vector2Int,SymbolSO> symbolList = new Dictionary<Vector2Int, SymbolSO>();
+		foreach (var drag in draggableImages)
+		{
+			WeaponSymbolUI symbol = drag.GetComponent<WeaponSymbolUI>();
+			pos.Add(drag.symbolPos);
+			symbolList.Add(drag.symbolPos,symbol.symbol);
+		}
+		
+		SetGridHurtArea.RaiseEvent(symbolList,this);
+	}
+
 	public Color selectColor;
 	public Color defaultColor;
 	public void ShowWeaponHurtArea(object o)
@@ -126,11 +172,11 @@ public class SetGridArea : MonoBehaviour
 	[Header("玩家面向")]
 	public static Vector2Int playerFaceGridPos;
 	public GridView_UI gridUI;
-	public ObjectEventSO SetGridHurtArea;
-	public void SubmitGrid()
+	public DictionaryEventSO SetGridHurtArea;
+	public void SubmitGrid(List<Vector2Int> pos)
 	{
-		playerFaceGridPos = new Vector2Int(1,0);
-		// gridUI.InitGrid(gridPos);
-		SetGridHurtArea.RaiseEvent(gridPos,this);
+		// playerFaceGridPos = new Vector2Int(1,0);
+		// // gridUI.InitGrid(gridPos);
+		// SetGridHurtArea.RaiseEvent(pos,this);
 	}
 }

@@ -21,11 +21,11 @@ public class GridView_UI : MonoBehaviour
 	public SymbolView_UI symbol;
 	
 	GridPosition gridPlayer;
-	public Sprite playerSprite;
+	// public Sprite playerSprite;
 	
 	List<GridPosition> gridList = new List<GridPosition>();
 	List<GridPosition> gridListExpanded = new List<GridPosition>();
-	public void InitGrid(object o)
+	public void InitGrid(Dictionary<Vector2Int,SymbolSO> symbolDic)
 	{
 		foreach (var obj in gridListExpanded)
 		{
@@ -34,35 +34,32 @@ public class GridView_UI : MonoBehaviour
 		gridListExpanded.Clear();
 		ClearGrid();
 		gridList.Clear();
-		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
+		Dictionary<Vector2Int, SymbolSO> symbolList = new Dictionary<Vector2Int, SymbolSO>();
+		foreach (var symbol in symbolDic)
+		{
+			symbolList.Add(symbol.Key, symbol.Value);
+		}
+		// List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
 		foreach (Transform grid in gridGroup.transform)
 		{
 			GridPosition pos = grid.GetComponent<GridPosition>();
 			grid.GetComponent<Image>().color = unlockColor;
-			if (gridPos.Contains(pos.gridPosition))
+			if (symbolList.ContainsKey(pos.gridPosition))
 			{
 				gridList.Add(pos);
 				grid.GetComponent<Image>().color = defaultColor;
-				gridPos.Remove(pos.gridPosition);
-			}
-
-			if (pos.gridPosition == Vector2Int.zero)
-			{
-				gridPlayer = pos;
-				grid.GetComponent<Image>().color = defaultColor;
-                gridPlayer.GetComponent<Image>().sprite = playerSprite;
-                gridPlayer.GetComponent<Image>().SetNativeSize();
+				symbolList.Remove(pos.gridPosition);
 			}
 		}
 
-		if (gridPos.Count > 0)
+		if (symbolList.Count > 0)
 		{
-			foreach (var pos in gridPos)
+			foreach (var pos in symbolList)
 			{
 				var grid = Instantiate(gridObj, gridGroup.transform);
-				grid.gridPosition = pos;
+				grid.gridPosition = pos.Key;
 				grid.GetComponent<Image>().color = defaultColor;
-				grid.transform.localPosition = new Vector3(pos.x*120,pos.y*120);
+				grid.transform.localPosition = new Vector3(pos.Key.x*120,pos.Key.y*120);
 				gridList.Add(grid);
 				gridListExpanded.Add(grid);
 			}
@@ -103,17 +100,17 @@ public class GridView_UI : MonoBehaviour
 	public Color unlockColor;
 	public void ShowWeaponHurtArea(object o)
 	{
-		List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
-		foreach (var pos in gridPos)
-        {
-        	foreach (var grid in gridList)
-        	{
-        		if (grid.gridPosition == pos)
-        		{
-        			grid.GetComponent<Image>().color = selectColor;
-        		}
-        	}
-        }
+		// List<Vector2Int> gridPos = ((List<Vector2Int>)o).ToList();
+		// foreach (var pos in gridPos)
+  //       {
+  //       	foreach (var grid in gridList)
+  //       	{
+  //       		if (grid.gridPosition == pos)
+  //       		{
+  //       			grid.GetComponent<Image>().color = selectColor;
+  //       		}
+  //       	}
+  //       }
 	}
 
 	public void ResetWeaponHurtArea()

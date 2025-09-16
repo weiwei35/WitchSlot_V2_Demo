@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5121468847057056690}
   - component: {fileID: 1534120770821196027}
   - component: {fileID: 7913454513548595839}
-  - component: {fileID: 3695102812560485618}
   - component: {fileID: -5242927767095325506}
   - component: {fileID: -937914938109522462}
   - component: {fileID: 3819469518704681494}
@@ -117,34 +116,6 @@ MonoBehaviour:
   canAttack: 0
   group: {fileID: 0}
   WeaponCallSymbol: {fileID: 11400000, guid: 91f64f7bcd3abc541b48831dce728548, type: 2}
---- !u!114 &3695102812560485618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8155350047255467821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6499e9d2a929dc478b11ed143d080cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventSO: {fileID: 11400000, guid: b2fb9f969f0852b4fa305ec78d41fdd7, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7913454513548595839}
-        m_TargetAssemblyTypeName: WeaponController, Assembly-CSharp
-        m_MethodName: PlayerWalk
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &-5242927767095325506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +144,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &-937914938109522462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +175,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3819469518704681494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +206,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7278014463455605221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +237,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6942186521169577206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +268,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7769552239779637817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,3 +299,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  response2Para:
+    m_PersistentCalls:
+      m_Calls: []

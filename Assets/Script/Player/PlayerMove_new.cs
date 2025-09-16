@@ -13,6 +13,7 @@ using DG.Tweening;
 public class PlayerMove_new : MonoBehaviour 
 {
 	[Header("Movement Settings")]
+	public float moveSpeed = 5f;
 	public float gridSize = 0.8f;
 	public float moveDuration = 0.2f;
 	public float inputCoolDown = 0.1f;
@@ -69,18 +70,6 @@ public class PlayerMove_new : MonoBehaviour
 		setRooming = true;
 	}
 
-	public void WaitMove()
-	{
-		waitMove = true;
-		StartCoroutine(StopWait());
-	}
-
-	IEnumerator StopWait()
-	{
-		yield return new WaitForSeconds(0.5f);
-		waitMove = false;
-	}
-
 	public void EndRoomFight()
 	{
 		endFight = true;
@@ -103,21 +92,29 @@ public class PlayerMove_new : MonoBehaviour
 			// 键盘输入检测
 			if (Input.GetKey(KeyCode.A))
 			{
-				RegisterMove(-Vector3.right);
+				// RegisterMove(-Vector3.right);
 				playerSprite.flipX = true;
 			}
 			else if (Input.GetKey(KeyCode.D))
 			{
-				RegisterMove(Vector3.right);
+				// RegisterMove(Vector3.right);
 				playerSprite.flipX = false;
 			}
-			else if (Input.GetKey(KeyCode.W))
+			// else if (Input.GetKey(KeyCode.W))
+			// {
+			// 	RegisterMove(Vector3.up);
+			// }
+			// else if (Input.GetKey(KeyCode.S))
+			// {
+			// 	RegisterMove(-Vector3.up);
+			// }
+			float h = Input.GetAxisRaw("Horizontal");
+			float v = Input.GetAxisRaw("Vertical");
+			Vector2 move = new Vector2(h, v);
+			if (move != Vector2.zero)
 			{
-				RegisterMove(Vector3.up);
-			}
-			else if (Input.GetKey(KeyCode.S))
-			{
-				RegisterMove(-Vector3.up);
+				move.Normalize(); // 避免斜向移动速度叠加
+				rb.MovePosition(rb.position + move * moveSpeed * Time.fixedDeltaTime);
 			}
 		}
 	}
@@ -210,7 +207,7 @@ public class PlayerMove_new : MonoBehaviour
 			isStay = true;
 			rb.DOComplete();
 			rb.MovePosition(lastValidPosition); // 回退到上次有效位置
-
+			
 			// 清空已排队的移动
 			moveQueue.Clear();
 			isMoving = false;

@@ -25,7 +25,6 @@ public class GridView_Map : MonoBehaviour
 	public List<GridObj> gridObjs;
 	public float gridSize = 0.8f;
 	
-	bool isShowHurt = false;
 	public void SetGrid(Dictionary<Vector2Int, SymbolSO> symbolDic)
 	{
 		foreach (var grid in gridObjs.ToList())
@@ -43,7 +42,7 @@ public class GridView_Map : MonoBehaviour
 			obj.gridPos = new Vector3(grid.Key.x, grid.Key.y);
 			gridObjs.Add(obj);
 		}
-		gridParent.transform.localPosition = new Vector3(-GridController.playerFaceGridPosCurrent.x, -GridController.playerFaceGridPosCurrent.y)*gridSize;
+		// gridParent.transform.localPosition = new Vector3(-GridController.playerFaceGridPosCurrent.x, -GridController.playerFaceGridPosCurrent.y)*gridSize;
 		canAttack = true;
 	}
 
@@ -65,8 +64,6 @@ public class GridView_Map : MonoBehaviour
 		}
 		gridObjs.Clear();
 		SetHurt();
-		isHideSymbol = true;
-		isShowHurt = false;
 		canAttack = false;
 	}
 	public GameObject hurtObj;
@@ -107,23 +104,13 @@ public class GridView_Map : MonoBehaviour
                 hurtObjDict.Add(gridPos, gridObj);
 			}
 		}
-
-		if (!endAttack)
-		{
-			if(!isShowHurt)
-            	HideSymbol();
-            else
-            	ShowSymbol();
-		}
 	}
 
-	bool isHideSymbol = true;
 	bool endAttack = false;
 
 	public void SetEndAttack()
 	{
 		endAttack = true;
-		isShowHurt = false;
 		StartCoroutine(SetAttack());
 	}
 	IEnumerator SetAttack()
@@ -131,57 +118,10 @@ public class GridView_Map : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		endAttack = false;
 	}
-	private void Update()
-	{
-		if(!canAttack || !gridController.canAttack) return;
-		if (!isShowHurt)
-		{
-			if (Input.GetKeyDown(KeyCode.Q))
-			{
-				if(isHideSymbol)
-				{
-					ShowSymbol();
-					isShowHurt = true;
-				}
-			}
-		}
-		else
-		{
-			if (Input.GetKeyDown(KeyCode.Q))
-			{
-				if(!isHideSymbol)
-				{
-					HideSymbol();
-					// DeleteSymbol();
-					isShowHurt = false;
-				}
-			}
-		}
-	}
-	void HideSymbol()
-	{
-		isHideSymbol = true;
-		foreach (var symbol in symbolList)
-		{
-			symbol.SetActive(false);
-		}
-
-		foreach (var hurt in hurtObjDict)
-		{
-			hurt.Value.SetActive(false);
-		}
-		foreach (var grid in gridObjs)
-		{
-			grid.GetComponent<SpriteRenderer>().enabled = false;
-		}
-		SymbolCanNotAttackEvent.RaiseEvent(null,this);
-	}
 
 	public ObjectEventSO SymbolCanAttackEvent;
-	public ObjectEventSO SymbolCanNotAttackEvent;
-	void ShowSymbol()
+	public void ShowSymbol()
 	{
-		isHideSymbol = false;
 		foreach (var symbol in symbolList)
 		{
 			symbol.SetActive(true);
@@ -194,6 +134,8 @@ public class GridView_Map : MonoBehaviour
 		{
 			grid.GetComponent<SpriteRenderer>().enabled = true;
 		}
+
+		ShowGrid();
 		SymbolCanAttackEvent.RaiseEvent(null,this);
 	}
 }

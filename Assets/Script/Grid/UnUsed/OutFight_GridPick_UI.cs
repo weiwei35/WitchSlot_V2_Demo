@@ -23,15 +23,12 @@ public class OutFight_GridPick_UI : MonoBehaviour
 	public OutFight_GridObj_UI gridObjectPrefab;
 	public GameObject gridObjectParent;
 
-	public GridView_UI gridUI;
 	public int gridCount;
+	public int gridCount_max;
 	public TMP_Text gridCountText;
 	public Button submitButton;
 
-	public ObjectEventSO SetGridArea;
-
 	[Header("玩家面向")] public GameObject playerFace;
-	public static Vector2Int playerFaceGridPos;
 
 	private bool isPicking = true;
 	private void Start()
@@ -96,6 +93,7 @@ public class OutFight_GridPick_UI : MonoBehaviour
 			//动态加载当前可选格子
 			SetNearGrid();
 		}
+		gridCount = gridCount_max - gridObjects.Count;
 	}
 	private int deletMinY = int.MaxValue;
 	private int deletMaxY = int.MinValue;
@@ -225,9 +223,20 @@ public class OutFight_GridPick_UI : MonoBehaviour
 			if(i==points.Count && gridObjects.Count>1)//与当前所有选择格子不相邻
 			{
 				pickedGrid.selected = false;
-				gridCount++;
 				RemoveGrid(pickedGrid);
 			}
 		}
+		
+		gridCount = gridCount_max - gridObjects.Count;
+	}
+
+	public void SetGridHurtArea()
+	{
+		List<Vector2Int> pickedPos = new List<Vector2Int>();
+		foreach (var grid in gridObjects)
+		{
+			pickedPos.Add(grid.gridPos);
+		}
+		GetComponent<SetGridArea>().SubmitGrid(pickedPos);
 	}
 }

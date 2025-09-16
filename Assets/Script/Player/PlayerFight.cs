@@ -13,53 +13,29 @@ using Random = UnityEngine.Random;
 public class PlayerFight : MonoBehaviour
 {
 	bool canAttack = false;
-	bool skipStep = false;
 	private void Update()
 	{
 		if (canAttack)
 		{
-			if (Input.GetKey(KeyCode.Space))
+			if (Input.GetMouseButtonDown(0))
 			{
 				canAttack = false;
 				//释放符文
 				GridAttackEvent.RaiseEvent(null,this);
-				StartCoroutine(EndAttack());
-			}
-		}
-		else
-		{
-			if (Input.GetKey(KeyCode.E) && !skipStep)
-			{
-				skipStep = true;
-				GetComponent<PlayerMove_new>().PlayerMoveEvent.RaiseEvent(null,this);
-				StartCoroutine(ResetSkipStep());
 			}
 		}
 	}
 
-	IEnumerator ResetSkipStep()
-	{
-		yield return new WaitForSeconds(1f);
-		skipStep = false;
-	}
 	public void SetCanAttack()
 	{
 		canAttack = true;
-		GetComponent<PlayerMove_new>().canMove = false;
+		// GetComponent<PlayerMove_new>().canMove = false;
 	}
 	public void SetCanNotAttack()
 	{
 		canAttack = false;
-		if(!GetComponent<PlayerMove_new>().setRooming)GetComponent<PlayerMove_new>().canMove = true;
+		// if(!GetComponent<PlayerMove_new>().setRooming)GetComponent<PlayerMove_new>().canMove = true;
 	}
 
-	IEnumerator EndAttack()
-	{
-		GetComponent<PlayerMove_new>().canMove = true;
-		yield return new WaitForSeconds(0f);
-		
-		// EndGridAttackEvent.RaiseEvent(null,this);
-	}
 	public ObjectEventSO GridAttackEvent;
-	// public ObjectEventSO EndGridAttackEvent;
 }

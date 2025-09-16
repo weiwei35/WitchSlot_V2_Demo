@@ -12,6 +12,38 @@ public class OutFight_GridObj_UI : MonoBehaviour
 {
 	public Vector2Int gridPos;
 	private OutFight_GridPick_UI gridPick;
+	private Image image;
 	
 	public bool selected = false;
+
+	private void Start()
+	{
+		gridPick = GetComponentInParent<OutFight_GridPick_UI>();
+		image = GetComponent<Image>();
+	}
+
+	public void SelectGrid()
+	{
+		selected = !selected;
+		if (selected)
+		{
+			gridPick.gridObjects.Add(this);
+			gridPick.SetGridCanPick();
+		}
+		else
+		{
+			gridPick.RemoveGrid(this);
+		}
+	}
+	private void Update()
+	{
+		if (selected)
+		{
+			image.color = Color.green;
+		}
+		else
+		{
+			image.color = Color.white;
+		}
+	}
 }

@@ -154,7 +154,7 @@ public static class PokerEvaluator
 
     
     private static List<CardData> GetKickerCards(List<CardData> fullHand, List<CardData> usedCards) {
-        return fullHand.Where(c => !usedCards.Any(u => u.rank == c.rank && u.suit == u.suit)).ToList();
+        return fullHand.Where(c => !usedCards.Any(u => u.rank == c.rank && u.suit == c.suit)).ToList();
     }
 }
 

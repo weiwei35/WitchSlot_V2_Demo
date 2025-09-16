@@ -14,6 +14,7 @@ using Random = UnityEngine.Random;
 public class MapController : MonoBehaviour
 {
 	public ObjectEventSO EnterUndergroundEvent;
+	public ObjectEventSO RoomLoadedEvent;
 	private void OnEnable()
 	{
 		EnterUndergroundEvent.RaiseEvent(null,this);
@@ -53,9 +54,15 @@ public class MapController : MonoBehaviour
 				enemyGroup.enemyAllDie = false;
 			}
 			CalculateEffectiveBounds(room.GetComponent<RoomController>().wallTilemap);
+			StartCoroutine(RoomLoaded());
 		}
 	}
 
+	IEnumerator RoomLoaded()
+	{
+		yield return new WaitForSeconds(1f);
+		RoomLoadedEvent.RaiseEvent(null, this);
+	}
 	void DeleteRoomBefore()
 	{
 		foreach (Transform room in transform)

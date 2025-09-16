@@ -18,6 +18,7 @@ public class SymbolSO : ScriptableObject
     public float randomRank = 10;
     public SymbolType symbolType;
     public RandomType randomType;
+    public float coldTime;
     
     public List<Effect> effects;
 }

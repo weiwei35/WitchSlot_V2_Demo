@@ -30,7 +30,7 @@ public class GridMove : MonoBehaviour
 	public void ClearMove()
 	{
 		rotateDirection = 0;
-		savedDirection = Direction.Right;
+		// savedDirection = Direction.Right;
 	}
 
 	public void EndSet()
@@ -57,103 +57,113 @@ public class GridMove : MonoBehaviour
 		}
 	}
 
-	public void SetGridGroupRotate()
-	{
-		Direction dir = GetMousePos();
-		switch (dir)
-		{
-			case Direction.Up:
-				gridController.RotateGrid(270);
-				rotateDirection = 270;
-				break;
-			case Direction.Down:
-				gridController.RotateGrid(90);
-				rotateDirection = 90;
-				break;
-			case Direction.Left:
-				gridController.RotateGrid(180);
-				rotateDirection = 180;
-				break;
-			case Direction.Right:
-				gridController.RotateGrid(0);
-				rotateDirection = 0;
-				break;
-		}
-	}
+	// public void SetGridGroupRotate()
+	// {
+	// 	Direction dir = GetMousePos();
+	// 	switch (dir)
+	// 	{
+	// 		case Direction.Up:
+	// 			gridController.RotateGrid(270);
+	// 			rotateDirection = 270;
+	// 			break;
+	// 		case Direction.Down:
+	// 			gridController.RotateGrid(90);
+	// 			rotateDirection = 90;
+	// 			break;
+	// 		case Direction.Left:
+	// 			gridController.RotateGrid(180);
+	// 			rotateDirection = 180;
+	// 			break;
+	// 		case Direction.Right:
+	// 			gridController.RotateGrid(0);
+	// 			rotateDirection = 0;
+	// 			break;
+	// 	}
+	// }
+	
 	/// <summary>
 	/// 根据鼠标位置设置对应朝向的攻击范围
 	/// </summary>
-	public Direction savedDirection = Direction.Empty;
+	// public Direction savedDirection = Direction.Empty;
 	public void SetGridGroupPos()
 	{
-		transform.position = gridController.player.transform.position;
-		Direction dir = GetMousePos();
-		switch (dir)
-		{
-			case Direction.Up:
-				transform.position = gridController.player.transform.position + new Vector3(0, gridGroup.gridSize, 0);
-				if(savedDirection != Direction.Up)
-				{
-					savedDirection = Direction.Up;
-					SetGridGroupRotate();
-				}
-				break;
-			case Direction.Down:
-				transform.position = gridController.player.transform.position + new Vector3(0, -gridGroup.gridSize, 0);
-				if(savedDirection != Direction.Down)
-				{
-					savedDirection = Direction.Down;
-					SetGridGroupRotate();
-				}
-				break;
-			case Direction.Left:
-				transform.position = gridController.player.transform.position + new Vector3(-gridGroup.gridSize, 0, 0);
-				if(savedDirection != Direction.Left)
-				{
-					savedDirection = Direction.Left;
-					SetGridGroupRotate();
-				}
-				break;
-			case Direction.Right:
-				transform.position = gridController.player.transform.position + new Vector3(gridGroup.gridSize, 0, 0);
-				if(savedDirection != Direction.Right)
-				{
-					savedDirection = Direction.Right;
-					SetGridGroupRotate();
-				}
-				break;
-		}
-	}
+		Vector3 mousePos = UtilsClass.GetMouseWorldPosition();
+		// transform.position = AlignToGrid2D(mousePos);
+		transform.position = mousePos;
 
-	public Direction inputDirection = Direction.Right;
-	Direction GetFacePos()
+		// Direction dir = GetMousePos();
+		// switch (dir)
+		// {
+		// 	case Direction.Up:
+		// 		transform.position = gridController.player.transform.position + new Vector3(0, gridGroup.gridSize, 0);
+		// 		if(savedDirection != Direction.Up)
+		// 		{
+		// 			savedDirection = Direction.Up;
+		// 			SetGridGroupRotate();
+		// 		}
+		// 		break;
+		// 	case Direction.Down:
+		// 		transform.position = gridController.player.transform.position + new Vector3(0, -gridGroup.gridSize, 0);
+		// 		if(savedDirection != Direction.Down)
+		// 		{
+		// 			savedDirection = Direction.Down;
+		// 			SetGridGroupRotate();
+		// 		}
+		// 		break;
+		// 	case Direction.Left:
+		// 		transform.position = gridController.player.transform.position + new Vector3(-gridGroup.gridSize, 0, 0);
+		// 		if(savedDirection != Direction.Left)
+		// 		{
+		// 			savedDirection = Direction.Left;
+		// 			SetGridGroupRotate();
+		// 		}
+		// 		break;
+		// 	case Direction.Right:
+		// 		transform.position = gridController.player.transform.position + new Vector3(gridGroup.gridSize, 0, 0);
+		// 		if(savedDirection != Direction.Right)
+		// 		{
+		// 			savedDirection = Direction.Right;
+		// 			SetGridGroupRotate();
+		// 		}
+		// 		break;
+		// }
+	}
+	Vector2 AlignToGrid2D(Vector2 pos)
 	{
-		if (Input.GetKey(KeyCode.UpArrow))
-		{
-			inputDirection = Direction.Up;
-			return Direction.Up;
-		}
-
-		if (Input.GetKey(KeyCode.DownArrow))
-		{
-			inputDirection = Direction.Down;
-			return Direction.Down;
-		}
-
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			inputDirection = Direction.Left;
-			return Direction.Left;
-		}
-
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			inputDirection = Direction.Right;
-			return Direction.Right;
-		}
-
-		return inputDirection;
+		float alignedX = Mathf.FloorToInt(pos.x / 0.8f) * 0.8f + 0.4f;
+		float alignedY = Mathf.FloorToInt(pos.y / 0.8f) * 0.8f + 0.4f;
+		return new Vector2(alignedX, alignedY);
 	}
+
+	// public Direction inputDirection = Direction.Right;
+	// Direction GetFacePos()
+	// {
+		// if (Input.GetKey(KeyCode.UpArrow))
+		// {
+		// 	inputDirection = Direction.Up;
+		// 	return Direction.Up;
+		// }
+		//
+		// if (Input.GetKey(KeyCode.DownArrow))
+		// {
+		// 	inputDirection = Direction.Down;
+		// 	return Direction.Down;
+		// }
+		//
+		// if (Input.GetKey(KeyCode.LeftArrow))
+		// {
+		// 	inputDirection = Direction.Left;
+		// 	return Direction.Left;
+		// }
+		//
+		// if (Input.GetKey(KeyCode.RightArrow))
+		// {
+		// 	inputDirection = Direction.Right;
+		// 	return Direction.Right;
+		// }
+		//
+		// return inputDirection;
+	// }
 	/// <summary>
 	/// 获取鼠标在角色的方位
 	/// </summary>
