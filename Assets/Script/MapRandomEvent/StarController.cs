@@ -12,13 +12,17 @@ using Random = UnityEngine.Random;
 public class StarController : MonoBehaviour
 {
 	public ObjectEventSO GetStarEvent;
-	private void OnCollisionEnter2D(Collision2D other)
+
+	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player")
 		{
-			DOTween.Kill(gameObject);
-			GetStarEvent.RaiseEvent(null,this);
-			Destroy(gameObject);
+			transform.DOMove(other.transform.position, 0.2f).SetAutoKill(true).SetLink(gameObject).OnComplete(() =>
+			{
+				DOTween.Kill(gameObject);
+				GetStarEvent.RaiseEvent(null,this);
+				Destroy(gameObject);
+			});
 		}
 	}
 }

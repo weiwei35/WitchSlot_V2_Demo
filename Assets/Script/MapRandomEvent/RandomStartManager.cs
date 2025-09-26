@@ -134,7 +134,11 @@ public class RandomStartManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1.1f);
 		var starObj = Instantiate(star, startPosition.position, Quaternion.identity, transform);
-		starObj.transform.DOMove(pos, 0.5f).SetAutoKill(true).SetLink(starObj.gameObject);
+		BoxCollider2D boxCollider2D = starObj.GetComponent<BoxCollider2D>();
+		starObj.transform.DOMove(pos, 0.5f).SetAutoKill(true).SetLink(starObj.gameObject).OnComplete(() =>
+		{
+			boxCollider2D.enabled = true;
+		});
 		StartCoroutine(DeleteStar(starObj));
 	}
 	IEnumerator DeleteStar(GameObject starObj)

@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 267006760}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70325965, y: 0.07366056, z: -0.073660575, w: 0.70325965}
-  m_LocalPosition: {x: 0, y: 5.16, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -948,7 +948,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 10
+      value: 20
       mode: 0
       spread: 0
       speed:
@@ -1067,7 +1067,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 30
+      scalar: 60
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3816,7 +3816,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 1
@@ -4978,13 +4978,13 @@ Transform:
   m_GameObject: {fileID: 280928919}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: -3.5, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 267006761}
   - {fileID: 1959902491}
-  m_Father: {fileID: 968575020}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &377257003
 GameObject:
@@ -6125,7 +6125,6 @@ Transform:
   - {fileID: 2073942541}
   - {fileID: 1207666403}
   - {fileID: 1929544627}
-  - {fileID: 280928920}
   - {fileID: 1013044717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6904,7 +6903,7 @@ Transform:
   m_GameObject: {fileID: 1959902490}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70325965, y: 0.07366056, z: -0.073660575, w: 0.70325965}
-  m_LocalPosition: {x: 0, y: 5.16, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7702,7 +7701,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 10
+      value: 20
       mode: 0
       spread: 0
       speed:
@@ -7821,7 +7820,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 20
+      scalar: 40
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -11959,6 +11958,7 @@ SceneRoots:
   - {fileID: 466379783}
   - {fileID: 968575020}
   - {fileID: 1426623085}
+  - {fileID: 280928920}
   - {fileID: 510471403}
   - {fileID: 1426524045}
   - {fileID: 519420032}
