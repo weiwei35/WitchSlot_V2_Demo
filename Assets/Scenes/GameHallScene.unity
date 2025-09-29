@@ -6643,7 +6643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f28f8597999c2b43b88ed56857f835d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 4
   gridSize: 0.8
   moveDuration: 0.2
   inputCoolDown: 0.1

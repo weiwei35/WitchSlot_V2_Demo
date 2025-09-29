@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    public float followDistance = 5;
     public float minDistance = 3.0f;
     public float moveSpeed = 5.0f;
     public float coldTime = 0.5f;
 
     private Player player;
     private Rigidbody2D rb;
-    private enum EnemyState { Idle, Charging, Cooldown }
+    private enum EnemyState { Idle, Charging, Cooldown, Following }
     private EnemyState state = EnemyState.Idle;
 
     void Start()
@@ -21,12 +22,20 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        if (state == EnemyState.Idle)
+        if (state == EnemyState.Idle || state == EnemyState.Following)
         {
             float distance = Vector3.Distance(transform.position, player.transform.position);
             if (distance <= minDistance)
             {
                 StartCoroutine(ChargeAndCooldown());
+            }
+            if (distance <= followDistance)
+            {
+                state = EnemyState.Following;
+            }
+            else
+            {
+                state = EnemyState.Idle;
             }
         }
     }
@@ -69,7 +78,7 @@ public class EnemyAttack : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (state == EnemyState.Idle)
+        if (state == EnemyState.Following)
         {
             Vector2 direction = (player.transform.position - transform.position).normalized;
             rb.velocity = direction * moveSpeed;

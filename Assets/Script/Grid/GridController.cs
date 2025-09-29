@@ -101,7 +101,7 @@ public class GridController : MonoBehaviour
                         hurtGridPos.Add(gridPos);
                         enemyBase.TakeDamage(areaHurt);
                         if (enemyGroup.enemies.Count == 0) break;
-                        yield return new WaitForSeconds(0.5f);
+                        // yield return new WaitForSeconds(0.5f);
                         if (enemyGroup.enemies.Count == 0) break;
                     }
                 }
